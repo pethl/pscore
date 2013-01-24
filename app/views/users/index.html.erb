@@ -1,11 +1,11 @@
+<% provide(:title, 'All Users') %>
 <h1>Listing users</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Password-digest</th>
-    <th>Remember-token</th>
+
     <th>Admin</th>
     <th></th>
     <th></th>
@@ -16,8 +16,7 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    <td><%= user.password-digest %></td>
-    <td><%= user.remember-token %></td>
+
     <td><%= user.admin %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

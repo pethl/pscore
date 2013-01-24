@@ -1,0 +1,26 @@
+<% provide(:title, 'Predictions') %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @predict.user_id %>
+</p>
+
+<p>
+  <b>Homescore:</b>
+  <%= @predict.homescore %>
+</p>
+
+<p>
+  <b>Awayscore:</b>
+  <%= @predict.awayscore %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @predict.points %>
+</p>
+
+
+<%= link_to 'Edit', edit_predict_path(@predict) %> |
+<%= link_to 'Back', predicts_path %>
