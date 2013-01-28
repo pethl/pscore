@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :admin, :email, :name, :password, :password_confirmation
   has_secure_password
   has_many :predicts
+  accepts_nested_attributes_for :predicts
   
    before_save { |user| user.name = name.downcase }
     before_save :create_remember_token

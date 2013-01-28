@@ -14,11 +14,7 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @game = Game.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @game }
-    end
+        @fixtures = @game.fixtures.paginate(page: params[:page])
   end
 
   # GET /games/new

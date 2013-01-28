@@ -1,5 +1,32 @@
+<% provide(:title, @game.name) %>
 <p id="notice"><%= notice %></p>
 
+  <b>Competition:</b>
+  <%= @game.name %> :
+  <%= l @game.startdate, :format => :short %> -
+  <%= l @game.enddate, :format => :short %>
+
+
+ <div class="span8">
+    <% if @game.fixtures.any? %>
+      <h3>Matches (<%= @game.fixtures.count %>)</h3>
+      <ol class="fixtures">
+        <%= render @fixtures %>
+      </ol>
+
+    <% end %>
+
+<br>
+
+<h3>Add Fixture</h3>
+<%= render 'fixtures/form' %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%= link_to 'Back', games_path %> |
+<%= link_to 'Add Match', new_game_fixture_path(@game) %>
+
+<br>
+<br>
+
+  </div>
+<br><br>

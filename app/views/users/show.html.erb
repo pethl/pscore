@@ -4,14 +4,21 @@
 <p>
   <b>Name:</b>
   <%= @user.name %>
+
+
+<h2>Predictions</h2>
+<%= render @user.predicts %>
 </p>
 
-<p>
-  <b>Admin:</b>
-  <%= @user.admin %>
-</p>
 
+<br>
+
+<h3>Add Prediction</h3>
+<br>
+<%= render 'predicts/form' %>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+</div>

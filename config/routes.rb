@@ -1,7 +1,15 @@
 Pscore::Application.routes.draw do
  
-  resources :games
+  resources :games do
+    resources :fixtures
+  end
+  
+  resources :users do
+  resources :predicts
+end
 
+  resources :sessions, only: [:new, :create, :destroy]
+    
 
   get "static_pages/options"
   match '/options', to: 'static_pages#options'
@@ -12,10 +20,6 @@ Pscore::Application.routes.draw do
    match '/signin',  to: 'sessions#new'
    match '/signout', to: 'sessions#destroy', via: :delete
 
-  resources :game
-  resources :predicts
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
 
  
   get "home/index"

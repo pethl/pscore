@@ -40,17 +40,17 @@ class PredictsController < ApplicationController
   # POST /predicts
   # POST /predicts.json
   def create
-    @predict = Predict.new(params[:predict])
+     @user = User.find(params[:user_id])
+      @predict = @user.predicts.create(params[:predict])
 
-    respond_to do |format|
-      if @predict.save
-        format.html { redirect_to @predict, notice: 'Predict was successfully created.' }
-        format.json { render json: @predict, status: :created, location: @predict }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @predict.errors, status: :unprocessable_entity }
+      if  @predict.valid?
+          @predict.save
+          redirect_to user_path(@user)
+    else
+        @predict.errors
+        flash[:error] = @predict.errors.full_messages
+      
       end
-    end
   end
 
   # PUT /predicts/1
@@ -72,12 +72,9 @@ class PredictsController < ApplicationController
   # DELETE /predicts/1
   # DELETE /predicts/1.json
   def destroy
-    @predict = Predict.find(params[:id])
-    @predict.destroy
-
-    respond_to do |format|
-      format.html { redirect_to predicts_url }
-      format.json { head :no_content }
-    end
+     @user = User.find(params[:user_id])
+        @predict = @user.predicts.find(params[:id])
+        @predict.destroy
+        redirect_to user_path(@user)
   end
 end

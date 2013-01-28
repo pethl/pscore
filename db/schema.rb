@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126111703) do
+ActiveRecord::Schema.define(:version => 20130128103553) do
+
+  create_table "fixtures", :force => true do |t|
+    t.string   "content"
+    t.datetime "matchdate"
+    t.string   "hometeam"
+    t.string   "awayteam"
+    t.integer  "game_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "fixtures", ["game_id", "created_at"], :name => "index_fixtures_on_game_id_and_created_at"
 
   create_table "games", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -20,6 +32,17 @@ ActiveRecord::Schema.define(:version => 20130126111703) do
     t.datetime "startdate"
     t.datetime "enddate"
   end
+
+  create_table "matches", :force => true do |t|
+    t.string   "hometeam"
+    t.string   "awayteam"
+    t.datetime "matchdate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "game_id"
+  end
+
+  add_index "matches", ["game_id", "created_at"], :name => "index_matches_on_game_id_and_created_at"
 
   create_table "predicts", :force => true do |t|
     t.integer  "user_id"

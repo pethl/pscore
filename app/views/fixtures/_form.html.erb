@@ -1,0 +1,33 @@
+<%= form_for ([@game, @game.fixtures.build]) do |f| %>
+
+  
+
+<div class="field">
+    <%= f.label :game_id %><br />
+    <%= f.text_field :game_id, :value => @game.id %>
+  </div>
+
+
+<div class="field">
+    <%= f.label :matchdate %><br />
+    <%= f.datetime_select :matchdate, :ampm => true %>
+  </div>
+
+<div class="field">
+    <%= f.label :hometeam %><br />
+
+    <%= f.select(:hometeam, Fixture::TEAM_TYPES)%>
+  </div>
+
+<div class="field">
+    <%= f.label :awayteam %><br />
+     <%= f.select(:awayteam, Fixture::TEAM_TYPES)%>
+  </div>
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
