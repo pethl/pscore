@@ -15,6 +15,7 @@ class FixturesController < ApplicationController
     # GET /fixtures/1.json
     def show
       @fixture = Fixture.find(params[:id])
+        @predicts = @fixture.predicts.find(params[:id])
 
       respond_to do |format|
         format.html # show.html.erb
@@ -34,7 +35,7 @@ class FixturesController < ApplicationController
     # POST /fixtures
     # POST /fixtures.json
     def create
-      @game = Game.find(params[:game_id])
+      @game = Game.find(params[:game_id]) 
       @fixture = @game.fixtures.create(params[:fixture])
 
       if  @fixture.valid?

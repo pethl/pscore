@@ -6,7 +6,15 @@ Pscore::Application.routes.draw do
   
   resources :users do
   resources :predicts
-end
+  end
+
+  resources :games do
+    resources :predicts
+  end
+
+  resources :fixtures do
+    resources :predicts
+  end
 
   resources :sessions, only: [:new, :create, :destroy]
     

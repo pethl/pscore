@@ -18,6 +18,7 @@ gem 'oauth'
 
 gem 'bitly'
 
+
 group :development, :test do
   	gem 'pg', '0.12.2'
 	gem 'rspec-rails', '2.10.0'

@@ -1,8 +1,10 @@
 
 
 <p>
- 
-  <%= predict.homescore %> 
-<%= predict.homescore %>
+  <%= predict.fixture_id %>
+  <%= predict.user_id %>
+
+    <%= predict.homescore %> 
+		<%= predict.awayscore %> 
   <%= link_to 'Remove', [predict.user, predict], :confirm => 'Really remove prediction?', :method => :delete %>
 </p>

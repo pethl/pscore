@@ -1,0 +1,20 @@
+<% provide(:title, 'Match Predictions') %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>
+  <%= l @fixture.matchdate, :format => :short %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>
+</b>
+
+<h2>Predictions</h2>
+<%= render @fixture.predicts %>
+</p>
+
+
+<br>
+
+
+
+<%= link_to 'Back', fixtures_path %>
+
+</div>

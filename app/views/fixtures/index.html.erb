@@ -1,0 +1,29 @@
+<h1>Matches</h1>
+
+<table class="table">
+  <tr>
+	<th>Date</th>
+    <th>Home Team</th>
+    <th>Away Team</th>    
+<th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fixtures.each do |fixture| %>
+  <tr>
+	<td><%= link_to (l fixture.matchdate, :format => :short), fixture %></td>    
+	<td><%= fixture.hometeam %></td>
+	    	<td><%= fixture.awayteam %></td>
+
+	   
+    <td><%= link_to 'Show', fixture %></td>
+    <td><%= link_to 'Edit', edit_fixture_path(fixture) %></td>
+    <td><%= link_to 'Destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Game', new_game_path %>

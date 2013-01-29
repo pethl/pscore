@@ -3,25 +3,31 @@
   
 
 <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id, :value => @user.id %>
+    <% f.text_field :user_id, :value => @user.id %>
   </div>
 
 
-<div class="field">
-    <%= f.label :homescore %><br />
-    <%= f.text_field :homescore%>
-  </div>
+<p>
+  <%= f.label :game %>
+  <%= f.collection_select :game_id, @games, :id, :name, :prompt => "Select a competition" %>
+  <%= f.label :fixture %>
+  <%= f.collection_select :fixture_id, @fixtures, :id, :full_fixture, :prompt => "Select a match" %>
+</p>
+	
+	<div class="controls">
+		    <%= f.label :homescore %> 
+	              <%= f.text_field :homescore, :class => "input-small" %>
+	            </div>
+	
+				<div class="controls">
+					    <%= f.label :awayscore %> 
+				              <%= f.text_field :awayscore, :class => "input-small" %>
+				            </div>
 
-<div class="field">
-    <%= f.label :awayscore %><br />
-     <%= f.text_field :awayscore %>
-  </div>
-
-<div class="field">
-    <%= f.label :points %><br />
-     <%= f.text_field :points %>
-  </div>
+								<div class="controls">
+									    <%= f.label :points %> 
+								              <%= f.text_field :points, :class => "input-small" %>
+								            </div>
 
 
   <div class="actions">

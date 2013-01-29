@@ -13,6 +13,7 @@ class PredictsController < ApplicationController
   # GET /predicts/1
   # GET /predicts/1.json
   def show
+    
     @predict = Predict.find(params[:id])
 
     respond_to do |format|
@@ -40,6 +41,8 @@ class PredictsController < ApplicationController
   # POST /predicts
   # POST /predicts.json
   def create
+      @games = Game.all
+      @fixtures = Fixture.all
      @user = User.find(params[:user_id])
       @predict = @user.predicts.create(params[:predict])
 
