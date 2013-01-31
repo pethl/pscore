@@ -13,9 +13,9 @@
 <% @games.each do |game| %>
   <tr>
 	    <td><%= game.name %></td>
-	    <td><%= l game.startdate, :format => :short %></td>
+	 <td><%= game.startdate.strftime("%d %B, %Y") %></td>
+	 <td><%= game.enddate.strftime("%d %B, %Y") %></td>
 
-	    <td><center><%= l game.enddate, :format => :short %></center></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :predicts
   accepts_nested_attributes_for :predicts
   
+  
    before_save { |user| user.name = name.downcase }
     before_save :create_remember_token
   

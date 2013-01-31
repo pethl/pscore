@@ -3,16 +3,18 @@
 
   <b>Competition:</b>
   <%= @game.name %> :
-  <%= l @game.startdate, :format => :short %> -
-  <%= l @game.enddate, :format => :short %>
+  <%= @game.startdate.strftime("%d %B, %Y") %> -
+  <%= @game.enddate.strftime("%d %B, %Y") %>
+<br>
+<br>
 
 
  <div class="span8">
     <% if @game.fixtures.any? %>
       <h3>Matches (<%= @game.fixtures.count %>)</h3>
-      <ol class="fixtures">
+      <ul class="fixtures">
         <%= render @fixtures %>
-      </ol>
+      </ul>
 
     <% end %>
 

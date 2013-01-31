@@ -1,11 +1,13 @@
 
 
-<p>
+<li>
 
-<%= link_to fixture.id, fixture %>
-  <%= l fixture.matchdate, :format => :short %>
+
+  <%= link_to (l fixture.matchdate, :format => :short), fixture %>   ...   
 <%= fixture.hometeam %>
-    vs. <%= fixture.awayteam %>
+    vs. <%= fixture.awayteam %>   ...   
 <%= fixture.content %>
-  <%= link_to 'Remove', [fixture.game, fixture], :confirm => 'Really remove match?', :method => :delete %>
-</p>
+  <b><%= link_to 'Remove', [fixture.game, fixture], :confirm => 'Really remove match?', :method => :delete %></b>
+
+
+</li>

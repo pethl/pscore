@@ -3,6 +3,7 @@ class PredictsController < ApplicationController
   # GET /predicts.json
   def index
     @predicts = Predict.all
+       @fixture = Fixture.find(params[:fixture_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +16,7 @@ class PredictsController < ApplicationController
   def show
     
     @predict = Predict.find(params[:id])
+    @fixture = Fixture.find(params[:fixture_id])
 
     respond_to do |format|
       format.html # show.html.erb

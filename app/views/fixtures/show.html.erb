@@ -7,14 +7,25 @@
 </b>
 
 <h2>Predictions</h2>
-<%= render @fixture.predicts %>
-</p>
 
+</p>
+<% for predict in @fixture.predicts %>
+<li>
+<% r = predict.user_id %>
+<% t = User.find(r) %>
+<%= t[:name] %>    :  
+
+<%=h predict.homescore %> - <%=h predict.homescore %>
+
+</li>
+<% end %>
+</ul>
 
 <br>
 
 
 
-<%= link_to 'Back', fixtures_path %>
+<%= link_to 'Back', fixtures_path %> |
+<%= link_to 'Edit', edit_fixture_path(@fixture) %>
 
 </div>

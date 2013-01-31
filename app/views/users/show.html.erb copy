@@ -5,23 +5,14 @@
 
 <p>
   <b>Name:</b>
-  <%= h @user.name %>
-</p>
+  <%= @user.name %>
+
 
 <h2>Predictions</h2>
-<ul>
-	
-<% for predict in @user.predicts %>
-<li>
-<% r = predict.fixture_id %>
-<% t = Fixture.find(r) %>
-<%= t[:hometeam] %> - <%= t[:awayteam] %> :  
+<%= render @user.predicts %>
+</p>
 
-<%=h predict.homescore %> vs. <%=h predict.homescore %>
 
-</li>
-<% end %>
-</ul>
 <br>
 
 <h3>Add Prediction</h3>

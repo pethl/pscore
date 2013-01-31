@@ -3,6 +3,7 @@ class Predict < ActiveRecord::Base
    belongs_to :user
    belongs_to :game
    belongs_to :fixtures
+   has_one :fixture
 
    
    def  get_fixture

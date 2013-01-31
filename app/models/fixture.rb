@@ -6,6 +6,7 @@ class Fixture < ActiveRecord::Base
   
 has_many :predicts
    accepts_nested_attributes_for :predicts
+has_many :users, :through => :predicts
   
    default_scope order: 'fixtures.created_at DESC'
    
