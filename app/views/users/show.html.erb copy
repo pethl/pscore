@@ -8,7 +8,7 @@
   <%= @user.name %>
 
 
-<h2>Predictions</h2>
+<h3>Predictions</h3>
 <%= render @user.predicts %>
 </p>
 

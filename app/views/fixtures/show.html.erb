@@ -8,9 +8,11 @@
 
 <h2>Predictions</h2>
 
+	 <% if @fixture.predicts.any? %>
 </p>
 <% for predict in @fixture.predicts %>
 <li>
+	
 <% r = predict.user_id %>
 <% t = User.find(r) %>
 <%= t[:name] %>    :  
@@ -19,13 +21,16 @@
 
 </li>
 <% end %>
+<% end %>
 </ul>
 
 <br>
 
 
 
-<%= link_to 'Back', fixtures_path %> |
+<%= link_to 'Back', fixtures_path %>
+<% if current_user.admin? %>
+ |
 <%= link_to 'Edit', edit_fixture_path(@fixture) %>
-
+<% end %>
 </div>

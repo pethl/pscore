@@ -1,17 +1,18 @@
 <% provide(:title, @game.name) %>
 <p id="notice"><%= notice %></p>
-
-  <b>Competition:</b>
+<br>
+  <h3>
   <%= @game.name %> :
   <%= @game.startdate.strftime("%d %B, %Y") %> -
   <%= @game.enddate.strftime("%d %B, %Y") %>
+</h3>
 <br>
-<br>
+
 
 
  <div >
     <% if @game.fixtures.any? %>
-      <h3>Matches (<%= @game.fixtures.count %>)</h3>
+      <b>Matches (<%= @game.fixtures.count %>)</b>
       <ul class="fixtures">
         <%= render @fixtures %>
       </ul>
@@ -19,14 +20,16 @@
     <% end %>
 
 <br>
+<% if current_user.admin? %>
 
 <h3>Add Fixture</h3>
+
 <%= render 'fixtures/form' %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %> |
 <%= link_to 'Add Match', new_game_fixture_path(@game) %>
-
+<% end %>
 <br>
 <br>
 

@@ -8,9 +8,9 @@
   <%= h @user.name %>
 </p>
 
-<h2>Predictions</h2>
+<h3>Predictions</h3>
 <ul>
-	
+	 <% if @user.predicts.any? %>
 <% for predict in @user.predicts %>
 <li>
 <% r = predict.fixture_id %>
@@ -21,8 +21,11 @@
 
 </li>
 <% end %>
+<% end %>
+
 </ul>
 <br>
+
 
 <h3>Add Prediction</h3>
 <br>

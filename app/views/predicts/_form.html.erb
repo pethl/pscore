@@ -24,11 +24,12 @@
 				              <%= f.text_field :awayscore, :class => "input-small" %>
 				            </div>
 
+<% if current_user.admin? %>
 								<div class="controls">
 									    <%= f.label :points %> 
 								              <%= f.text_field :points, :class => "input-small" %>
 								            </div>
-
+<% end%>
 
   <div class="actions">
     <%= f.submit %>
