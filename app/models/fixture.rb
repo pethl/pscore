@@ -14,7 +14,7 @@ has_many :users, :through => :predicts
 TEAM_TYPES = ["--", "England", "France", "Ireland", "Italy", "Scotland", "Wales"]
    
 def full_fixture
-    "#{hometeam} vs. #{awayteam} - #{(matchdate.to_date)}"
+    "#{hometeam} vs. #{awayteam} - #{(matchdate.strftime("%d %B, %Y"))}"
   end
    
 end

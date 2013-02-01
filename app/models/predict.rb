@@ -6,11 +6,7 @@ class Predict < ActiveRecord::Base
    has_one :fixture
 
    
-   def  get_fixture
-     r = self.fixture_id
-     @fix1 = Fixture.find(r)
-     x = @fix1.hometeam + " vs " + @fix1.awayteam
-     end
+  
    
    
 end

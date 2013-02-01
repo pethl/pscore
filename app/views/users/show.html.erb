@@ -15,9 +15,9 @@
 <li>
 <% r = predict.fixture_id %>
 <% t = Fixture.find(r) %>
-<%= t[:hometeam] %> - <%= t[:awayteam] %> :  
+<%= t[:hometeam] %> vs. <%= t[:awayteam] %> :  
 
-<%=h predict.homescore %> vs. <%=h predict.homescore %>
+<%=h predict.homescore %> - <%=h predict.homescore %>
 
 </li>
 <% end %>
