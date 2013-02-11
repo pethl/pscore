@@ -1,6 +1,6 @@
 <% provide(:title, 'Users') %>
 <h1>Users</h1>
-
+<br>
 <table class="table">
   <tr>
     <th>Name</th>
@@ -14,29 +14,38 @@
 <% @users.each do |user| %>
   <tr>
 	
-<td>	 <%= link_to user.name, user %></td>
+	<td><%= link_to user.name, user %></td>
     <td><%= user.admin %></td>
 
-    <td><%= link_to 'Show predictions', user %></td>
+    <td><b><%= link_to 'show predictions', user %></b></td>
 
-    
+    <% if current_user.admin? && current_user?(user)%>
+	<td><b><%= link_to 'edit', edit_user_path(user) %></b></td>
+	    	<td><b><%= link_to "delete", user, method: :delete,
+	                                  data: { confirm: "You sure?" } %></b></td>				  									
+		<% elsif  %>
+			    <% if current_user.admin? %>
+				<td></td>
+					<td><b><%= link_to "delete", user, method: :delete,
+			                                  data: { confirm: "You sure?" } %></b></td>
+					    	<td></td>				  	
+			<% elsif  %>
+		    <% if current_user?(user) %>
+				<td><b><%= link_to 'edit', edit_user_path(user) %></b></td>
+			    	<td></td>				  	
+			
+			<% else %>
+				<td></td>
+				<td></td>
+			<% end %>
+		<% end %>
+<% end %>  
+</tr>
+	<% end %>
 
-<td>	 <% if current_user.admin? && !current_user?(user) %>
-	
-	<td><%= link_to 'Edit', edit_user_path(user) %></td>
-	
-	
-	    <%= link_to "delete", user, method: :delete,
-	                                  data: { confirm: "You sure?" } %>
-	  <% end %>
-</td>
-
-
-   
-  </tr>
-<% end %>
 </table>
+
+
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
