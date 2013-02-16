@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :destroy]
+
+  before_filter :signed_in_user, only: [:edit, :update, :destroy, ]
   before_filter :correct_user,   only: [:edit, :update]
+  before_filter :admin_user,     only: :destroy
   
   # GET /users
   # GET /users.json
@@ -18,7 +20,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
           @games = Game.all
-          @fixtures = Fixture.all
+            @fixtures = Fixture.all
+
 
     respond_to do |format|
       format.html # show.html.erb

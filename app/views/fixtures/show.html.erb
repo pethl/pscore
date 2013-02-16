@@ -1,36 +1,45 @@
 <% provide(:title, 'Match Predictions') %>
 <p id="notice"><%= notice %></p>
-
+<br>
 <p>
-  <b>
+  <h3>
   <%= l @fixture.matchdate, :format => :short %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>
-</b>
-
-<h2>Predictions</h2>
-
+</h3>
+<br>
+<b>Predictions</b>
+<br>
+<br>
+<div class="row">
+  <div class="span4">
+<div class="well">
 	 <% if @fixture.predicts.any? %>
 </p>
+
 <% for predict in @fixture.predicts %>
+
+
 <li>
 	
 <% r = predict.user_id %>
 <% t = User.find(r) %>
-<%= t[:name] %>    :  
-
-<%=h predict.homescore %> - <%=h predict.awayscore %>
+<%=h predict.homescore %> - <%=h predict.awayscore %>  :  
+<%= t[:name] %>
 
 </li>
+
 <% end %>
+<% else %>
+No predictions yet
 <% end %>
-</ul>
+</div>
+</div>
+</div>
+
 
 <br>
 
-
-
 <%= link_to 'Back', fixtures_path %>
-<% if current_user.admin? %>
+<% if signed_in? && current_user.admin? %>
  |
 <%= link_to 'Edit', edit_fixture_path(@fixture) %>
 <% end %>
-</div>

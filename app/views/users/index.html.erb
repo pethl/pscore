@@ -4,23 +4,23 @@
 <table class="table">
   <tr>
     <th>Name</th>
-    <th>Admin</th>
-   
-    <th></th>
+    <th><b>Show Predictions</b></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-	
 	<td><%= link_to user.name, user %></td>
-    <td><%= user.admin %></td>
+ 
+	<td><b>
+	<%= link_to "=>", user_path(user), :class => "icon-hand-right" %></b></td>
 
-    <td><b><%= link_to 'show predictions', user %></b></td>
 
-    <% if current_user.admin? && current_user?(user)%>
-	<td><b><%= link_to 'edit', edit_user_path(user) %></b></td>
+
+<% if signed_in? %>
+	<% if current_user.admin? && current_user?(user)%>
+		<td><b><%= link_to 'edit', edit_user_path(user) %></b></td>
 	    	<td><b><%= link_to "delete", user, method: :delete,
 	                                  data: { confirm: "You sure?" } %></b></td>				  									
 		<% elsif  %>
@@ -40,12 +40,9 @@
 			<% end %>
 		<% end %>
 <% end %>  
+<% end %>
 </tr>
-	<% end %>
-
+<% end %>
 </table>
-
-
-
 <br />
 

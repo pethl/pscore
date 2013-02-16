@@ -1,27 +1,33 @@
 <h1>Matches</h1>
-
+<br>
 <table class="table">
   <tr>
+	<th></th>
 	<th>Date</th>
-    <th>Home Team</th>
-    <th>Away Team</th>    
-<th></th>
+    <th>Home</th>
+    <th>Away</th>    
+	<th>Show Predictions</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @fixtures.each do |fixture| %>
   <tr>
+		<td>
+			<% if fixture.matchdate < Date.today %>
+				<i class='icon-ok'></i>
+				<% else %>
+				<i class='icon-time'></i>
+			<% end %>
+		</td>
 	<td><%= link_to (l fixture.matchdate, :format => :short), fixture %></td>    
 	<td><%= fixture.hometeam %></td>
-	    	<td><%= fixture.awayteam %></td>
+	<td><%= fixture.awayteam %></td>
+	<td><b><%= link_to '=>', fixture %></b></td>
 
-	   
-    <td><%= link_to 'Show', fixture %></td>
-
-<% if current_user.admin? %>
-    <td><%= link_to 'Edit', edit_fixture_path(fixture) %></td>
-    <td><%= link_to 'Destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% if signed_in? && current_user.admin? %>
+    <td><b><%= link_to 'edit', edit_fixture_path(fixture) %></b></td>
+    <td><b><%= link_to 'destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
 <% end %> 
  </tr>
 <% end %>

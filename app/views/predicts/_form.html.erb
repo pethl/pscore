@@ -1,37 +1,36 @@
 <%= form_for ([@user, @user.predicts.build]) do |f| %>
 
-  
-
 <div class="field">
     <% f.text_field :user_id, :value => @user.id %>
   </div>
 
+            
+<table>
+	<tr>
+		<td><%= f.label :game %></td>
+		<td><%= f.label :fixture %></td>	  
+	</tr>
+	<tr>
+		<td><%= f.collection_select :game_id, @games, :id, :name, :prompt => "Select a competition" %></td>
+		<td><%= f.collection_select :fixture_id, @fixtures, :id, :full_fixture, :prompt => "Select a match" %></td>
+		</tr>
+</table>
+<table>
+	<tr>		
+		<td><%= f.label :homescore %> </td>
+		<td><%= f.label :awayscore %> </td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><%= f.text_field :homescore, :class => "input-small" %></td>
+		<td><%= f.text_field :awayscore, :class => "input-small" %> </td>
+		<td></td>
+		<td><div class="actions">
+	    <%= f.submit %>
+	  </div>
+	  </td>	
+	</tr>
+</table>
 
-<p>
-  <%= f.label :game %>
-  <%= f.collection_select :game_id, @games, :id, :name, :prompt => "Select a competition" %>
-  <%= f.label :fixture %>
-  <%= f.collection_select :fixture_id, @fixtures, :id, :full_fixture, :prompt => "Select a match" %>
-</p>
-	
-	<div class="controls">
-		    <%= f.label :homescore %> 
-	              <%= f.text_field :homescore, :class => "input-small" %>
-	            </div>
-	
-				<div class="controls">
-					    <%= f.label :awayscore %> 
-				              <%= f.text_field :awayscore, :class => "input-small" %>
-				            </div>
-
-<% if current_user.admin? %>
-								<div class="controls">
-									    <%= f.label :points %> 
-								              <%= f.text_field :points, :class => "input-small" %>
-								            </div>
-<% end%>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

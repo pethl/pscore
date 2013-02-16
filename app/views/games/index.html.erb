@@ -1,4 +1,5 @@
-<h1>Listing games</h1>
+<h1>Competitions</h1>
+<br>
 
 <table  class="table">
   <tr>
@@ -16,15 +17,18 @@
 	 <td><%= game.startdate.strftime("%d %B, %Y") %></td>
 	 <td><%= game.enddate.strftime("%d %B, %Y") %></td>
 
-    <td><%= link_to 'Show', game %></td>
-<% if current_user.admin? %>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>  
+    <td><b><%= link_to 'show matches', fixtures_path %></b></td>
+<% if signed_in? && current_user.admin? %>
+
+    	<td><b><%= link_to 'edit', edit_game_path(game) %></b></td>
+    	<td><b><%= link_to 'destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
+	<% end %>  
 </tr>
 <% end %>
+
 </table>
 
 <br />
-
-<%= link_to 'New Game', new_game_path %>
+<% if signed_in? && current_user.admin? %>
+<b><%= link_to 'add a new competition', new_game_path %></b>
+<% end %>

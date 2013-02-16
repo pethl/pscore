@@ -1,14 +1,11 @@
 <% provide(:title, @game.name) %>
 <p id="notice"><%= notice %></p>
 <br>
-  <h3>
+<h1>
   <%= @game.name %> :
-  <%= @game.startdate.strftime("%d %B, %Y") %> -
-  <%= @game.enddate.strftime("%d %B, %Y") %>
-</h3>
+  <%= @game.startdate.strftime("%Y") %> 
+</h1>
 <br>
-
-
 
  <div >
     <% if @game.fixtures.any? %>
@@ -16,11 +13,10 @@
       <ul class="fixtures">
         <%= render @fixtures %>
       </ul>
-
-    <% end %>
+	<% end %>
 
 <br>
-<% if current_user.admin? %>
+<% if signed_in? && current_user.admin? %>
 
 <h3>Add Fixture</h3>
 

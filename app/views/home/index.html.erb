@@ -10,7 +10,25 @@
   <h3>Save and view your predictions, your results and the leader board</h3>
 <br>
 <br>
-  <%= link_to "Get Started", options_path, class: "btn btn-large btn-primary" %>
+<br>
+<div class="row">
+  <div class="span6 offset2">
+<table>	
+	<tr>
+		<td><%= link_to " Users", users_path, class: "btn btn-primary" %>  </td>
+		<td><%= link_to " Matches", fixtures_path, class: "btn btn-info" %>  </td>
+		<td><%= link_to " Sign in", new_session_path, class: "btn btn-success" %>  </td>
+		<td><%= link_to " Sign up", new_user_path, class: "btn btn-warning" %>  </td>
+	</tr>
+	<tr>
+		<td>who's playing</td>
+		<td>match predictions</td>
+		<td>edit your account</td>
+		<td>join future games</td>
+	</tr>
+	</table>
+</div>
+</div>
 </div>
 
 

@@ -1,17 +1,26 @@
 
+<table class="table table-condensed">
+	<tr>
+		
+		<td>
+			<% if fixture.matchdate < Date.today %>
+				<i class='icon-ok'></i>
+				<% else %>
+				<i class='icon-time'></i>
+			<% end %>
+		</td>
+		
+		<td><%= l fixture.matchdate, :format => :short %></td>
+		
+		<td align="left"><%= fixture.hometeam %> vs. <%= fixture.awayteam %> </td>
+		<td align="center"><b><%= link_to 'show predictions', fixture %> </b></td>
+		
+		<td align="center"><% if signed_in? && current_user.admin? %><b>
+	  					   <%= link_to 'remove', [fixture.game, fixture], 
+								:confirm => 'Really remove match?', 
+								:method => :delete %></b>
+							<% end%>
+		</td>
+	</tr>
+</table>
 
-<li>
-
-
-  <%= l fixture.matchdate, :format => :short %>   ...  
-<%= fixture.hometeam %>
-    vs. <%= fixture.awayteam %>       > > > >       
-
-  <b><%= link_to 'Show Predictions', fixture %> </b>
-
-<% if current_user.admin? %>
-  |  
-  <b><%= link_to 'Remove', [fixture.game, fixture], :confirm => 'Really remove match?', :method => :delete %></b>
-<% end%>
-
-</li>
