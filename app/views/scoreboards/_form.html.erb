@@ -1,0 +1,43 @@
+<%= form_for(@scoreboard) do |f| %>
+  <% if @scoreboard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scoreboard.errors.count, "error") %> prohibited this scoreboard from being saved:</h2>
+
+      <ul>
+      <% @scoreboard.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="span8">
+<div class="well">
+
+	<div class="field">
+	    <%= f.label :game_id %>
+	   <%= f.collection_select :game_id, @games, :id, :name, :prompt => "Select a competition" %>
+	  </div>
+
+
+<div class="field">
+    <%= f.label :week %>
+ 	<%= f.select(:week, Scoreboard::WEEK_TYPES) %>
+  </div>
+
+<div class="field">
+    <%= f.label :position %>
+	<%= f.select(:position, Scoreboard::POSITION_TYPES) %>
+
+  </div>
+
+<div class="field">
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+  </div>
+
+	<div class="actions">
+	<%= f.submit "Create Result", class: "btn btn-large btn-warning" %>
+  </div>
+<% end %>

@@ -16,6 +16,12 @@ Pscore::Application.routes.draw do
     resources :predicts
   end
 
+  resources :games do
+     resources :scoreboard
+   end
+   
+   resources :scoreboards
+   
   resources :sessions, only: [:new, :create, :destroy]
     
 

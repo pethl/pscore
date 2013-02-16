@@ -1,0 +1,19 @@
+<% provide(:title, @scoreboard.week) %>
+<br>
+<p id="notice"><%= notice %></p>
+<br>
+
+<table class="table">
+	<tr>
+		<th>Week</th>
+		<th>Position</th>
+		<th>Comment</th>
+</tr>
+<tr>
+
+<td>  <%= @scoreboard.week %></td>
+<td>  <%= @scoreboard.position %> </td>
+<td>  <%= @scoreboard.comment %> </td>
+</tr>
+
+</table>
