@@ -1,0 +1,29 @@
+<h1>Scoreboard</h1>
+<br>
+
+<% @scoreboard_weeks.sort.each do |week, scoreboards| %>
+
+ <b>Week : <%= week %></b>
+
+  <% for scoreboard in scoreboards %>
+
+      <table class="table">
+	<tr>
+<td><strong><%= scoreboard.position %></strong> </td>
+<td>  <%= scoreboard.comment %></td>
+
+		<% if signed_in? && current_user.admin? %>
+		<td><b><%= link_to 'destroy', scoreboard, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
+			<% end %>
+						<% end %>
+
+</tr>
+</table>
+
+  <% end %>
+	
+  	
+<br />
+<% if signed_in? && current_user.admin? %>
+<b><%= link_to 'add new scores', new_scoreboard_path %></b>
+<% end %>

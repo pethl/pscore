@@ -1,0 +1,16 @@
+<h1>Scoreboard</h1><br>
+
+
+
+<% @scoreboards = Scoreboard.where(:week => "1")%>
+<% @scoreboards.each do |scoreboard| %>
+
+
+      <table class="table">
+	<tr>
+<td><strong><%= scoreboard.position %></strong> </td>
+<td>  <%= scoreboard.comment %></td>
+</tr>
+</table>
+
+	<% end %>

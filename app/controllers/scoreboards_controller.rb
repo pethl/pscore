@@ -1,12 +1,12 @@
 class ScoreboardsController < ApplicationController
+  
   def index
-    @scoreboards = Scoreboard.all
-    
-    respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @scoreboards }
-      end
+    @scoreboards =   Scoreboard.order("week DESC").limit(10)
+      @scoreboard_weeks = @scoreboards.group_by { |t| t.week }
   end
+
+  
+ 
   
   # GET /scoreboards/1
   # GET /scoreboards/1.json
