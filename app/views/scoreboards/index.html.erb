@@ -7,7 +7,7 @@
   		<div class="accordion-group">
     		<div class="accordion-heading">
       			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
-					<b>Week 3</b>
+					<b>Week 5</b>
 					</a>
     				</div>
     				<div id="collapseFive" class="accordion-body collapse in">
@@ -16,7 +16,7 @@
 					<% @scoreboards = Scoreboard.where(:week => "5")%>
 					<% @scoreboards.each do |scoreboard| %>
 					<table class="table"><tr>
-					<td><strong><%= scoreboard.position %></strong> </td>
+				
 					<td><%= scoreboard.comment %></td>
 					</tr></table><% end %><br>
 				</div>
@@ -31,7 +31,7 @@
   		<div class="accordion-group">
     		<div class="accordion-heading">
       			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
-					<b>Week 3</b>
+					<b>Week 4</b>
 					</a>
     				</div>
     				<div id="collapseFour" class="accordion-body collapse in">
@@ -40,7 +40,6 @@
 					<% @scoreboards = Scoreboard.where(:week => "4")%>
 					<% @scoreboards.each do |scoreboard| %>
 					<table class="table"><tr>
-					<td><strong><%= scoreboard.position %></strong> </td>
 					<td><%= scoreboard.comment %></td>
 					</tr></table><% end %><br>
 				</div>
@@ -63,7 +62,6 @@
 					<% @scoreboards = Scoreboard.where(:week => "3")%>
 					<% @scoreboards.each do |scoreboard| %>
 					<table class="table"><tr>
-					<td><strong><%= scoreboard.position %></strong> </td>
 					<td><%= scoreboard.comment %></td>
 					</tr></table><% end %><br>
 				</div>
@@ -84,7 +82,6 @@
 	
 		<% @scoreboards.each do |scoreboard| %>
 		<table class="table"><tr>
-		<td><strong><%= scoreboard.position %></strong> </td>
 		<td><%= scoreboard.comment %></td>
 		</tr></table><% end %><br>
  		</div>
@@ -105,15 +102,12 @@
 
 		<% @scoreboards.each do |scoreboard| %>
 		<table class="table"><tr>
-		<td><strong><%= scoreboard.position %></strong> </td>
 		<td><%= scoreboard.comment %></td>
 		</tr></table><% end %><br>	
 		</div>
     </div>
   </div>	
-<% end %>
-	
-	
+<% end %>	
 	
 	  	
 <br />
