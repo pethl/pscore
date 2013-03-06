@@ -1,4 +1,4 @@
-class Game < ActiveRecord::Base
+class Game < XcodeTemplate
   attr_accessible :name, :startdate, :enddate
   has_many :fixtures, dependent: :destroy
     has_many :predicts

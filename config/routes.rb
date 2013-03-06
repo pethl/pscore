@@ -23,6 +23,10 @@ Pscore::Application.routes.draw do
    resources :scoreboards
    
   resources :sessions, only: [:new, :create, :destroy]
+  
+  namespace :api do
+    resources :users
+  end
     
 
   get "static_pages/options"

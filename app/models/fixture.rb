@@ -1,4 +1,4 @@
-class Fixture < ActiveRecord::Base
+class Fixture < XcodeTemplate
   attr_accessible :content, :game_id, :hometeam, :awayteam, :matchdate
   belongs_to :game
   validates :game_id, presence: true

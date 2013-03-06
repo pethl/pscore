@@ -4,16 +4,25 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
   
+  def fetch_user
+      @user = User.find_by_id(params[:id])
+    end
+  
+  
   # GET /users
   # GET /users.json
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
   end
+
+
+
+
 
   # GET /users/1
   # GET /users/1.json
