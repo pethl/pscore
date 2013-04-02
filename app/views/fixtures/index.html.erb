@@ -14,13 +14,16 @@
 <% @fixtures.each do |fixture| %>
   <tr>
 		<td>
-			<% if fixture.matchdate < Date.today %>
+			<% unless fixture.matchdate.nil? %>
+				<% if fixture.matchdate < Date.today %>
 				<i class='icon-ok'></i>
 				<% else %>
 				<i class='icon-time'></i>
-			<% end %>
+			<% end %><% end %>
 		</td>
-	<td><%= link_to (l fixture.matchdate, :format => :short), fixture %></td>    
+	<td>			<% unless fixture.matchdate.nil? %>
+	<%= link_to (l fixture.matchdate, :format => :short), fixture %></td>
+	<% end %>    
 	<td><%= fixture.hometeam %></td>
 	<td><%= fixture.awayteam %></td>
 	<td><b><%= link_to '=>', fixture %></b></td>
@@ -31,7 +34,16 @@
 <% end %> 
  </tr>
 <% end %>
+
 </table>
+
+
+ <h2>Import Matches</h2>
+
+<%= form_tag import_fixtures_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
 
 <br />
 

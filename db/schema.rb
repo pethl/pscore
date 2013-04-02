@@ -26,23 +26,12 @@ ActiveRecord::Schema.define(:version => 20130216124908) do
   add_index "fixtures", ["game_id", "created_at"], :name => "index_fixtures_on_game_id_and_created_at"
 
   create_table "games", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.string   "name"
-    t.datetime "startdate"
-    t.datetime "enddate"
-  end
-
-  create_table "matches", :force => true do |t|
-    t.string   "hometeam"
-    t.string   "awayteam"
-    t.datetime "matchdate"
+    t.date     "startdate"
+    t.date     "enddate"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "game_id"
   end
-
-  add_index "matches", ["game_id", "created_at"], :name => "index_matches_on_game_id_and_created_at"
 
   create_table "predicts", :force => true do |t|
     t.integer  "user_id"

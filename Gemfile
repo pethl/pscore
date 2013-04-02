@@ -17,6 +17,7 @@ gem 'twitter'
 gem 'oauth'
 
 gem 'bitly'
+gem 'roo'
 
 
 group :development, :test do

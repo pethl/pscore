@@ -28,6 +28,11 @@ Pscore::Application.routes.draw do
     resources :users
   end
     
+  resources :fixtures
+    
+  resources :fixtures do
+    collection { post :import }
+  end
 
   get "static_pages/options"
   match '/options', to: 'static_pages#options'
