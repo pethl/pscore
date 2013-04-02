@@ -24,7 +24,14 @@
      <%= f.select(:awayteam, Fixture::TEAM_TYPES)%>
   </div>
 
-
+<div class="field">
+	    <%= f.label :matchhomescore %><br />
+    <%= f.text_field :matchhomescore, :class => "input-small" %>
+  </div>
+<div class="field">
+	    <%= f.label :matchawayscore %><br />
+   <%= f.text_field :matchawayscore, :class => "input-small" %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216124908) do
+ActiveRecord::Schema.define(:version => 20130402092251) do
 
   create_table "fixtures", :force => true do |t|
     t.string   "content"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(:version => 20130216124908) do
     t.string   "hometeam"
     t.string   "awayteam"
     t.integer  "game_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "matchhomescore"
+    t.integer  "matchawayscore"
   end
 
   add_index "fixtures", ["game_id", "created_at"], :name => "index_fixtures_on_game_id_and_created_at"

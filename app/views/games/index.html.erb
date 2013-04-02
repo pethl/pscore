@@ -17,7 +17,9 @@
 	 <td><%= game.startdate.strftime("%d %B, %Y") %></td>
 	 <td><%= game.enddate.strftime("%d %B, %Y") %></td>
 
-    <td><b><%= link_to 'show matches', fixtures_path %></b></td>
+    <td><b><%= link_to 'show matches', fixtures_path %>
+<%=link_to "New Show", :controller => "fixtures", :action => "index", :id => @game.id %></b></td>
+
 <% if signed_in? && current_user.admin? %>
 
     	<td><b><%= link_to 'edit', edit_game_path(game) %></b></td>

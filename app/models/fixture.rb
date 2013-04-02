@@ -1,5 +1,5 @@
 class Fixture < ActiveRecord::Base
-  attr_accessible :content, :game_id, :hometeam, :awayteam, :matchdate
+  attr_accessible :content, :game_id, :hometeam, :awayteam, :matchdate, :matchhomescore, :matchawayscore
   belongs_to :game
 
 

@@ -3,9 +3,11 @@
 <table class="table">
   <tr>
 	<th></th>
+	<th>GID</th>
 	<th>Date</th>
     <th>Home</th>
     <th>Away</th>    
+    <th>Result</th>    
 	<th>Show Predictions</th>
     <th></th>
     <th></th>
@@ -13,6 +15,7 @@
 
 <% @fixtures.each do |fixture| %>
   <tr>
+	<td><%= fixture.game_id %></td>
 		<td>
 			<% unless fixture.matchdate.nil? %>
 				<% if fixture.matchdate < Date.today %>
@@ -26,6 +29,7 @@
 	<% end %>    
 	<td><%= fixture.hometeam %></td>
 	<td><%= fixture.awayteam %></td>
+	<td><%= fixture.matchhomescore %> : <%= fixture.matchawayscore %></td>
 	<td><b><%= link_to '=>', fixture %></b></td>
 
 <% if signed_in? && current_user.admin? %>
@@ -36,13 +40,19 @@
 <% end %>
 
 </table>
-
-
+<% if signed_in? && current_user.admin? %>
+<div class="row">
+<div class="span6">
+<div class="well">
  <h2>Import Matches</h2>
 
 <%= form_tag import_fixtures_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import" %>
+<% end %>
+</div>
+</div>
+</div>
 <% end %>
 
 <br />

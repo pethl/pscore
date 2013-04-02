@@ -3,7 +3,8 @@ class FixturesController < ApplicationController
     # GET /fixtures
     # GET /fixtures.json
     def index
-      @fixtures = Fixture.all
+
+            @fixtures = Fixture.find(params[:game_id])
 
       respond_to do |format|
         format.html # index.html.erb
