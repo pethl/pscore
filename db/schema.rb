@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402092251) do
+ActiveRecord::Schema.define(:version => 20130806095112) do
 
   create_table "fixtures", :force => true do |t|
     t.string   "content"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(:version => 20130402092251) do
     t.datetime "updated_at",     :null => false
     t.integer  "matchhomescore"
     t.integer  "matchawayscore"
+    t.time     "ko"
+    t.integer  "week"
+    t.integer  "fixresultgap"
   end
 
   add_index "fixtures", ["game_id", "created_at"], :name => "index_fixtures_on_game_id_and_created_at"
@@ -40,10 +43,17 @@ ActiveRecord::Schema.define(:version => 20130402092251) do
     t.integer  "homescore"
     t.integer  "awayscore"
     t.integer  "points"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "game_id"
     t.integer  "fixture_id"
+    t.boolean  "correct_result"
+    t.integer  "right_result"
+    t.integer  "closest_to_home"
+    t.integer  "closest_to_away"
+    t.integer  "exact_home_score"
+    t.integer  "exact_away_score"
+    t.integer  "exact_result"
   end
 
   create_table "scoreboards", :force => true do |t|
@@ -53,6 +63,9 @@ ActiveRecord::Schema.define(:version => 20130402092251) do
     t.text     "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "fixture_id"
+    t.integer  "user_id"
+    t.integer  "matchscore"
   end
 
   create_table "users", :force => true do |t|

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
@@ -33,6 +33,7 @@ gem 'annotate', '~> 2.4.1.beta', group: :development
 
 group :test do
     gem 'factory_girl_rails', '1.4.0'
+    gem 'capybara', '1.1.2'
 end
 
 
@@ -50,11 +51,9 @@ group :assets do
 
 end
 
-gem 'jquery-rails', '2.0.2'
+gem 'jquery-rails', '2.1'
+gem 'best_in_place'
 
-group :test do
- gem 'capybara', '1.1.2'
-end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

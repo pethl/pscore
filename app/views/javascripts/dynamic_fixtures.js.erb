@@ -1,0 +1,25 @@
+var fixtures = new Array();
+<% for fixture in @fixtures -%>
+	fixtures.push(new Array(<%= fixture.game_id %>, '<%=h fixture.full_fixture %>', <%= fixture.id %>));
+	<% end -%>
+	
+function gameSelected() {
+	game_id = $('predict_game_id').getValue();
+	options = $('predict_fixture_id').options;
+	options.length = 1;
+	fixtures.each(function(fixture) {
+		if (fixture[0] == game_id) {
+			options[options.length] = new Option(fixture[1], fixture[2]);
+		}
+	});
+	if (options.length == 1) {
+		$('fixture_field').hide();
+	} else {
+		$('fixture_field').show();
+	}
+}	
+
+document.observe('dom:loaded', function() {
+	gameSelected();
+	$('fixture_game_id').observe('change', gameSelected);
+});

@@ -1,21 +1,34 @@
-<h1>Matches</h1>
+<h3>Matches</h3>
+
+
+<ul class="nav nav-tabs">
+ <li class="active"><a href="/fixtures">All matches</a> </li>
+   <li>
+   	<a href="/fixtures/fix_by_comp">By Competition</a>
+  </li>
+  <li>
+   	<a href="/fixtures/fix_by_grid">Grid</a>
+  </li>
+</ul>
 <br>
+
 <table class="table">
   <tr>
-	<th></th>
-	<th>GID</th>
-	<th>Date</th>
+	  <th></th>
+	  <th>Competition</th>
+	  <th>Week</th>
+	  <th>Date</th>
+	  <th>KO</th>
     <th>Home</th>
     <th>Away</th>    
     <th>Result</th>    
-	<th>Show Predictions</th>
+	  <th><center>Predictions</center></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @fixtures.each do |fixture| %>
   <tr>
-	<td><%= fixture.game_id %></td>
 		<td>
 			<% unless fixture.matchdate.nil? %>
 				<% if fixture.matchdate < Date.today %>
@@ -24,36 +37,59 @@
 				<i class='icon-time'></i>
 			<% end %><% end %>
 		</td>
-	<td>			<% unless fixture.matchdate.nil? %>
-	<%= link_to (l fixture.matchdate, :format => :short), fixture %></td>
-	<% end %>    
-	<td><%= fixture.hometeam %></td>
-	<td><%= fixture.awayteam %></td>
+		
+		<td><%=  Game.find(fixture.game_id).name %></td>
+	<td><center><%=  fixture.week %></center></td>
+		
+			<% unless fixture.matchdate.nil? %>
+	   <td><%= fixture.matchdate.strftime("%d %b, %Y") %></td>
+	   <% end %>  
+	   	<% unless fixture.ko.nil? %>
+	    <td><%= fixture.ko.strftime("%H:%M")  %></td>
+	<% else %> 
+	<td></td>
+	<% end %>    	
+
+		<% if fixture.matchhomescore.nil? %>
+		  <td><%= fixture.hometeam %></div></td>
+			<td><%= fixture.awayteam %></td>
+				<% elsif fixture.matchhomescore.to_i > fixture.matchawayscore.to_i %>
+				<td><div class="winner">	<%= fixture.hometeam %></td>
+        <td><div class="muted">	<%= fixture.awayteam %></div></td>
+				
+				<% elsif fixture.matchhomescore == fixture.matchawayscore %>
+        <td><div class="gamedrawn">	<%= fixture.hometeam %></div></td>
+	      <td><div class="gamedrawn">	<%= fixture.awayteam %></td>
+				<% else %>
+        <td><div class="muted">	<%= fixture.hometeam %></div></td>
+	      <td><div class="winner"><%= fixture.awayteam %></div></td>
+				<% end %>
+		
 	<td><%= fixture.matchhomescore %> : <%= fixture.matchawayscore %></td>
-	<td><b><%= link_to '=>', fixture %></b></td>
+	<td><b><center><%= link_to "", fixture, :class => "icon-forward" %></b></center></td>
+
 
 <% if signed_in? && current_user.admin? %>
-    <td><b><%= link_to 'edit', edit_fixture_path(fixture) %></b></td>
-    <td><b><%= link_to 'destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
+  
+    <td><b><%= link_to '|e|', edit_fixture_path(fixture) %></b></td>
+    <td><b><%= link_to '|d|', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
 <% end %> 
- </tr>
+</tr>
 <% end %>
-
 </table>
-<% if signed_in? && current_user.admin? %>
-<div class="row">
-<div class="span6">
-<div class="well">
- <h2>Import Matches</h2>
 
-<%= form_tag import_fixtures_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
-</div>
-</div>
-</div>
-<% end %>
+  
+  
+  <div class="btn-group btn-group-vertical">
+    <button class="btn btn-large"><%= link_to "Add a game", new_game_path, class: "btn btn-primary" %></button>
+    <button class="btn">	<%= form_tag import_fixtures_path, multipart: true do %>
+                          <%= collection_select(:game, :game_id, Game.all, :id, :name ) %>
+                       
+		                      <%= file_field_tag :file %>
+		                      <%= submit_tag "Import" %>
+	                        <% end %>
+	  </button>
+  </div>
 
-<br />
+
 

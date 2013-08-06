@@ -3,7 +3,8 @@ class PredictsController < ApplicationController
   # GET /predicts.json
   def index
     @predicts = Predict.all
-       @fixture = Fixture.find(params[:fixture_id])
+    @predicts_by_fixture = @predicts.group_by { |t| t.fixture_id }
+   # not sure why this is here...    @fixture = Fixture.find(params[:fixture_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +17,6 @@ class PredictsController < ApplicationController
   def show
     
     @predict = Predict.find(params[:id])
-    @fixture = Fixture.find(params[:fixture_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,8 +43,8 @@ class PredictsController < ApplicationController
   # POST /predicts
   # POST /predicts.json
   def create
-      @games = Game.all
-      @fixtures = Fixture.all
+      @predicts = Predict.all
+
      @user = User.find(params[:user_id])
       @predict = @user.predicts.create(params[:predict])
 
@@ -62,10 +62,11 @@ class PredictsController < ApplicationController
   # PUT /predicts/1.json
   def update
     @predict = Predict.find(params[:id])
+     @fixture = Fixture.find(params[:fixture_id]) 
 
     respond_to do |format|
       if @predict.update_attributes(params[:predict])
-        format.html { redirect_to @predict, notice: 'Predict was successfully updated.' }
+        format.html { redirect_to @predict, notice: 'Prediction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

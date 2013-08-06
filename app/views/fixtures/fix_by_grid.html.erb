@@ -1,0 +1,37 @@
+<h3>Matches</h3>
+
+
+<ul class="nav nav-tabs">
+ <li><a href="/fixtures">All matches</a> </li>
+  <li>
+   	<a href="/fixtures/fix_by_comp">By Competition</a>
+  </li>
+ <li class="active">
+   	<a href="/fixtures/fix_by_grid">Grid</a>
+  </li>
+</ul>
+<br>
+  
+   <table class="table">
+   <tr>
+   <div class="row-fluid">
+      <div class="span2">
+   
+        <% @games.each do |game| %>
+        <td>
+             <strong><%= game.name %></strong><br>
+            
+          <% @fixtures = Fixture.where(:game_id => game.id) %>
+          <% @fixtures = @fixtures.sort_by { |h| h[:hometeam] }%>
+          <% for fixture in @fixtures do %>
+          <%= fixture.hometeam[0, 3] %> v. <%= fixture.awayteam[0, 3] %>__<%= fixture.matchhomescore %>-<%= fixture.matchawayscore %><br>
+          <% end %>
+            
+  
+          </td>
+        <% end %>
+      </div>
+      </div>
+    </tr>
+   </table>
+   

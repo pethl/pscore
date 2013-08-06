@@ -1,36 +1,51 @@
-<h1>Competitions</h1>
+<h2>Competitions</h2>
 <br>
 
 <table  class="table">
   <tr>
-	<th>Name</th>
-    <th>Start Date</th>
-    <th>End Date</th>    
-<th></th>
+	  <th>Name</th>
+    <th>Start</th>
+    <th>End</th>    
+    <th></th>
     <th></th>
     <th></th>
   </tr>
+  
 
 <% @games.each do |game| %>
-  <tr>
-	    <td><%= game.name %></td>
-	 <td><%= game.startdate.strftime("%d %B, %Y") %></td>
-	 <td><%= game.enddate.strftime("%d %B, %Y") %></td>
+  
+   <tr>
+   <% if  game.startdate > Date.today %>
+      <td><%= game.name %></td>
+	    <td><%= game.startdate.strftime("%b, %Y") %></td>
+	    <td><%= game.enddate.strftime("%b, %Y") %></td>
+			
+				<% else %>
+        <td><h5 class="muted"><%= game.name %></h5></td>
+  	    <td><h5 class="muted"><%= game.startdate.strftime("%b, %Y") %></h5></td>
+  	    <td><h5 class="muted"><%= game.enddate.strftime("%b, %Y") %></h5></td>
+		<% end %>
 
-    <td><b><%= link_to 'show matches', fixtures_path %>
-<%=link_to "New Show", :controller => "fixtures", :action => "index", :id => @game.id %></b></td>
+      <td><b><%= link_to 'show matches', game_fixtures_path(game.id) %></b></td>
 
-<% if signed_in? && current_user.admin? %>
-
-    	<td><b><%= link_to 'edit', edit_game_path(game) %></b></td>
-    	<td><b><%= link_to 'destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
-	<% end %>  
-</tr>
+      <% if signed_in? && current_user.admin? %>
+    	  <td><b><%= link_to 'edit', edit_game_path(game) %></b></td>
+    	  <td><b><%= link_to 'destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
+	    <% end %>  
+  </tr>
 <% end %>
 
 </table>
 
 <br />
-<% if signed_in? && current_user.admin? %>
-<b><%= link_to 'add a new competition', new_game_path %></b>
+
+<% if signed_in? && current_user.admin? %>	
+  <div class="btn-group btn-group-vertical">
+    <button class="btn btn-large"><%= link_to "Add a game", new_game_path, class: "btn btn-primary" %></button>
+    <button class="btn">	<%= form_tag import_games_path, multipart: true do %>
+		                      <%= file_field_tag :file %>
+		                      <%= submit_tag "Import" %>
+	                        <% end %>
+	  </button>
+  </div>
 <% end %>

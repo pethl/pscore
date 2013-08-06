@@ -24,8 +24,17 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
+    <div class="field">
+  <% if current_user.name == "pethl" %>
+	<%= f.label :admin %>
+	<%= f.check_box :admin %><br>
+	<% else %>
+	<% end %>
+    </div>
+  
 	<div class="actions">
-	<%= f.submit "New user", class: "btn btn-large btn-warning" %>
+	<%= f.submit "Update", class: "btn btn-large btn-warning" %>
   </div>
-
+  
+  	
 <% end %>

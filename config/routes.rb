@@ -8,31 +8,63 @@ Pscore::Application.routes.draw do
   resources :predicts
   end
 
+  resources :users do
+    collection { post :import }
+  end
+
   resources :games do
     resources :predicts
   end
 
-  resources :fixtures do
-    resources :predicts
+  resources :games do
+    collection { post :import }
   end
 
   resources :games do
      resources :scoreboard
    end
    
-   resources :scoreboards
+    get 'scoreboards/index_match', :to => "scoreboards#index_match"
+    get 'scoreboards/index_week', :to => "scoreboards#index_week"
+  
+  resources :scoreboards do
+    collection { post :generate }
+  end
    
+    resources :predicts
+   
+   resources :javascripts
+
+  get "javascripts/dynamic_fixtures"
+  
+  match ':controller/:action/.:format'
+      
   resources :sessions, only: [:new, :create, :destroy]
   
   namespace :api do
     resources :users
   end
+   
+   resources :fixtures do
+     collection { post :import };
+     collection { put :calc};
+      collection { put :calc_user}
+   end
+   
     
+  get 'fixtures/fix_by_comp', :to => "fixtures#fix_by_comp"
+    get 'fixtures/fix_by_grid', :to => "fixtures#fix_by_grid"
   resources :fixtures
     
+  
   resources :fixtures do
-    collection { post :import }
+    resources :predicts
   end
+   
+  resources :fixtures do
+    resources :games
+  end
+   
 
   get "static_pages/options"
   match '/options', to: 'static_pages#options'

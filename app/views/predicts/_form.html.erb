@@ -3,33 +3,24 @@
 <div class="field">
     <% f.text_field :user_id, :value => @user.id %>
   </div>
+     
 
-            
-<table>
-	<tr>
-		<td><%= f.label :game %></td>
-		<td><%= f.label :fixture %></td>	  
-	</tr>
-	<tr>
-		<td><%= f.collection_select :game_id, @games, :id, :name, :prompt => "Select a competition" %></td>
-		<td><%= f.collection_select :fixture_id, @fixtures, :id, :full_fixture, :prompt => "Select a match" %></td>
-		</tr>
-</table>
+<div class="field">
+	<%= f.label :fixture_id, "Select Match" %>
+	<%= f.grouped_collection_select :fixture_id, Game.order(:name), :fixtures, :name, :id, :full_fixture, include_blank: true %>
+</div>
 <table>
 	<tr>		
-		<td><%= f.label :homescore %> </td>
-		<td><%= f.label :awayscore %> </td>
+		<td>Home score</td>
+		<td>Away score</td>
 		<td></td>
 		<td></td>
 	</tr>
 	<tr>
 		<td><%= f.text_field :homescore, :class => "input-small" %></td>
-		<td><%= f.text_field :awayscore, :class => "input-small" %> </td>
+		<td><%= f.text_field :awayscore, :class => "input-small" %> </td>	
 		<td></td>
-		<td><div class="actions">
-	    <%= f.submit %>
-	  </div>
-	  </td>	
+		<td><div class="actions"><%= f.submit "Create Prediction" %> </div></td>	
 	</tr>
 </table>
 

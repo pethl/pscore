@@ -1,30 +1,46 @@
 <% provide(:title, 'All Predictions') %>
-<h1>Listing predicts</h1>
+<h2>Predictions</h2>
+<br>
 
+ <% @predicts_by_fixture.each do |fixture_id, predicts_by_fixture| %>
+<br>
+   <strong><%= Fixture.find(fixture_id).full_fixture %></strong>
+   
 <table>
   <tr>
     <th>User</th>
-    <th>Homescore</th>
-    <th>Awayscore</th>
+    <th>Home</th>
+    <th>Away</th>
     <th>Points</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>1-CR</th>
+    <th>2-CTH</th>
+    <th>3-CTA</th>
+    <th>4-EHS</th>
+    <th>5-EAS</th>
+    <th>6-ER</th>
+    <th>Action</th>
   </tr>
 
-<% @predicts.each do |predict| %>
+<% predicts_by_fixture = predicts_by_fixture.sort_by{|e| e[:user_id]}%>
+<% predicts_by_fixture.each do |predict| %>
   <tr>
-    <td><%= predict.user_id %></td>
+    <td><%= User.find(predict.user_id).name %></td>
     <td><%= predict.homescore %></td>
     <td><%= predict.awayscore %></td>
     <td><%= predict.points %></td>
-    <td><%= link_to 'Show', predict %></td>
-    <td><%= link_to 'Edit', edit_predict_path(predict) %></td>
-    <td><%= link_to 'Destroy', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><center><%= predict.right_result %></center></td>
+    <td><center><%= predict.closest_to_home %></center></td>
+    <td><center><%= predict.closest_to_away %></center></td>
+    <td><center><%= predict.exact_home_score %></center></td>
+    <td><center><%= predict.exact_away_score %></center></td>
+    <td><center><%= predict.exact_result %></center></td>    
+    <td><%= link_to 'S', predict %>
+    <%= link_to 'E', edit_predict_path(predict) %>
+    <%= link_to 'D', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
+<% end %>
 <br />
 
 <%= link_to 'New Predict', new_predict_path %>

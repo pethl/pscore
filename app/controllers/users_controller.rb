@@ -20,17 +20,15 @@ class UsersController < ApplicationController
     end
   end
 
-
-
-
+  def import
+     User.import(params[:file])
+     redirect_to users_path, notice: "Users imported."
+   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-          @games = Game.all
-            @fixtures = Fixture.all
-
 
     respond_to do |format|
       format.html # show.html.erb

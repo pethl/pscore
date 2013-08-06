@@ -4,19 +4,21 @@
 <table class="table">
   <tr>
     <th>Name</th>
+    <th>Email</th>
+    <th>password</th>
+    <th>rem tok</th>
     <th><b>Show Predictions</b></th>
     <th></th>
-    <th></th>
+      <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-	<td><%= link_to user.name, user %></td>
- 
-	<td><b>
-	<%= link_to "=>", user_path(user), :class => "icon-hand-right" %></b></td>
-
-
+	<td><%= user.name %></td>
+	<td><%= user.email %></td>
+	<td><%= user.password_digest %></td>
+		<td><%= user.remember_token %></td>
+	<td><b><%= link_to "", user_path(user), :class => "icon-forward" %></b></td>
 
 <% if signed_in? %>
 	<% if current_user.admin? && current_user?(user)%>
@@ -26,12 +28,12 @@
 		<% elsif  %>
 			    <% if current_user.admin? %>
 				<td></td>
-					<td><b><%= link_to "delete", user, method: :delete,
+					<td><b><%= link_to "|d|", user, method: :delete,
 			                                  data: { confirm: "You sure?" } %></b></td>
 					    	<td></td>				  	
 			<% elsif  %>
 		    <% if current_user?(user) %>
-				<td><b><%= link_to 'edit', edit_user_path(user) %></b></td>
+				<td><b><%= link_to '|e|', edit_user_path(user) %></b></td>
 			    	<td></td>				  	
 			
 			<% else %>
@@ -46,3 +48,13 @@
 </table>
 <br />
 
+<% if signed_in? && current_user.admin? %>	
+  <div class="btn-group btn-group-vertical">
+    <button class="btn btn-large"><%= link_to "Add a user", new_user_path, class: "btn btn-primary" %></button>
+    <button class="btn">	<%= form_tag import_users_path, multipart: true do %>
+		                      <%= file_field_tag :file %>
+		                      <%= submit_tag "Import" %>
+	                        <% end %>
+	  </button>
+  </div>
+<% end %>

@@ -1,50 +1,48 @@
 <% provide(:title, 'User profile') %>
-
-
 <p id="notice"><%= notice %></p>
-
 <h1><%= h @user.name %></h1>
+
 <% if signed_in? && current_user.admin? %>
-You have Adminstrator rights
+You have Adminstrator rights | 
 <% end %>
-<br>
-<h3>Predictions</h3>
-<br>
-	<ul>
-	 <% if @user.predicts.any? %>
-		<% for predict in @user.predicts %>
-				<div class="row">
-				<div class="span5">
-				<table class='table table-condensed'>
-				<% r = predict.fixture_id %>
-				<% t = Fixture.find(r) %>
-		
-		<td>		<%= l t[:matchdate], :format => :short %> - 	<%= t[:hometeam] %> vs. <%= t[:awayteam] %>   </td>
-		
-		<td>	<ralign>	<%=h predict.homescore %> - <%=h predict.awayscore %> </ralign></td>
-				</div></div>
-				</table>
-		<% end %>
-	<% end %>
-</ul>
 
-<br>
+ 		<% if signed_in? &&  current_user?(@user) %>
+		<i><%= link_to 'Click to edit user name or password', edit_user_path(@user) %></i>
+		<% end %><br><br>
 
-	<% if signed_in? &&  current_user?(@user) %>
-	<h3>Add Prediction</h3>
-	<div class="row">
-	<div class="span6">
-	<div class="well">
-			
+  <div class="row">
+    <div class="span6">
 
+      	<h3>Your Predictions</h3><br>
+
+			 <% if @user.predicts.any? %>
+				<% for predict in @user.predicts %>
+					
+			<table class='table table-condensed'>
+						<% r = predict.fixture_id %>
+						<% pi = predict.id %>
+						<% t = Fixture.find(r) %>
+
+			<td><%= l t[:matchdate], :format => :short %> - 	<%= t[:hometeam] %> vs. <%= t[:awayteam] %></td>
+			<td><ralign><%=h predict.homescore %> - <%=h predict.awayscore %> </ralign></td>	
 	
-	<%= render 'predicts/form' %>
-
-	</div>
-	</div>
-	</div>
-	<%= link_to 'Edit', edit_user_path(@user) %> |
-
-	<% end %>
-
-	<%= link_to 'Back', users_path %>
+		
+			<td><b><%= link_to "=>", predict_path(pi), :class => "icon-hand-right" %></b></td>			
+			</table>
+				<% end %>
+				<% end %>
+	
+    </div>
+ 	<% if signed_in? &&  current_user?(@user) %>
+    <div class="span5">
+		<div class="well well-small">
+	
+		<h3>Add Prediction</h3>
+		
+		<%= render 'predicts/form' %>
+	
+	</div>	
+    </div>
+<% end %>
+  </div><br><br>
+	<%= link_to 'Back to all users', users_path %>

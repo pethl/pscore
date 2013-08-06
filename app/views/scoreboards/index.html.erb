@@ -1,116 +1,72 @@
-<h1>Scoreboard</h1><br>
 
+<% require 'date' %>
+<% date = DateTime.parse("2013-06-21 00:00:00") %>
 
-	<% @scoreboards = Scoreboard.where(:week => "5")%>
-<% if @scoreboards.any? %>
-	<div class="accordion" id="accordion2">
-  		<div class="accordion-group">
-    		<div class="accordion-heading">
-      			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
-					<b>Week 5</b>
-					</a>
-    				</div>
-    				<div id="collapseFive" class="accordion-body collapse in">
-      				<div class="accordion-inner">
-	
-					<% @scoreboards = Scoreboard.where(:week => "5")%>
-					<% @scoreboards.each do |scoreboard| %>
-					<table class="table"><tr>
-				
-					<td><%= scoreboard.comment %></td>
-					</tr></table><% end %><br>
-				</div>
-    		</div>
-  		</div>
+<h3>Scoreboard</h3>
+
+<ul class="nav nav-tabs">
+<li class="active">	<a href="/scoreboards">Leaderboard</a>
+  <li>
+   	<a href="/scoreboards/index_week">Scores by Week</a>
+  </li>
+  <li>
+   	<a href="/scoreboards/index_match">Scores by Match</a>
+  </li>
+</ul>
+  
+
+<div class="row-fluid">
+  <div class="span6 offset1">
+  
+  <% if date > Date.today %> 
+			<p>No scores available until after first test</p><br>
+			<% else %>
+
+      	<table>
+        <tr>
+          <th align='left' >Competitor</th>
+          <th><center>Total</center></th>
+        </tr>
+        <tr><td>__________</td><td><center>_____</center></td></tr>
+        <tr>
+
+         <% sz = @scoreboards.size %>
+         <% if @scoreboards.any? %>
+         <% for scoreboard in @scoreboards %> 
+          <% sz = sz-1 %>
+          <% @record = @scoreboards[sz] %>
+          
+          			<% if User.find(@record.first).name == "pethl" %>
+          			  <% elsif %>
+          			  
+          			  	<% if User.find(@record.first).name == "Matt Cant" %>
+          			  	   <td><strong>* <%= User.find(@record.first).name  %> *</strong></td>
+                        <td><strong><center><%= @record.second  %></center></strong></td>
+                  </tr>
+          			  	  <% else %>
+
+          <td><%= User.find(@record.first).name  %></td>
+          <td><center><%= @record.second  %></center></td>
+    </tr>
+    <% end %>  <% end %><% end %><% end %>
+
+      </table>
+		
+      </div></div>
 <% end %>
-
-
-	<% @scoreboards = Scoreboard.where(:week => "4")%>
-<% if @scoreboards.any? %>
-	<div class="accordion" id="accordion2">
-  		<div class="accordion-group">
-    		<div class="accordion-heading">
-      			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
-					<b>Week 4</b>
-					</a>
-    				</div>
-    				<div id="collapseFour" class="accordion-body collapse in">
-      				<div class="accordion-inner">
-	
-					<% @scoreboards = Scoreboard.where(:week => "4")%>
-					<% @scoreboards.each do |scoreboard| %>
-					<table class="table"><tr>
-					<td><%= scoreboard.comment %></td>
-					</tr></table><% end %><br>
-				</div>
-    		</div>
-  		</div>
-<% end %>
-
-	<% @scoreboards = Scoreboard.where(:week => "3")%>
-<% if @scoreboards.any? %>
-	<div class="accordion" id="accordion2">
-  		<div class="accordion-group">
-    		<div class="accordion-heading">
-      			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-					<b>Week 3</b>
-					</a>
-    				</div>
-    				<div id="collapseOne" class="accordion-body collapse in">
-      				<div class="accordion-inner">
-	
-					<% @scoreboards = Scoreboard.where(:week => "3")%>
-					<% @scoreboards.each do |scoreboard| %>
-					<table class="table"><tr>
-					<td><%= scoreboard.comment %></td>
-					</tr></table><% end %><br>
-				</div>
-    		</div>
-  		</div>
-<% end %>
-
-	<% @scoreboards = Scoreboard.where(:week => "2")%>
-<% if @scoreboards.any? %>
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-		<b>Week 2</b>
-		</a>
-    	</div>
-    	<div id="collapseTwo" class="accordion-body collapse">
-      	<div class="accordion-inner">	
-	
-		<% @scoreboards.each do |scoreboard| %>
-		<table class="table"><tr>
-		<td><%= scoreboard.comment %></td>
-		</tr></table><% end %><br>
- 		</div>
-    </div>
-  </div>
-<% end %>
-
-	<% @scoreboards = Scoreboard.where(:week => "1")%>
-<% if @scoreboards.any? %>
-<div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-		<b>Week 1</b>
-		</a>
-    	</div>
-    	<div id="collapseThree" class="accordion-body collapse">
-      	<div class="accordion-inner">
-
-		<% @scoreboards.each do |scoreboard| %>
-		<table class="table"><tr>
-		<td><%= scoreboard.comment %></td>
-		</tr></table><% end %><br>	
-		</div>
-    </div>
-  </div>	
-<% end %>	
-	
-	  	
+ 
+<% if signed_in? && current_user.admin? %>	
 <br />
-<% if signed_in? && current_user.admin? %>
-<b><%= link_to 'add new scores', new_scoreboard_path %></b>
+<div class="btn-group btn-group-vertical">
+  <button class="btn btn-large"><%= link_to 'New Scoreboard', new_scoreboard_path, class: "btn btn-primary" %>
+  </button>
+  
+  <button class="btn">	
+  <%= form_tag generate_scoreboards_path do %>
+		 <%= collection_select(:fixture, :fixture_id, Fixture.all, :id, :full_fixture ) %>
+		
+		<%= submit_tag "Generate" %>
+  <% end %>
+  </button>
+	
 <% end %>

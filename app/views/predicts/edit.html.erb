@@ -1,7 +1,33 @@
 <% provide(:title, 'Edit Predictions') %>
-<h1>Editing predict</h1>
+<h1>Editing prediction</h1><br><br>
 
-<%= render 'form' %>
+<%= form_for(@predict) do |f| %>
+  <% if @predict.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@predict.errors.count, "error") %> prohibited this game from being saved:</h2>
 
-<%= link_to 'Show', @predict %> |
-<%= link_to 'Back', predicts_path %>
+      <ul>
+      <% @predict.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="field">
+    <%= f.label :homescore %><br />
+	<%= f.text_field :homescore, :class => "input-small" %>
+  </div>
+
+<div class="field">
+    <%= f.label :awayscore %><br />
+	<%= f.text_field :awayscore, :class => "input-small" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Show', @predict %> 

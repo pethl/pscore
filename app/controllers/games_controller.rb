@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
+    @games = @games.sort_by { |h| h[:startdate] }.reverse!
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +16,11 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
         @fixtures = @game.fixtures.paginate(page: params[:page])
+  end
+
+  def import
+    Game.import(params[:file])
+    redirect_to games_path, notice: "Games imported."
   end
 
   # GET /games/new

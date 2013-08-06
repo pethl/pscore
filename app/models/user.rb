@@ -14,7 +14,16 @@ class User < ActiveRecord::Base
   
  
   validates :password, presence: true, length: { minimum: 6 }
-    validates :password_confirmation, presence: true
+  validates :password_confirmation, presence: true
+ 
+     def self.import(file)
+         CSV.foreach(file.path, headers: true) do |row|
+            User.create! row.to_hash
+        end
+      end
+ 
+ 
+ 
  
      def full_fixture
           "#{hometeam} vs. #{awayteam} - #{(matchdate.strftime("%d %B, %Y"))}"

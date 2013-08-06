@@ -1,0 +1,126 @@
+<h3>Scoreboard</h3>
+
+<ul class="nav nav-tabs">
+<li>	<a href="/scoreboards">Leaderboard</a>
+    </li>
+<li class="active">
+   	<a href="/scoreboards/index_week">Scores by Week</a>
+  </li>
+  <li>
+   	<a href="/scoreboards/index_match">Scores by Match</a>
+  </li>
+</ul>
+
+	<% @scoreboards = Scoreboard.where(:week => "5")%>
+<% if @scoreboards.any? %>
+	<div class="accordion" id="accordion2">
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+      			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+					<b>Week 5</b>
+					</a>
+    				</div>
+    				<div id="collapseFive" class="accordion-body collapse in">
+      				<div class="accordion-inner">
+	
+					<% @scoreboards = Scoreboard.where(:week => "5")%>
+					<% @scoreboards.each do |scoreboard| %>
+					<table class="table"><tr>
+				
+	<td><%= User.find(scoreboard.user_id).name %> : <%= scoreboard.matchscore %><br> <%= scoreboard.comment %></td>
+					</tr></table><% end %><br>
+				</div>
+    		</div>
+  		</div>
+<% end %>
+
+
+	<% @scoreboards = Scoreboard.where(:week => "4")%>
+<% if @scoreboards.any? %>
+	<div class="accordion" id="accordion2">
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+      			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+					<b>Week 4</b>
+					</a>
+    				</div>
+    				<div id="collapseFour" class="accordion-body collapse in">
+      				<div class="accordion-inner">
+	
+					<% @scoreboards = Scoreboard.where(:week => "4")%>
+					<% @scoreboards.each do |scoreboard| %>
+					<table class="table"><tr>
+				<td><%= User.find(scoreboard.user_id).name %> : <%= scoreboard.matchscore %><br> <%= scoreboard.comment %></td>
+					</tr></table><% end %><br>
+				</div>
+    		</div>
+  		</div>
+<% end %>
+
+	<% @scoreboards = Scoreboard.where(:week => "3")%>
+<% if @scoreboards.any? %>
+	<div class="accordion" id="accordion2">
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+      			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+					<b>Week 3</b>
+					</a>
+    				</div>
+    				<div id="collapseOne" class="accordion-body collapse in">
+      				<div class="accordion-inner">
+	
+					<% @scoreboards = Scoreboard.where(:week => "3")%>
+					<% @scoreboards.each do |scoreboard| %>
+					<table class="table"><tr>
+	<td><%= User.find(scoreboard.user_id).name %> : <%= scoreboard.matchscore %><br> <%= scoreboard.comment %></td>
+					</tr></table><% end %><br>
+				</div>
+    		</div>
+  		</div>
+<% end %>
+
+	<% @scoreboards = Scoreboard.where(:week => "2")%>
+<% if @scoreboards.any? %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+		<b>Week 2</b>
+		</a>
+    	</div>
+    	<div id="collapseTwo" class="accordion-body collapse">
+      	<div class="accordion-inner">	
+	
+		<% @scoreboards.each do |scoreboard| %>
+		<table class="table"><tr>
+	<td><%= User.find(scoreboard.user_id).name %> : <%= scoreboard.matchscore %><br> <%= scoreboard.comment %></td>
+		</tr></table><% end %><br>
+ 		</div>
+    </div>
+  </div>
+<% end %>
+
+	<% @scoreboards = Scoreboard.where(:week => "1")%>
+<% if @scoreboards.any? %>
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+		<b>Week 1</b>
+		</a>
+    	</div>
+    	<div id="collapseThree" class="accordion-body collapse">
+      	<div class="accordion-inner">
+
+		<% @scoreboards.each do |scoreboard| %>
+		<table class="table"><tr>
+		<td><%= User.find(scoreboard.user_id).name %> : <%= scoreboard.matchscore %><br> <%= scoreboard.comment %></td>
+		</tr></table><% end %><br>	
+		</div>
+    </div>
+  </div>	
+<% end %>	
+	
+	  	
+<br />
+<% if signed_in? && current_user.admin? %>
+<b><%= link_to 'add new scores', new_scoreboard_path %></b>
+<% end %>

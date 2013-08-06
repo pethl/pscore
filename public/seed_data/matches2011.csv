@@ -1,0 +1,16 @@
+matchdate,ko,hometeam,awayteam,matchhomescore,matchawayscore,week
+2011-02-04,19:45,Wales,England,19,26,1
+2011-02-05,14:30,Italy,Ireland,11,13,1
+2011-02-05,17:00,France,Scotland,34,21,1
+2011-02-12,14:30,England,Italy,59,13,2
+2011-02-12,17:00,Scotland,Wales,6,24,2
+2011-02-13,15:00,Ireland,France,22,25,2
+2011-02-26,14:30,Italy,Wales,16,24,3
+2011-02-26,17:00,England,France,17,9,3
+2011-02-27,15:00,Scotland,Ireland,18,21,3
+2011-03-12,14:30,Italy,France,22,21,4
+2011-03-12,17:00,Wales,Ireland,19,13,4
+2011-03-13,15:00,England,Scotland,22,16,4
+2011-03-19,14:30,Scotland,Italy,21,8,5
+2011-03-19,17:00,Ireland,England,24,8,5
+2011-03-19,19:45,France,Wales,28,9,5

@@ -14,25 +14,36 @@
   </div>
 
 <div class="field">
-    <%= f.label :hometeam %><br />
+    <%= f.label :hometeam, "Home Team"  %><br />
 
     <%= f.select(:hometeam, Fixture::TEAM_TYPES)%>
   </div>
 
 <div class="field">
-    <%= f.label :awayteam %><br />
+    <%= f.label :awayteam, "Away Team"  %><br />
      <%= f.select(:awayteam, Fixture::TEAM_TYPES)%>
   </div>
 
 <div class="field">
-	    <%= f.label :matchhomescore %><br />
+	    <%= f.label :matchhomescore, "Home Score" %><br />
     <%= f.text_field :matchhomescore, :class => "input-small" %>
   </div>
+  
 <div class="field">
-	    <%= f.label :matchawayscore %><br />
+	    <%= f.label :matchawayscore, "Away Score" %><br />
    <%= f.text_field :matchawayscore, :class => "input-small" %>
   </div>
-
+  
+  <div class="field">
+  	    <%= f.label :week, "Week" %><br />
+     <%= f.text_field :week, :class => "input-small" %>
+    </div>
+  
+  <div class="field">
+  	    <%= f.label :fixresultgap, "Result Gap" %><br />
+     <%= f.text_field :fixresultgap, :class => "input-small" %>
+    </div>
+    
   <div class="actions">
     <%= f.submit %>
   </div>
