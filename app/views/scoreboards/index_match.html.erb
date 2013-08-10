@@ -1,50 +1,43 @@
 <h3>Scoreboard</h3>
 
-
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Leaderboard</a> </li>
    <li>
-   	<a href="/scoreboards/index_week">Scores by Week</a>
+   	  <a href="/scoreboards/index_week">Scores by Week</a>
   </li>
  <li class="active">
-   	<a href="/scoreboards/index_match">Scores by Match</a>
+   	  <a href="/scoreboards/index_match">Scores by Match</a>
   </li>
 </ul>
-
 
 <div class="row-fluid">
   <div class="span6 offset1">
 
-<% @scoreboards_user.each do |user_id, scoreboards_user| %>
+   <% if @predicts_by_user.any? %>
+     <% @predicts_by_user.each do |user_id, predicts_by_user| %>
+
 <h3>	<% m = user_id %>	
-	<% if User.find(m).name == "pethl" %>
-	  <% else %>
-		<%= User.find(m).name %> 
-	</h3>
+    	<% if User.find(m).name == "pethl" %>
+  	  <% else %>
+  		<%= User.find(m).name %> 
+</h3>
 
 <table class="table condensed">
-  <tr>
-    <th>Fixture</th>
-    <th><center>Matchscore</center></th>
-    <th></th>
-  </tr>
 
-<% scoreboards_user = scoreboards_user.sort_by{|e| e[:fixture_id]}%>
-<% scoreboards_user.each do |scoreboard| %>
+<% predicts_by_user = predicts_by_user.sort_by{|e| e[:fixture_id]}%>
+<% predicts_by_user.each do |predict| %>
   <tr>
-    <td><% f = scoreboard.fixture_id %>	
-			<%= Fixture.find(f).hometeam %> v <%= Fixture.find(f).awayteam %> - <%= Fixture.find(f).matchdate.strftime("%d %b, %Y") %></td>
-   
-    <% if signed_in? && current_user.admin? %>
-    <td><center><%= best_in_place scoreboard, :matchscore, :type => :input, :nil => "x" %></center></td>
-
-    <td><b><%= link_to 'D', scoreboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% else %>
-  <td><center><%= scoreboard.matchscore %></center></td>
-    <% end %><% end %>
+  <td></td>
+    <td>
+			<%= Fixture.find(predict.fixture_id).hometeam %> v <%= Fixture.find(predict.fixture_id).awayteam %> 
+			- <%= Fixture.find(predict.fixture_id).matchdate.strftime("%d %b, %Y") %></td>
+			
+  <td><center><%= predict.points %></center></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
+<% end %>
 <% end %>
 <br />
 </div></div>

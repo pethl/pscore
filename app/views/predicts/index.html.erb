@@ -1,17 +1,25 @@
 <% provide(:title, 'All Predictions') %>
 <h2>Predictions</h2>
 <br>
+1-CR = Correct Result, 2-CTH = Closest To Home, 3-CTA = Closest To Away, <br>4-EHS = Exact Home Score, 5-EAS = Exact Away Score, 6-ER = Exact Result
+<br>
+
 
  <% @predicts_by_fixture.each do |fixture_id, predicts_by_fixture| %>
 <br>
    <strong><%= Fixture.find(fixture_id).full_fixture %></strong>
    
+   
 <table>
   <tr>
+  <th><%= Fixture.find(fixture_id).matchhomescore %> - 
+       <%= Fixture.find(fixture_id).matchawayscore %>
+    [<%= Fixture.find(fixture_id).fixresultgap %>]</th>
     <th>User</th>
     <th>Home</th>
     <th>Away</th>
-    <th>Points</th>
+    <th>Gap</th>
+    <th>Points</th>    
     <th>1-CR</th>
     <th>2-CTH</th>
     <th>3-CTA</th>
@@ -24,9 +32,11 @@
 <% predicts_by_fixture = predicts_by_fixture.sort_by{|e| e[:user_id]}%>
 <% predicts_by_fixture.each do |predict| %>
   <tr>
+    <td></td>
     <td><%= User.find(predict.user_id).name %></td>
     <td><%= predict.homescore %></td>
     <td><%= predict.awayscore %></td>
+    <td><%= predict.val_right_result %></td>
     <td><%= predict.points %></td>
     <td><center><%= predict.right_result %></center></td>
     <td><center><%= predict.closest_to_home %></center></td>

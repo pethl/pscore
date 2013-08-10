@@ -45,17 +45,16 @@ Pscore::Application.routes.draw do
     resources :users
   end
    
+   get 'fixtures/fix_by_comp', :to => "fixtures#fix_by_comp"
+   get 'fixtures/fix_by_grid', :to => "fixtures#fix_by_grid"
+   
+   
    resources :fixtures do
      collection { post :import };
-     collection { put :calc};
       collection { put :calc_user}
    end
    
-    
-  get 'fixtures/fix_by_comp', :to => "fixtures#fix_by_comp"
-    get 'fixtures/fix_by_grid', :to => "fixtures#fix_by_grid"
-  resources :fixtures
-    
+  resources :fixtures  
   
   resources :fixtures do
     resources :predicts

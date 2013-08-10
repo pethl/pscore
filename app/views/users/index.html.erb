@@ -5,10 +5,8 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>password</th>
-    <th>rem tok</th>
     <th><b>Show Predictions</b></th>
-    <th></th>
+    <th>Action</th>
       <th></th>
   </tr>
 
@@ -16,8 +14,6 @@
   <tr>
 	<td><%= user.name %></td>
 	<td><%= user.email %></td>
-	<td><%= user.password_digest %></td>
-		<td><%= user.remember_token %></td>
 	<td><b><%= link_to "", user_path(user), :class => "icon-forward" %></b></td>
 
 <% if signed_in? %>

@@ -37,18 +37,13 @@
           <% @record = @scoreboards[sz] %>
           
           			<% if User.find(@record.first).name == "pethl" %>
-          			  <% elsif %>
           			  
-          			  	<% if User.find(@record.first).name == "Matt Cant" %>
-          			  	   <td><strong>* <%= User.find(@record.first).name  %> *</strong></td>
-                        <td><strong><center><%= @record.second  %></center></strong></td>
-                  </tr>
-          			  	  <% else %>
+          			  <% else %>
 
           <td><%= User.find(@record.first).name  %></td>
           <td><center><%= @record.second  %></center></td>
     </tr>
-    <% end %>  <% end %><% end %><% end %>
+    <% end %>  <% end %><% end %>
 
       </table>
 		

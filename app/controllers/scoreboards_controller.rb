@@ -15,8 +15,8 @@ class ScoreboardsController < ApplicationController
    end 
     
    def index_match
-       @scoreboards = Scoreboard.order("user_id ASC")
-        @scoreboards_user = @scoreboards.group_by { |t| t.user_id } 
+       @predicts = Predict.order("user_id ASC")
+        @predicts_by_user = @predicts.group_by { |t| t.user_id } 
             @fixtures = Fixture.all
     end
 
@@ -91,7 +91,7 @@ class ScoreboardsController < ApplicationController
         users = User.all
         scores = Hash.new
         for user in users
-          scores[user.id] = Scoreboard.where(:user_id => user.id).sum(:matchscore)
+          scores[user.id] = Predict.where(:user_id => user.id).sum(:points)
         end
         return scores
       end

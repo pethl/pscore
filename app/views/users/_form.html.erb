@@ -25,7 +25,7 @@
     <%= f.password_field :password_confirmation %>
   </div>
     <div class="field">
-  <% if current_user.name == "pethl" %>
+    <% if signed_in? && current_user.name == "pethl" %>
 	<%= f.label :admin %>
 	<%= f.check_box :admin %><br>
 	<% else %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806095112) do
+ActiveRecord::Schema.define(:version => 20130806104952) do
 
   create_table "fixtures", :force => true do |t|
     t.string   "content"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20130806095112) do
     t.integer  "homescore"
     t.integer  "awayscore"
     t.integer  "points"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "game_id"
     t.integer  "fixture_id"
     t.boolean  "correct_result"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(:version => 20130806095112) do
     t.integer  "exact_home_score"
     t.integer  "exact_away_score"
     t.integer  "exact_result"
+    t.integer  "val_right_result"
+    t.integer  "val_closest_to_home"
+    t.integer  "val_closest_to_away"
+    t.integer  "val_exact_home_score"
+    t.integer  "val_exact_away_score"
+    t.integer  "val_exact_result"
   end
 
   create_table "scoreboards", :force => true do |t|

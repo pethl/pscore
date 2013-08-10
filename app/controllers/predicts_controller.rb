@@ -62,7 +62,7 @@ class PredictsController < ApplicationController
   # PUT /predicts/1.json
   def update
     @predict = Predict.find(params[:id])
-     @fixture = Fixture.find(params[:fixture_id]) 
+   #  @fixture = Fixture.find(params[:fixture_id]) 
 
     respond_to do |format|
       if @predict.update_attributes(params[:predict])

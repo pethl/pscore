@@ -5,24 +5,14 @@
 <p>
   <h3>
   <%= @fixture.matchdate.strftime("%d %b, %Y") %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>, <i>Result</i> - <%= @fixture.matchhomescore %> : <%= @fixture.matchawayscore %>
+   (<%= @fixture.fixresultgap %>)
   </h3>
-<br>
-
-<% if signed_in? && current_user.admin? %>
-    <%= @fixture.fixresultgap %>
-
-  	<%= form_for @fixture, :url => { :action => "calc" }, :html => {:class => "nifty_form"} do |f| %>
-
-  	  <%= hidden_field_tag "fixture_id", params[:id] %>
-    <%= submit_tag "Calculate Gap", class: "btn btn-success btn-large" %>
-    <% end %>
-<% end %>
 
 <br><br>
 <b>Predictions</b>
 <br><br>
 <div class="row">
-  <div class="span4">
+  <div class="span5">
     <div class="well">
 	    <% if @fixture.predicts.any? %>
        	  
@@ -34,11 +24,11 @@
               <%= hidden_field_tag "predict_ids[]", predict.id %>
               <li>
                 <%=h predict.homescore %> - <%=h predict.awayscore %>  :  
-                <%= User.find(predict.user_id).name %>  :  
-                <%= h predict.correct_result %>
+                <%= User.find(predict.user_id).name %>  
+                
               </li>
       <% end %>
-
+          <br>
           <%= submit_tag "Calculate Gap", class: "btn btn-success btn-large" %>
 			<% end %>
 
@@ -50,11 +40,11 @@
     </div>
 </div>
 
-
 <br>
 
-<%= link_to 'Back', fixtures_path %>
+<%= link_to 'Back', fixtures_path %> |
+<%= link_to 'See Scoring', predicts_path %> |
 <% if signed_in? && current_user.admin? %>
- |
+ | 
 <%= link_to 'Edit', edit_fixture_path(@fixture) %>
 <% end %>
