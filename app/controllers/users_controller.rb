@@ -25,11 +25,35 @@ class UsersController < ApplicationController
      redirect_to users_path, notice: "Users imported."
    end
 
+
+   def get_records
+     @user = (params[:user_id])
+     i = 0
+     x = Fixture.where(:game_id => (params[:game_id])).count
+     @fixtureids = Fixture.where(:game_id => (params[:game_id])).collect {|r| r.id}
+
+     while i < x do
+         s = Predict.new(:game_id => (params[:game_id]), :fixture_id => @fixtureids[i], :user_id => @user)
+         s.save
+         i = i += 1
+     end
+        redirect_to :back
+        
+    end
+      
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @current_game = Game.where(:current => true)
+    @last_game = Game.where(:lastyear => true)
+    @fixtures = Fixture.where(:game_id => @current_game[0].id)
+    @previous_fixtures = Fixture.where(:game_id => @last_game[0].id)
+    @predicts = Predict.where(:game_id => @current_game[0].id, :user_id => (params[:id]))
+    @predicts = @predicts.sort_by { |h| h[:id] }
+    @previous_predicts = Predict.where(:game_id => @last_game[0].id, :user_id => (params[:id])).select([:id, :fixture_id, :awayscore, :homescore])
 
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -76,6 +100,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        sign_in @user
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -107,5 +132,5 @@ class UsersController < ApplicationController
   def admin_user
         redirect_to(root_path) unless current_user.admin?
   end
-  
+     
 end

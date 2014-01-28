@@ -1,13 +1,11 @@
-<h3>Matches</h3>
-
 
 <ul class="nav nav-tabs">
- <li class="active"><a href="/fixtures">All matches</a> </li>
+ <li class="active"><a href="/fixtures">All fixtures</a> </li>
    <li>
-   	<a href="/fixtures/fix_by_comp">By Competition</a>
+   	<a href="/fixtures/fix_by_comp">This Year</a>
   </li>
   <li>
-   	<a href="/fixtures/fix_by_grid">Grid</a>
+   	<a href="/fixtures/fix_by_grid">Past Years</a>
   </li>
 </ul>
 <br>
@@ -16,13 +14,14 @@
   <tr>
 	  <th></th>
 	  <th>Competition</th>
-	  <th>Week</th>
+	  <th><center>Week</center></th>
 	  <th>Date</th>
 	  <th>KO</th>
     <th>Home</th>
     <th>Away</th>    
     <th>Result</th>    
-	  <th><center>Predictions</center></th>
+        <th></th>    
+   <th><center>Action</center></th>
     <th></th>
     <th></th>
   </tr>
@@ -32,9 +31,9 @@
 		<td>
 			<% unless fixture.matchdate.nil? %>
 				<% if fixture.matchdate < Date.today %>
-				<i class='icon-ok'></i>
+				<i class='icon-ok icon-white'></i>
 				<% else %>
-				<i class='icon-time'></i>
+				<i class='icon-time icon-white'></i>
 			<% end %><% end %>
 		</td>
 		
@@ -65,14 +64,16 @@
 	      <td><div class="winner"><%= fixture.awayteam %></div></td>
 				<% end %>
 		
-	<td><%= fixture.matchhomescore %> : <%= fixture.matchawayscore %></td>
-	<td><b><center><%= link_to "", fixture, :class => "icon-forward" %></b></center></td>
+		<td><center><i><%= best_in_place fixture, :matchhomescore, :nil => "-" %></i></center></td>
+		<td><center><i><%= best_in_place fixture, :matchawayscore, :nil => "-" %></i></center></td>
+  
 
 
 <% if signed_in? && current_user.admin? %>
   
-    <td><b><%= link_to '|e|', edit_fixture_path(fixture) %></b></td>
-    <td><b><%= link_to '|d|', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
+    <td><b><center><%= link_to '|e|', edit_fixture_path(fixture) %></b></center></td>
+    <td><b><center><%= link_to '|s|', fixture %></b></td>
+    <td><b><center><%= link_to '|d|', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></b></center></td>
 <% end %> 
 </tr>
 <% end %>

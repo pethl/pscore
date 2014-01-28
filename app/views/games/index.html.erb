@@ -5,7 +5,9 @@
   <tr>
 	  <th>Name</th>
     <th>Start</th>
-    <th>End</th>    
+    <th>End</th>   
+    <th><center>Current</center></th>  
+    <th><center>Previous</center></th>  
     <th></th>
     <th></th>
     <th></th>
@@ -25,13 +27,14 @@
   	    <td><h5 class="muted"><%= game.startdate.strftime("%b, %Y") %></h5></td>
   	    <td><h5 class="muted"><%= game.enddate.strftime("%b, %Y") %></h5></td>
 		<% end %>
+		
+	<td><center><i><%= best_in_place game, :current, :type => :checkbox, :nil => "?" %></i></center></td>
+	<td><center><i><%= best_in_place game, :lastyear, :type => :checkbox, :nil => "?" %></i></center></td>
 
-      <td><b><%= link_to 'show matches', game_fixtures_path(game.id) %></b></td>
-
-      <% if signed_in? && current_user.admin? %>
+      <td><b><%= link_to 'matches', game_fixtures_path(game.id) %></b></td>
     	  <td><b><%= link_to 'edit', edit_game_path(game) %></b></td>
     	  <td><b><%= link_to 'destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></b></td>
-	    <% end %>  
+
   </tr>
 <% end %>
 
@@ -39,7 +42,7 @@
 
 <br />
 
-<% if signed_in? && current_user.admin? %>	
+
   <div class="btn-group btn-group-vertical">
     <button class="btn btn-large"><%= link_to "Add a game", new_game_path, class: "btn btn-primary" %></button>
     <button class="btn">	<%= form_tag import_games_path, multipart: true do %>
@@ -48,4 +51,3 @@
 	                        <% end %>
 	  </button>
   </div>
-<% end %>

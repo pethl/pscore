@@ -1,3 +1,6 @@
+<div class="row-fluid">
+  <div class="span5 offset1">
+
 <h1>Edit Match</h1>
 <%= form_for ([@fixture]) do |f| %>
 
@@ -9,38 +12,38 @@
 
 
 <div class="field">
-    <%= f.label :matchdate %><br />
+    <%= f.label :matchdate %>
     <%= f.datetime_select :matchdate, :ampm => true %>
   </div>
 
 <div class="field">
-    <%= f.label :hometeam, "Home Team"  %><br />
+    <%= f.label :hometeam, "Home Team"  %>
 
     <%= f.select(:hometeam, Fixture::TEAM_TYPES)%>
   </div>
 
 <div class="field">
-    <%= f.label :awayteam, "Away Team"  %><br />
+    <%= f.label :awayteam, "Away Team"  %>
      <%= f.select(:awayteam, Fixture::TEAM_TYPES)%>
   </div>
 
 <div class="field">
-	    <%= f.label :matchhomescore, "Home Score" %><br />
+	    <%= f.label :matchhomescore, "Home Score" %>
     <%= f.text_field :matchhomescore, :class => "input-small" %>
   </div>
   
 <div class="field">
-	    <%= f.label :matchawayscore, "Away Score" %><br />
+	    <%= f.label :matchawayscore, "Away Score" %>
    <%= f.text_field :matchawayscore, :class => "input-small" %>
   </div>
   
   <div class="field">
-  	    <%= f.label :week, "Week" %><br />
+  	    <%= f.label :week, "Week" %>
      <%= f.text_field :week, :class => "input-small" %>
     </div>
   
   <div class="field">
-  	    <%= f.label :fixresultgap, "Result Gap" %><br />
+  	    <%= f.label :fixresultgap, "Result Gap" %>
      <%= f.text_field :fixresultgap, :class => "input-small" %>
     </div>
     
@@ -52,3 +55,5 @@
 
 <%= link_to 'Show', @fixture %> |
 <%= link_to 'Back', fixtures_path %>
+  </div>
+    </div>

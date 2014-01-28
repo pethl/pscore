@@ -1,0 +1,18 @@
+<% if @fixture.predicts.any? %>
+ 	  
+ 	  <%= form_for @fixture, :url => { :action => "calc_user" }, :html => {:class => "nifty_form"} do |f| %>
+ 	    	<%= hidden_field_tag "fixture_id", params[:id] %>
+
+        <% for predict in @fixture.predicts %>
+
+        <%= hidden_field_tag "predict_ids[]", predict.id %>
+        <li>
+          <%=h predict.homescore %> - <%=h predict.awayscore %>  :  
+          <%= User.find(predict.user_id).name %>  
+        </li>
+         <% end %>   <% end %>
+
+<% else %>
+  
+           No predictions yet
+<% end %>

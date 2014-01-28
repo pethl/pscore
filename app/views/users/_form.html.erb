@@ -28,13 +28,21 @@
     <% if signed_in? && current_user.name == "pethl" %>
 	<%= f.label :admin %>
 	<%= f.check_box :admin %><br>
+	<%= f.label :wins %>
+	<%= f.text_field :wins %><br>
 	<% else %>
 	<% end %>
     </div>
   
+   <% if signed_in? %>
 	<div class="actions">
-	<%= f.submit "Update", class: "btn btn-large btn-warning" %>
+	<%= f.submit "Update", class: "btn btn-large btn-success" %>
   </div>
   
+<% else %>  
+<div class="actions">
+<%= f.submit "Create User", class: "btn btn-large btn-success" %>
+</div>
+<% end %>
   	
 <% end %>

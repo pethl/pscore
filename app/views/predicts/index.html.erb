@@ -1,71 +1,100 @@
 <% provide(:title, 'Match Scoring Detail') %>
-<h2>Match Scoring Detail</h2>
+
+
+<% require 'date' %>
+<% date = DateTime.parse("2014-01-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Leaderboard</a>
     </li>
     <li>
-   	<a href="/scoreboards/index_week">Scores by Week</a>
+   	<a href="/scoreboards/index_week">Scores by Fixture</a>
   </li>
   <li>
-   	<a href="/scoreboards/index_match">Scores by Match</a>
+   	<a href="/scoreboards/index_match">Scores by Fixture</a>
   </li>
   <li class="active">
-    	<a href="/predicts">Detail by Match</a>
+    	<a href="/predicts">Detail by Fixture</a>
    </li>
 </ul>
 
-<br>
-1-CR = Correct Result, 2-CTH = Closest To Home, 3-CTA = Closest To Away, <br>4-EHS = Exact Home Score, 5-EAS = Exact Away Score, 6-ER = Exact Result
-<br>
 
+
+<br>
+<b><m4>Predictascore Rules</m4></b>
+<ul>
+<li><b>Result must be right to score at all</b></li>
+<li>All scores must be in before tournament starts</li>
+<li>No scores are exclusive to any player</li>
+<li>Players with same score get full points and do not share them.</li>
+<br>
+<li>1 point for right result <m4>[1-CR = Correct Result]</m4></li>
+<li>1 extra bonus if both scores are correct <m4>[2-ER = Exact Result]</m4></li>
+<li>1 point for closest margin <m4>[3-CTM = Closest To Margin]</m4></li>
+<li>1 point for closest to each team's score <m4>[4-CTH = Closest To Home][5-CTA = Closest To Away]</m4></li>
+<li>1 bonus point for each exact score <m4>[6-EHS = Exact Home Score][7-EAS = Exact Away Score]</m4></li>
+</ul>
+
+<% if date > Date.today %> 
+		<p>No scores available until after first fixture</p><br>
+		<% else %>
 
  <% @predicts_by_fixture.each do |fixture_id, predicts_by_fixture| %>
 <br>
    <strong><%= Fixture.find(fixture_id).full_fixture %></strong>
-   
+   <%= Fixture.find(fixture_id).matchhomescore %> - 
+        <%= Fixture.find(fixture_id).matchawayscore %>
+     [<%= Fixture.find(fixture_id).fixresultgap %>]
+      <% if signed_in? && current_user.admin? %>	
+   <%= link_to '|s|', fixture_path(fixture_id) %>
+       <% end %>
    
 <table>
   <tr>
-  <th><%= Fixture.find(fixture_id).matchhomescore %> - 
-       <%= Fixture.find(fixture_id).matchawayscore %>
-    [<%= Fixture.find(fixture_id).fixresultgap %>]</th>
-    <th>User</th>
-    <th>Home</th>
-    <th>Away</th>
-    <th>Gap</th>
-    <th>Points</th>    
-    <th>1-CR</th>
-    <th>2-CTH</th>
-    <th>3-CTA</th>
-    <th>4-EHS</th>
-    <th>5-EAS</th>
-    <th>6-ER</th>
-    <th>Action</th>
+  <th></th>
+
+    <td><m4>Home</m4></td>
+    <td><m4>Away</m4></td>
+    <td><m4>Gap</m4></td>
+    <td><m4>Points</m4></td>    
+    <td><m4>1-CR</m4></td>
+    <td><m4>2-ER</m4></td>
+    <td><m4>3-CTM</m4></td>
+    <td><m4>4-CTH</m4></td>
+    <td><m4>5-CTA</m4></td>
+    <td><m4>6-EHS</m4></td>
+    <td><m4>7-EAS</m4></td>
+    <td><m4>Name</m4></td>
+       <% if signed_in? && current_user.admin? %>	
+         <th></th>
+    <% end %>
   </tr>
 
 <% predicts_by_fixture = predicts_by_fixture.sort_by{|e| e[:user_id]}%>
 <% predicts_by_fixture.each do |predict| %>
   <tr>
     <td></td>
-    <td><%= User.find(predict.user_id).name %></td>
     <td><%= predict.homescore %></td>
     <td><%= predict.awayscore %></td>
-    <td><%= predict.val_right_result %></td>
-    <td><%= predict.points %></td>
+    <td><i><%= predict.val_right_result %></i></td>
+    <td>(<%= predict.points %>)</td>
     <td><center><%= predict.right_result %></center></td>
+    <td><center><%= predict.exact_result %></center></td>  
+    <td><center><%= predict.nearest_margin %></center></td>  
     <td><center><%= predict.closest_to_home %></center></td>
     <td><center><%= predict.closest_to_away %></center></td>
     <td><center><%= predict.exact_home_score %></center></td>
     <td><center><%= predict.exact_away_score %></center></td>
-    <td><center><%= predict.exact_result %></center></td>    
+    <td><%= User.find(predict.user_id).name %></td>
+      <% if signed_in? && current_user.admin? %>	
     <td><%= link_to 'S', predict %>
     <%= link_to 'E', edit_predict_path(predict) %>
     <%= link_to 'D', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
   </tr>
 <% end %>
 </table>
-<% end %>
+<% end %><% end %>
 <br />
 
 <%= link_to 'New Predict', new_predict_path %>

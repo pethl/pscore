@@ -1,6 +1,29 @@
 @import "bootstrap";
 
+@import "bootstrap-responsive";
+
+
 /* universal */
+m1 {
+font-size: 1.7em;
+  font-weight: bold;
+}
+m2 {
+font-size: 1.4em;
+  font-weight: bold;
+}
+m3 {
+font-size: 1em;
+  font-weight: bold;
+}
+m4 {
+font-size: 1em;
+  color: #7CFC00;
+}
+a {
+font-size: 1em;
+
+}
 
 html {
   overflow-y: scroll;
@@ -74,12 +97,15 @@ footer ul li {
 }
 
 /* header */
+header {
+  color: #000000;
+}
 
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: #000000;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;

@@ -1,49 +1,50 @@
-<h3>Matches</h3>
+	<div class="row-fluid">
+    <div class="span5">
 
-
+    <m4>Click</m4> 
+     <%= image_tag("/images/binocs.png", :size => "20x20", :alt=> "predictions") %>
+     <m4>to see all predictions per fixture</m4><br><br>
+         
 <ul class="nav nav-tabs">
- <li><a href="/fixtures">All matches</a> </li>
    <li class="active">
-   	<a href="/fixtures/fix_by_comp">By Competition</a>
-  </li>
-  <li>
-   	<a href="/fixtures/fix_by_grid">Grid</a>
-  </li>
-</ul>
-<br>
-
-
- <% @fixtures_by_comp.each do |game_id, fixture_by_comp| %>
-  
-   <strong><%= Game.find(game_id).name %></strong>
+     	<a href="/fixtures/fix_by_comp"><%= @current_game[0].name[10, 4] %> </a>
+    </li>
+    <li>
+     	<a href="/fixtures/fix_by_grid">Past Years</a>
+    </li>
+  </ul>
    
-   <table class="table">
-   <tr>
-  	  <th></th>
-  	  <th>Week</th>
-  	  <th>Date</th>
-  	  <th>KO</th>
-      <th>Home</th>
-      <th>Away</th>    
-      <th>Result</th>    
-  	  <th><center>Predictions</center></th>
-      <th></th>
-      <th></th>
+ <% @fixtures_by_week.each do |week, fixture_by_week| %>
+      
+      
+       <table class="table">
+        
+  <tr>
+    <m4>Week <%= week %></m4>
+    
     </tr>
-   
-    <% fixture_by_comp = fixture_by_comp.sort_by{|e| e[:fixture_id]}%>
-       <% fixture_by_comp.each do |fixture| %>
+           	  	 
+        <% fixture_by_week = fixture_by_week.sort_by{|e| e[:matchdate]}%>
+            <% fixture_by_week.each do |fixture| %>
+      
       <tr>
-       <td></td>
-        <td><%= fixture.week %></td>
-        <td><%= fixture.matchdate.strftime("%d %b, %Y") %></td>
-        <td><%= fixture.ko.strftime("%H:%M") %></td>
-        <td><%= fixture.hometeam %></td>
-        <td><%= fixture.awayteam %></td>
-        <td><%= fixture.matchhomescore %> - <%= fixture.matchawayscore %></td>
-	      <td><b><center><%= link_to "", fixture, :class => "icon-forward" %></b></td>
+       <td><% unless fixture.matchdate.nil? %>
+ 				<% if fixture.matchdate < Date.today %>
+ 				<i class='icon-ok icon-white'></i>
+ 				<% else %>
+ 				<i class='icon-time icon-white'></i>
+ 			<% end %><% end %></td>
+        <td><%= fixture.matchdate.strftime("%d %b") %>, <%= fixture.ko.strftime("%H:%M") %></td>
+        <td><%= fixture.hometeam[0, 3] %></td>
+        <td><%= fixture.awayteam[0, 3] %></td>
+        <td><%= fixture.matchhomescore %></td> 
+        <td><%= fixture.matchawayscore %></td>
+	       <td><center><%=link_to(image_tag("/images/binocs.png",:size => "20x20", :alt=> "predictions"),
+              {:controller=>"fixtures", :action=>"show", :id=>fixture.id}, :title=>"Predictions", :class=>"logo") %></td>
+        
       </tr>
-      <% end %>
-   </table>
 
-   <% end %>
+  <% end %> <% end %>
+     </table>
+     </div>
+     </div>

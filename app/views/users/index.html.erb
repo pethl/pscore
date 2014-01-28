@@ -5,7 +5,8 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th><b>Show Predictions</b></th>
+    <th>Previous Wins</th>
+    <th><b>Predictions</b></th>
     <th>Action</th>
       <th></th>
   </tr>
@@ -14,6 +15,12 @@
   <tr>
 	<td><%= user.name %></td>
 	<td><%= user.email %></td>
+		<td><% if user.wins? && user.wins > 0  %>
+		  <img src="/images/Trophy-icon.png"
+		  </td>
+		  <% else %>
+		  <% end %>
+		
 	<td><b><%= link_to "", user_path(user), :class => "icon-forward" %></b></td>
 
 <% if signed_in? %>

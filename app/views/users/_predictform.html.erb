@@ -1,0 +1,24 @@
+<div class="row-fluid">
+  <div class="span12"><br>
+  <m3>Welcome to the <%= @current_game[0].name %> predictascore competition.</m3><br><br>
+  <p>Please change your password at first login</p>
+   
+    <div class="row-fluid">
+      <div class="span3">
+   
+    <%= render 'users/form2' %>
+  
+ Next <br> <br> 
+ 
+ <%= form_tag get_records_users_path, multipart: true do %>
+		<%= hidden_field_tag "game_id", @current_game[0].id %>
+    <%= hidden_field_tag "user_id", @user.id %>
+
+    <%= button_tag(type: "submit", class: "btn btn-success") do %>
+        Enter My Predictions <i class="icon-edit"></i>
+    <% end %>
+ <% end %>
+ 
+</div> 
+</div> 
+</div>     

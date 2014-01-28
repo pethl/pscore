@@ -1,48 +1,24 @@
 <% provide(:title, 'User profile') %>
 
-<h1><%= h @user.name %></h1>
 
-<% if signed_in? && current_user.admin? %>
-You have Adminstrator rights | 
-<% end %>
 
- 		<% if signed_in? &&  current_user?(@user) %>
-		<i><%= link_to 'Click to edit user name or password', edit_user_path(@user) %></i>
-		<% end %><br><br>
+<% if @predicts.count > 0  %>
 
-  <div class="row">
-    <div class="span6">
-
-      	<h3>Your Predictions</h3><br>
-
-			 <% if @user.predicts.any? %>
-				<% for predict in @user.predicts %>
-					
-			<table class='table table-condensed'>
-						<% r = predict.fixture_id %>
-						<% pi = predict.id %>
-						<% t = Fixture.find(r) %>
-
-			<td><%= l t[:matchdate], :format => :short %> - 	<%= t[:hometeam] %> vs. <%= t[:awayteam] %></td>
-			<td><ralign><%=h predict.homescore %> - <%=h predict.awayscore %> </ralign></td>	
-	
-		
-			<td><b><%= link_to "=>", predict_path(pi), :class => "icon-hand-right" %></b></td>			
-			</table>
-				<% end %>
-				<% end %>
-	
+  	<div class="row-fluid">
+      <div class="span5offset1">
+          <%= render 'predicts/userpredict' %>
+      </div>
+      
+      <div class="span3">
+        <%= render 'fixtures/lastyearfix' %>
+        </div>
+        <div class="span3">
+        <%= render 'predicts/userlastyearpredict' %>
+        </div>
     </div>
- 	<% if signed_in? &&  current_user?(@user) %>
-    <div class="span5">
-		<div class="well well-small">
-	
-		<h3>Add Prediction</h3>
-		
-		<%= render 'predicts/form' %>
-	
-	</div>	
-    </div>
-<% end %>
-  </div><br><br>
-	<%= link_to 'Back to all users', users_path %>
+  	
+  <% else %>
+  	<%= render 'users/predictform' %>
+  <% end %>
+  
+  

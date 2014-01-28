@@ -1,0 +1,58 @@
+<% provide(:title, 'Past Predicts') %>
+<m2>Load Past Predictions</m2><br>
+
+
+<button class="btn">	<%= form_tag import_predicts_path, multipart: true do %>
+                     <%= collection_select(:game, :game_id, Game.all, :id, :name ) %>
+
+                      <%= file_field_tag :file %>
+                      <%= submit_tag "Import" %>
+                       <% end %>
+ </button>
+ <br> <br>
+<m3> <%= @last_game[0].name %></m3>
+
+<% @users.each do |user| %>
+  <ul>
+    <li> <%= user.id %> - <%= user.name %></li>
+  
+  </ul>
+<% end %>
+
+
+
+
+ <% @predicts_by_fixture.each do |fixture_id, predicts_by_fixture| %>
+<br>
+   <strong><%= Fixture.find(fixture_id).full_fixture %></strong>
+   
+   
+<table>
+  <tr>
+  <th><%= Fixture.find(fixture_id).matchhomescore %> - 
+       <%= Fixture.find(fixture_id).matchawayscore %>
+    [<%= Fixture.find(fixture_id).fixresultgap %>]</th>
+    <th>User</th>
+    <th>Home</th>
+    <th>Away</th>
+    
+    <th>Action</th>
+  </tr>
+
+<% predicts_by_fixture = predicts_by_fixture.sort_by{|e| e[:user_id]}%>
+<% predicts_by_fixture.each do |predict| %>
+  <tr>
+    <td></td>
+    <td><%= User.find(predict.user_id).name %></td>
+    <td><%= predict.homescore %></td>
+    <td><%= predict.awayscore %></td>
+    <td><%= link_to 'S', predict %>
+    <%= link_to 'E', edit_predict_path(predict) %>
+    <%= link_to 'D', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<br />
+
+<%= link_to 'New Predict', new_predict_path %>

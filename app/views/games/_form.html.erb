@@ -10,24 +10,32 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="span4">
 
 <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
 <div class="field">
-    <%= f.label :startdate %><br />
+    <%= f.label :startdate %>
     <%= f.date_select :startdate %>
   </div>
 
 <div class="field">
-    <%= f.label :enddate %><br />
+    <%= f.label :enddate %>
     <%= f.date_select :enddate %>
   </div>
 
+  <div class="field">
+      <%= f.label :current %>
+      <%= f.check_box :current %>
+    </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+  </div>  
+  </div>

@@ -1,0 +1,63 @@
+<% provide(:title, 'User profile') %>
+
+<h1>Hi <%= h @user.name %></h1><br>
+
+    <div class="row">
+      <div class="span6">
+
+      	<h3>Your Predictions for <%= @current_game[0].name %></h3><br>
+      	
+      	   <% @fixtures_by_week.each do |week, fixture_by_week| %>
+      	  	 <h3>Week <%= week %></h3>
+  				
+  				<% fixture_by_week = fixture_by_week.sort_by{|e| e[:matchdate]}%>
+             <% fixture_by_week.each do |fixture| %>
+  					<table class='table table-condensed'>
+  				<td><%= fixture.matchdate.strftime("> %a %d %b") %></td>
+      	 	<td><%= fixture.hometeam %> v <%= fixture.awayteam %></td> 	  
+      	 	<td><%= fixture.matchhomescore %>-<%= fixture.matchawayscore %></td>  
+          <td><% phs = Predict.where(:fixture_id => fixture.id, :user_id => @user.id) %>
+          <%= phs[0].homescore %>-<%= phs[0].awayscore %>
+          </td>           
+      	<% end %>
+      	</table>
+      	      	<% end %>
+ 	
+<h3>Predictions</h3>
+			 <% if @user.predicts.any? %>
+				<% for predict in @predicts %>
+					
+			<table class='table table-condensed'>
+						<% r = predict.fixture_id %>
+						<% pi = predict.id %>
+						<% t = Fixture.find(r) %>
+
+			<td><%= l t[:matchdate], :format => :short %> - 	<%= t[:hometeam] %> vs. <%= t[:awayteam] %></td>
+			<td><ralign><%=h predict.homescore %> - <%=h predict.awayscore %> </ralign></td>	
+	
+		
+			<td><b><%= link_to "=>", predict_path(pi), :class => "icon-hand-right" %></b></td>			
+			</table>
+				<% end %>
+				<% end %>
+	
+    </div>
+ 	<% if signed_in? &&  current_user?(@user) %>
+    <div class="span5">
+		<div class="well well-small">
+		
+		<button class="btn">	<%= form_tag get_records_users_path, multipart: true do %>
+  		<%= text_field_tag :user_id %>
+  		<%= text_field_tag :game_id %>
+  		<%= submit_tag "Get records" %>
+  	<% end %></button>
+	
+		<h3>Add Prediction</h3>
+		
+		<%= render 'predicts/form' %>
+	
+	</div>	
+    </div>
+<% end %>
+  </div><br><br>
+	<%= link_to 'See all users', users_path %>

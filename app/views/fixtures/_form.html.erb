@@ -8,18 +8,18 @@
 
 
 <div class="field">
-    <%= f.label :matchdate %><br />
+    <%= f.label :matchdate %>
     <%= f.datetime_select :matchdate, :ampm => true %>
   </div>
 
 <div class="field">
-    <%= f.label :hometeam %><br />
+    <%= f.label :hometeam %>
 
     <%= f.select(:hometeam, Fixture::TEAM_TYPES)%>
   </div>
 
 <div class="field">
-    <%= f.label :awayteam %><br />
+    <%= f.label :awayteam %>
      <%= f.select(:awayteam, Fixture::TEAM_TYPES)%>
   </div>
 

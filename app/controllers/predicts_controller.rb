@@ -2,7 +2,24 @@ class PredictsController < ApplicationController
   # GET /predicts
   # GET /predicts.json
   def index
-    @predicts = Predict.all
+      @current = Game.where(:current => true)
+     @predicts = Predict.where(:game_id => @current[0].id)
+     @predicts = @predicts.sort_by { |h| h[:id] }
+    @predicts_by_fixture = @predicts.group_by { |t| t.fixture_id }
+   # not sure why this is here...    @fixture = Fixture.find(params[:fixture_id])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @predicts }
+    end
+  end
+
+
+  def pastpredict
+    @users = User.all
+    @users = @users.sort_by { |h| h[:id] }
+    @last_game = Game.where(:lastyear => true)
+    @predicts = Predict.where(:game_id => @last_game[0].id)
     @predicts_by_fixture = @predicts.group_by { |t| t.fixture_id }
    # not sure why this is here...    @fixture = Fixture.find(params[:fixture_id])
 
@@ -39,6 +56,18 @@ class PredictsController < ApplicationController
   def edit
     @predict = Predict.find(params[:id])
   end
+  
+
+  def import   
+      row_id = Predict.import(params[:file])
+      Rails.logger.debug("row_id in P_controller: #{row_id.inspect}")
+      @g = (params[:game])
+      Rails.logger.debug("g in P_controller: #{@g.inspect}")
+      game = @g["game_id"]
+      Rails.logger.debug("game in P_controller: #{game.inspect}")
+        Predict.updaterow(row_id, game)
+      redirect_to predicts_pastpredict_path, notice: "Predictions imported."
+    end
 
   # POST /predicts
   # POST /predicts.json
@@ -78,9 +107,16 @@ class PredictsController < ApplicationController
   # DELETE /predicts/1
   # DELETE /predicts/1.json
   def destroy
-     @user = User.find(params[:user_id])
-        @predict = @user.predicts.find(params[:id])
+      #  this was previous version, amended as failing in Predicts /index delete
+  #      @user = User.find(params[:user_id])
+    #       @predict = @user.predicts.find(params[:id])
+      #     @predict.destroy
+        #   redirect_to user_path(@user)
+        @predict = Predict.find(params[:id])
         @predict.destroy
-        redirect_to user_path(@user)
+          redirect_to predicts_path
   end
+  
+  
+  
 end

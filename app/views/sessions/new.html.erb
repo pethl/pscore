@@ -1,22 +1,4 @@
 <% provide(:title, 'Sign In') %>
-<h1>Sign In</h1>
+
 <br>
-<div class="row">
-  <div class="span4">
-<div class="well">
-<%= form_for(:session, url: sessions_path) do |f| %>
-
-     <%= f.label :name %>
-     <%= f.text_field :name %>
-
-     <%= f.label :password %>
-     <%= f.password_field :password %>
-
-     <%= f.submit "Sign in", class: "btn btn-large btn-success" %>
-   <% end %>
-
-   <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
-
-</div>
-</div>
-</div>
+<%= render 'sessions/formnew' %>

@@ -1,8 +1,6 @@
 
 <% require 'date' %>
-<% date = DateTime.parse("2013-06-21 00:00:00") %>
-
-<h3>Scoreboard</h3>
+<% date = DateTime.parse("2014-01-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li class="active">	<a href="/scoreboards">Leaderboard</a>
@@ -10,10 +8,10 @@
    	<a href="/scoreboards/index_week">Scores by Week</a>
   </li>
   <li>
-   	<a href="/scoreboards/index_match">Scores by Match</a>
+   	<a href="/scoreboards/index_match">Scores by Fixture</a>
   </li>
   <li>
-   	<a href="/predicts">Detail by Match</a>
+   	<a href="/predicts">Detail by Fixture</a>
   </li>
 </ul>
   
@@ -22,7 +20,7 @@
   <div class="span6 offset1">
   
   <% if date > Date.today %> 
-			<p>No scores available until after first test</p><br>
+			<p>No scores available until after first fixture</p><br>
 			<% else %>
 
       	<table>
@@ -38,15 +36,10 @@
          <% for scoreboard in @scoreboards %> 
           <% sz = sz-1 %>
           <% @record = @scoreboards[sz] %>
-          
-          			<% if User.find(@record.first).name == "pethl" %>
-          			  
-          			  <% else %>
-
           <td><%= User.find(@record.first).name  %></td>
           <td><center><%= @record.second  %></center></td>
     </tr>
-    <% end %>  <% end %><% end %>
+    <% end %> <% end %>
 
       </table>
 		
@@ -61,7 +54,8 @@
   
   <button class="btn">	
   <%= form_tag generate_scoreboards_path do %>
-		 <%= collection_select(:fixture, :fixture_id, Fixture.all, :id, :full_fixture ) %>
+    <%  @current_game = Game.where(:current => true) %>
+		 <%= collection_select(:fixture, :fixture_id, Fixture.where(:game_id => @current_game[0].id), :id, :full_fixture ) %>
 		
 		<%= submit_tag "Generate" %>
   <% end %>

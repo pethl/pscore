@@ -1,4 +1,5 @@
-<h3>Scoreboard</h3>
+<% require 'date' %>
+<% date = DateTime.parse("2014-01-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Leaderboard</a> </li>
@@ -6,22 +7,26 @@
    	  <a href="/scoreboards/index_week">Scores by Week</a>
   </li>
  <li class="active">
-   	  <a href="/scoreboards/index_match">Scores by Match</a>
+   	  <a href="/scoreboards/index_match">Scores by Fixture</a>
   </li>
   <li>
-    	<a href="/predicts">Detail by Match</a>
+    	<a href="/predicts">Detail by Fixture</a>
    </li>
 </ul>
 
 <div class="row-fluid">
   <div class="span6 offset1">
+  
+  <% if date > Date.today %> 
+			<p>No scores available until after first fixture</p><br>
+			<% else %>
+  
 
    <% if @predicts_by_user.any? %>
      <% @predicts_by_user.each do |user_id, predicts_by_user| %>
 
 <h3>	<% m = user_id %>	
-    	<% if User.find(m).name == "pethl" %>
-  	  <% else %>
+    	
   		<%= User.find(m).name %> 
 </h3>
 
@@ -40,7 +45,7 @@
   </tr>
 <% end %>
 </table>
-<% end %>
-<% end %>
+
+<% end %><% end %>
 <br />
 </div></div>

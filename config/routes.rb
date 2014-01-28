@@ -5,7 +5,8 @@ Pscore::Application.routes.draw do
   end
   
   resources :users do
-  resources :predicts
+  resources :predicts;
+  collection { post :get_records }
   end
 
   resources :users do
@@ -31,7 +32,11 @@ Pscore::Application.routes.draw do
     collection { post :generate }
   end
    
-    resources :predicts
+    get 'predicts/pastpredict', :to => "predicts#pastpredict"
+   
+    resources :predicts do
+      collection { post :import }
+    end
    
    resources :javascripts
 
@@ -51,7 +56,7 @@ Pscore::Application.routes.draw do
    
    resources :fixtures do
      collection { post :import };
-      collection { put :calc_user}
+      collection { post :calc_user}
    end
    
   resources :fixtures  

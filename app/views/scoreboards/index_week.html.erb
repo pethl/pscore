@@ -1,4 +1,5 @@
-<h3>Scoreboard</h3>
+<% require 'date' %>
+<% date = DateTime.parse("2014-01-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Leaderboard</a>
@@ -7,12 +8,16 @@
    	<a href="/scoreboards/index_week">Scores by Week</a>
   </li>
   <li>
-   	<a href="/scoreboards/index_match">Scores by Match</a>
+   	<a href="/scoreboards/index_match">Scores by Fixture</a>
   </li>
   <li>
-    	<a href="/predicts">Detail by Match</a>
+    	<a href="/predicts">Detail by Fixture</a>
    </li>
 </ul>
+
+<% if date > Date.today %> 
+		<p>No scores available until after first fixture</p><br>
+		<% else %>
 
 	<% @scoreboards = Scoreboard.where(:week => "5")%>
 <% if @scoreboards.any? %>
@@ -126,4 +131,4 @@
 <br />
 <% if signed_in? && current_user.admin? %>
 <b><%= link_to 'add new scores', new_scoreboard_path %></b>
-<% end %>
+<% end %><% end %>

@@ -15,12 +15,12 @@ class ScoreboardsController < ApplicationController
    end 
     
    def index_match
-       @predicts = Predict.order("user_id ASC")
+      @current_game = Game.where(current: [true])
+       @predicts = Predict.where(:game_id => @current_game[0].id)
+       @predicts = @predicts.order("user_id ASC")
         @predicts_by_user = @predicts.group_by { |t| t.user_id } 
             @fixtures = Fixture.all
     end
-
-
    
   # GET /scoreboards/1
   # GET /scoreboards/1.json
@@ -87,11 +87,13 @@ class ScoreboardsController < ApplicationController
     end
   
     private
+    # this calculates the users total points for the competition in the current year - for the scoreboard index
       def get_records
         users = User.all
+        game_id = Game.where(:current => true)
         scores = Hash.new
         for user in users
-          scores[user.id] = Predict.where(:user_id => user.id).sum(:points)
+          scores[user.id] = Predict.where(:user_id => user.id, :game_id => game_id).sum(:points)
         end
         return scores
       end

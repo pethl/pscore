@@ -1,50 +1,52 @@
+<% require 'date' %>
+<% date = DateTime.parse("2014-02-01 14:25:00") %>
+
+
 <% provide(:title, 'Match Predictions') %>
-
 <p id="notice"><%= notice %></p>
-<br>
-<p>
-  <h3>
-  <%= @fixture.matchdate.strftime("%d %b, %Y") %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>, <i>Result</i> - <%= @fixture.matchhomescore %> : <%= @fixture.matchawayscore %>
-   (<%= @fixture.fixresultgap %>)
-  </h3>
 
-<br><br>
-<b>Predictions</b>
-<br><br>
+
+<br>
+<b>Predictions for </b>
+
+  <m4>
+   <%= @fixture.matchdate.strftime("%d %b, %Y") %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>, <i>Result</i> - <%= @fixture.matchhomescore %> : <%= @fixture.matchawayscore %>
+   (<%= @fixture.fixresultgap %>)
+  </m4>
+<br>
 <div class="row">
   <div class="span5">
-    <div class="well">
-	    <% if @fixture.predicts.any? %>
-       	  
-       	  <%= form_for @fixture, :url => { :action => "calc_user" }, :html => {:class => "nifty_form"} do |f| %>
-       	    	<%= hidden_field_tag "fixture_id", params[:id] %>
+  
+   <% if  Date.today > date %>
+      <%= render 'fixtures/fixpredict' %>
 
-      <% for predict in @fixture.predicts %>
-
-              <%= hidden_field_tag "predict_ids[]", predict.id %>
-              <li>
-                <%=h predict.homescore %> - <%=h predict.awayscore %>  :  
-                <%= User.find(predict.user_id).name %>  
-                
-              </li>
+       <% else %>
+        <br> <i>Predictions from all players will be available here<br> 
+        from 5 mins before the first match, 1st Feb 2014.</i><br><br>
       <% end %>
-          <br>
-          <%= submit_tag "Calculate Gap", class: "btn btn-success btn-large" %>
-			<% end %>
+     
+       
+          
+          <% if signed_in? && current_user.admin? %>
+            <button class="btn">	
+            <%= form_tag calc_user_fixtures_path do %>
 
-      <% else %>
-      No predictions yet
-      <% end %>
+		<%= hidden_field_tag "fixture_id", params[:id] %>
+          		<%= submit_tag "calc_user" %>
+            
+            
+            <% end %>
+         
+			    <% end %>
 
-      </div>
     </div>
 </div>
 
-<br>
 
-<%= link_to 'Back', fixtures_path %> |
-<%= link_to 'See Scoring', predicts_path %> |
+<%= link_to 'Back to fixtures', fixtures_fix_by_comp_path %> |
+<%= link_to 'See Scoring', scoreboards_index_week_path %> 
 <% if signed_in? && current_user.admin? %>
  | 
 <%= link_to 'Edit', edit_fixture_path(@fixture) %>
 <% end %>
+

@@ -1,16 +1,12 @@
-<h3>Matches</h3>
-
-
 <ul class="nav nav-tabs">
- <li><a href="/fixtures">All matches</a> </li>
-  <li>
-   	<a href="/fixtures/fix_by_comp">By Competition</a>
+<li>
+   	<a href="/fixtures/fix_by_comp"><%= @current_game[0].name[10, 4] %> </a>
   </li>
  <li class="active">
-   	<a href="/fixtures/fix_by_grid">Grid</a>
+   	<a href="/fixtures/fix_by_grid">Past Years</a>
   </li>
-</ul>
-<br>
+
+
   
    <table class="table">
    <tr>

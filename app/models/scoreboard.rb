@@ -12,17 +12,14 @@ class Scoreboard < ActiveRecord::Base
        
        # get game id from fixture
        game = Fixture.find(fixture_id).game_id
-       Rails.logger.debug("game in model: #{game.inspect}")
-       
+      
        # get week from fixture
        week = Fixture.find(fixture_id).week
-       Rails.logger.debug("week in model: #{week.inspect}")
        
          @users = User.pluck(:id)
-         t = 0
          @users.each do |user|
 
-             q = Scoreboard.new(:fixture_id => fixture_id, :user_id => user, :matchscore => 0,  :game_id => game, :week => week)
+             q = Scoreboard.new(:fixture_id => fixture_id, :user_id => user, :game_id => game, :week => week, :matchscore => 0)
              q.save
              Rails.logger.debug("new id is: #{q.id.inspect}")
          end

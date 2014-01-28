@@ -1,0 +1,48 @@
+
+<% require 'date' %>
+<% date = DateTime.parse("2014-02-01 14:25:00") %>
+
+<m2>My Predictions for <%= @current_game[0].name %></m2>
+ <% if  Date.today < date %>
+   <m4> click</m4> 
+   <%= image_tag("/images/editicon.png", :size => "20x20", :alt=> "fixtures") %>
+   <m4>to enter scores</m4><br><br>
+ 
+ <% else %>
+   <i>scores are now locked</i><br><br>
+<% end %>
+			
+  			<table class='table table-condensed'>
+
+  				<tr>
+  				  <th></th>
+  				  <th></th>
+  				  <th><a style="color:#52D017">Home</th>
+  				  <th><a style="color:#52D017">Away</th>
+          </tr>
+	<% for predict in @predicts %>
+		
+						<% r = predict.fixture_id %>
+						<% pi = predict.id %>
+						<% t = Fixture.find(r) %>
+		<tr>
+			  <td><%= t.matchdate.strftime("%a %d %b") %></td>
+    	 	<td><center><%= t.hometeam %> v <%= t.awayteam %></center></td>
+				
+				 <% if  Date.today < date %>
+
+		       <td><a style="color:#52D017"><center><%= best_in_place predict, :homescore, :nil => image_tag("/images/editicon.png", :size => "20x20", :alt=> "home") %></center></td>
+		        <td><a style="color:#52D017"><center><%= best_in_place predict, :awayscore, :nil => image_tag("/images/editicon.png", :size => "20x20", :alt=> "away") %></center></td>
+           
+	      <% else %>
+	    
+	       <td><center><%=   predict.homescore %></center></td>   
+			   <td><center><%=  predict.awayscore %></center></td>
+       	</tr>
+       	<% end %>
+		
+
+		
+	<% end %>
+
+			</table>

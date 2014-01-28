@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806104952) do
+ActiveRecord::Schema.define(:version => 20130711110247) do
 
   create_table "fixtures", :force => true do |t|
     t.string   "content"
@@ -19,19 +19,21 @@ ActiveRecord::Schema.define(:version => 20130806104952) do
     t.string   "hometeam"
     t.string   "awayteam"
     t.integer  "game_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.integer  "matchhomescore"
-    t.integer  "matchawayscore"
     t.time     "ko"
     t.integer  "week"
     t.integer  "fixresultgap"
+    t.integer  "matchhomescore"
+    t.integer  "matchawayscore"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "fixtures", ["game_id", "created_at"], :name => "index_fixtures_on_game_id_and_created_at"
 
   create_table "games", :force => true do |t|
     t.string   "name"
+    t.boolean  "lastyear"
+    t.boolean  "current"
     t.date     "startdate"
     t.date     "enddate"
     t.datetime "created_at", :null => false
@@ -43,23 +45,21 @@ ActiveRecord::Schema.define(:version => 20130806104952) do
     t.integer  "homescore"
     t.integer  "awayscore"
     t.integer  "points"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.integer  "val_right_result"
+    t.integer  "val_closest_to_home"
+    t.integer  "val_closest_to_away"
+    t.integer  "val_exact_result"
     t.integer  "game_id"
-    t.integer  "fixture_id"
-    t.boolean  "correct_result"
     t.integer  "right_result"
     t.integer  "closest_to_home"
     t.integer  "closest_to_away"
     t.integer  "exact_home_score"
     t.integer  "exact_away_score"
     t.integer  "exact_result"
-    t.integer  "val_right_result"
-    t.integer  "val_closest_to_home"
-    t.integer  "val_closest_to_away"
-    t.integer  "val_exact_home_score"
-    t.integer  "val_exact_away_score"
-    t.integer  "val_exact_result"
+    t.integer  "nearest_margin"
+    t.integer  "fixture_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "scoreboards", :force => true do |t|
@@ -77,10 +77,11 @@ ActiveRecord::Schema.define(:version => 20130806104952) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "password_digest"
     t.boolean  "admin"
+    t.integer  "wins"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "password_digest"
     t.string   "remember_token"
   end
 

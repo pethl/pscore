@@ -1,0 +1,31 @@
+<br><br>
+<table class="table">
+ <tr>
+    <m3><%= @last_game[0].name[10, 4] %> Your Predictions</m3><br>
+ </tr>
+ <tr>
+         <td>
+         <% if @previous_predicts.size == 0 %>
+           sorry, we do not have your predictions from last year
+        <% else %>     
+             
+             <% @previous_predicts = @previous_predicts.sort_by { |h| h[:id] }%>
+               <% for previous_predict in @previous_predicts do %>
+
+
+                 	<% r = previous_predict.fixture_id %>
+              						<% t = Fixture.find(r) %>
+
+               <%= t.hometeam[0, 3] %> v. <%= t.awayteam[0, 3] %>_
+
+
+          <%= previous_predict.homescore %>-<%= previous_predict.awayscore %><br>
+          <% end %>
+    <% end %>
+          </td>
+
+
+    </tr>
+   </table>
+
+   

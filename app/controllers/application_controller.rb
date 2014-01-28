@@ -4,5 +4,7 @@ class ApplicationController < ActionController::Base
   
   helper :all
   
-
+  require 'rubygems'
+  require 'google_chart'
+  
 end

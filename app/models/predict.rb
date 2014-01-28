@@ -1,5 +1,5 @@
 class Predict < ActiveRecord::Base
-  attr_accessible :awayscore, :homescore, :points, :user_id, :fixture_id, :game_id, :correct_result, :right_result, :closest_to_home, :closest_to_away, :exact_home_score, :exact_away_score, :exact_result, :val_right_result, :val_closest_to_home, :val_closest_to_away, :val_exact_result 
+  attr_accessible :awayscore, :homescore, :points, :user_id, :fixture_id, :game_id, :nearest_margin, :right_result, :closest_to_home, :closest_to_away, :exact_home_score, :exact_away_score, :exact_result, :val_right_result, :val_closest_to_home, :val_closest_to_away, :val_exact_result, :new 
    belongs_to :user
    belongs_to :game
    belongs_to :fixtures
@@ -7,10 +7,24 @@ class Predict < ActiveRecord::Base
    
    
    before_save :get_game_id
+   validates_length_of :homescore, :maximum => 3
+   validates_length_of :awayscore, :maximum => 3
    
      def self.import(file)
+       row_id = Array.new
         CSV.foreach(file.path, headers: true) do |row|
-           Game.create! row.to_hash
+           rid = Predict.create! row.to_hash
+           row_id << rid.id
+           Rails.logger.debug("rid: #{row_id.inspect}")
+         end
+         return row_id
+     end
+   
+     def self.updaterow(row_id, game)
+       Rails.logger.debug("in update row method_rid: #{row_id.inspect}")
+       row_id.each do |id|
+         a = Predict.find(id)
+         Predict.update(id, :game_id => game)
        end
      end
    
