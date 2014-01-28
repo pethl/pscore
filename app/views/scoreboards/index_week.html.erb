@@ -2,21 +2,21 @@
 <% date = DateTime.parse("2014-02-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
-<li>	<a href="/scoreboards">Leaderboard</a>
+<li>	<a href="/scoreboards">Predicascore<br>Leaderboard</a>
     </li>
 <li class="active">
-   	<a href="/scoreboards/index_week">Scores by Week</a>
+   	<a href="/scoreboards/index_week">Predicascores<br>by Week</a>
   </li>
   <li>
-   	<a href="/scoreboards/index_match">Scores by Fixture</a>
+   	<a href="/scoreboards/index_match">Predicascores<br>by Fixture</a>
   </li>
   <li>
-    	<a href="/predicts">Detail by Fixture</a>
+    	<a href="/predicts">Predicascores<br>Point by Point</a>
    </li>
 </ul>
 
 <% if date > Date.today %> 
-		<p>No scores available until after first fixture</p><br>
+		<p>No predicascores available until after first fixture</p><br>
 		<% else %>
 
 	<% @scoreboards = Scoreboard.where(:week => "5")%>

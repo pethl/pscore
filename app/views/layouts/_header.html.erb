@@ -1,3 +1,5 @@
+
+
 <header style="background: #000000; color: white; "}">
 <div class="navbar  navbar-fixed-top">
     <div class="navbar-inner">
@@ -17,6 +19,7 @@
           <ul class="nav">     
           	<li class="active"><a href="/fixtures/fix_by_comp">Fixtures</a></li> 
 	        <li class="active"><a href="/scoreboards">Results</a></li>
+	        <li class="active"><a href="/help">Help</a></li>
 
 	<% if signed_in? %>
 		<ul class="nav">
@@ -39,7 +42,8 @@
 	       	       <li class="active"><a href="/signup">| Sign Up | </a></li>	
   
 	<% end %>
-<li class="active"><a href="/help">Help</a></li>
+
+
 	<% if signed_in? && current_user.admin? %>
 	<ul class="nav">
 	  <li class="dropdown">
