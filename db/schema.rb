@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711110247) do
+ActiveRecord::Schema.define(:version => 20140128161635) do
 
   create_table "fixtures", :force => true do |t|
     t.string   "content"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20130711110247) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "remember_token"
+    t.string   "type"
+    t.string   "style"
   end
 
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true

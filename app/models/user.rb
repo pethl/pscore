@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :name, :password, :password_confirmation, :wins
+  attr_accessible :admin, :email, :name, :password, :password_confirmation, :wins, :style
   has_secure_password
   has_many :predicts
   accepts_nested_attributes_for :predicts

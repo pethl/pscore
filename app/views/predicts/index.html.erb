@@ -2,7 +2,7 @@
 
 
 <% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
+<% date = DateTime.parse("2014-02-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Leaderboard</a>
@@ -35,6 +35,7 @@
 <li>1 bonus point for each exact score <m4>[6-EHS = Exact Home Score][7-EAS = Exact Away Score]</m4></li>
 </ul>
 
+<b><m4>Scoring Detail Information</m4></b>
 <% if date > Date.today %> 
 		<p>No scores available until after first fixture</p><br>
 		<% else %>
@@ -97,4 +98,4 @@
 <% end %><% end %>
 <br />
 
-<%= link_to 'New Predict', new_predict_path %>
+
