@@ -1,8 +1,8 @@
 <% provide(:title, 'User profile') %>
 
 
+<% if @predicts.count > 0 %>
 
-<% if @predicts.count > 0  %>
 
   	<div class="row-fluid">
       <div class="span5offset1">
@@ -18,7 +18,16 @@
     </div>
   	
   <% else %>
+  <% Rails.logger.debug("user.style: #{@user.style.inspect}") %>
+  
+    <% if @user.style == "old" %>
   	<%= render 'users/predictform' %>
+  	
+  	<% else %>
+
+  	<%= render 'users/predictform_nopassword' %>
+
+  	<% end %>
   <% end %>
   
   
