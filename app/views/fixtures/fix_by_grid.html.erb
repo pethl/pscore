@@ -29,5 +29,7 @@
       </div>
       </div>
     </tr>
-   </table>
-   
+</table>
+<% if signed_in? %>  
+<b><a href="/users/<%= current_user.id %>">Go back to my predictions</a></b>
+<% end %>

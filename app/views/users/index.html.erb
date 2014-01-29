@@ -5,6 +5,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
+        <th>P/C</th>
     <th>Previous Wins</th>
     <th><b>Predictions</b></th>
     <th>Action</th>
@@ -15,6 +16,12 @@
   <tr>
 	<td><%= user.name %></td>
 	<td><%= user.email %></td>
+	<% @predicts = Predict.where(:game_id => @current_game[0].id, :user_id => (user.id))
+	 %>
+  
+	<td><%= @predicts.count %></td>
+	
+	
 		<td><% if user.wins? && user.wins > 0  %>
 		  <img src="/images/Trophy-icon.png"
 		  </td>
