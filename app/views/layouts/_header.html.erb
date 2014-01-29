@@ -16,32 +16,36 @@
         
         <link rel="shortcut icon" href="http://www.pscore.heroku.com/favicon.ico?v=2" 
         <div class="nav-collapse collapse">
+
+      	<% if signed_in? %>
+      		<ul class="nav">
+      		  <li class="dropdown">
+      		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      		      ::<%= current_user.name %>::
+      		      <b class="caret"></b>
+      		    </a>
+      		    <ul class="dropdown-menu">
+      		      <li class="active"><a href="/users/<%= current_user.id %>">my predictions</a></li>
+      			<li class="active"><a href="/users/<%= current_user.id %>/edit">edit my details</a></li>
+      		<li class="active"><a href='/signout' rel="nofollow" data-method="delete" data-confirm="Are you sure?">| Sign Out |</a></li>
+      		    </ul>
+      		  </li>
+      		</ul>
+
+
+      	<% else %>
+      	       <li class="active"><a href="/signin">| Sign In</a></li>	
+      	       	       <li class="active"><a href="/signup">| Sign Up | </a></li>	
+
+      	<% end %>
+
+
           <ul class="nav">     
           	<li class="active"><a href="/fixtures/fix_by_comp">Fixtures</a></li> 
-	        <li class="active"><a href="/scoreboards">Results</a></li>
+	        <li class="active"><a href="/scoreboards">Predicascores</a></li>
 	        <li class="active"><a href="/help">Help</a></li>
 
-	<% if signed_in? %>
-		<ul class="nav">
-		  <li class="dropdown">
-		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      ::<%= current_user.name %>::
-		      <b class="caret"></b>
-		    </a>
-		    <ul class="dropdown-menu">
-		      <li class="active"><a href="/users/<%= current_user.id %>">my predictions</a></li>
-			<li class="active"><a href="/users/<%= current_user.id %>/edit">edit my details</a></li>
-		<li class="active"><a href='/signout' rel="nofollow" data-method="delete" data-confirm="Are you sure?">| Sign Out |</a></li>
-		    </ul>
-		  </li>
-		</ul>
-	
-	       
-	<% else %>
-	       <li class="active"><a href="/signin">| Sign In</a></li>	
-	       	       <li class="active"><a href="/signup">| Sign Up | </a></li>	
-  
-	<% end %>
+
 
 
 	<% if signed_in? && current_user.admin? %>
