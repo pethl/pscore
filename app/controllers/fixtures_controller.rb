@@ -123,7 +123,8 @@ class FixturesController < ApplicationController
       frg = "negative"
     end
   
-    @pids = params[:predict_ids]
+   # old style   @pids = params[:predict_ids]
+   @pids = Predict.where(:fixture_id => (params[:fixture_id])).pluck(:id)
     x = @pids.size-1
        
        while x >= 0
@@ -137,16 +138,16 @@ class FixturesController < ApplicationController
            else 
              ufrg = "negative"
          end
-         
+  # SECONDb - EXACT RESULT CALC -       
           if frg == ufrg
             p.update_attributes(:right_result => 1)
             p.update_attributes(:exact_result => 0)
               p.update_attributes(:nearest_margin => 0)
             
-            p.update_attributes(:val_exact_result => @fixture.matchhomescore-p.homescore)
+              p.update_attributes(:val_exact_result => @fixture.matchhomescore-p.homescore)
                 if p.val_exact_result == 0 
                   if @fixture.matchawayscore-p.awayscore == 0
-                    p.update_attributes(:exact_result => 2)
+                    p.update_attributes(:exact_result => 1)
                   else
                 end
               end
