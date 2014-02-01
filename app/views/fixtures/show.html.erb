@@ -10,7 +10,7 @@
 <b>Predictions for </b>
 
   <m4>
-   <%= @fixture.matchdate.strftime("%d %b, %Y") %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>, <i>Result</i> - <%= @fixture.matchhomescore %> : <%= @fixture.matchawayscore %>
+   <%= @fixture.matchdate.strftime("%d %b, %Y") %> -  <b> <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %></b>, <i>Result</i> - <%= @fixture.matchhomescore %> : <%= @fixture.matchawayscore %>
   <% if signed_in? && current_user.admin? %>
    (<%= @fixture.fixresultgap %>)
    <% end %>
@@ -20,7 +20,7 @@
   <div class="span5">
   
    <% if  Date.today > date %>
-      <%= render 'fixtures/fixpredict' %>
+      <%= render 'fixtures/fixpredict_stats' %>
 
        <% else %>
         <br> <i>Predictions from all players will be available here<br> 
@@ -28,7 +28,7 @@
       <% end %>
      
        
-      <%= render 'fixtures/fixpredict_stats' %>
+
       
       
           <% if signed_in? && current_user.admin? %>
