@@ -1,0 +1,9 @@
+<% if @fixture.predicts.any? %>
+ 	 <% if signed_in? && current_user.admin? %>  
+ 	  <%= total = @fixture.predicts.count %>
+ 	  <% end %>
+<br><br>
+<% else %>
+  
+           No predictions stats available
+<% end %>

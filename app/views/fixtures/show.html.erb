@@ -1,5 +1,5 @@
 <% require 'date' %>
-<% date = DateTime.parse("2014-02-01 14:25:00") %>
+<% date = DateTime.parse("2014-01-01 14:25:00") %>
 
 
 <% provide(:title, 'Match Predictions') %>
@@ -11,9 +11,11 @@
 
   <m4>
    <%= @fixture.matchdate.strftime("%d %b, %Y") %> -   <%= @fixture.hometeam %> vs.   <%= @fixture.awayteam %>, <i>Result</i> - <%= @fixture.matchhomescore %> : <%= @fixture.matchawayscore %>
+  <% if signed_in? && current_user.admin? %>
    (<%= @fixture.fixresultgap %>)
+   <% end %>
   </m4>
-<br>
+<br><br>
 <div class="row">
   <div class="span5">
   
@@ -26,19 +28,16 @@
       <% end %>
      
        
-          
+      <%= render 'fixtures/fixpredict_stats' %>
+      
+      
           <% if signed_in? && current_user.admin? %>
             <button class="btn">	
             <%= form_tag calc_user_fixtures_path do %>
-
 		          <%= hidden_field_tag "fixture_id", params[:id] %>
           		<%= submit_tag "calc_user" %>
-            
-            
-            <% end %>
-         
+            <% end %>         
 			    <% end %>
-
     </div>
 </div>
 
