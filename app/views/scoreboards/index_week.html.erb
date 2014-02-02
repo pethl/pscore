@@ -1,5 +1,5 @@
 <% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
+<% date = DateTime.parse("2014-04-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Predicascore<br>Leaderboard</a>
@@ -16,7 +16,7 @@
 </ul>
 
 <% if date > Date.today %> 
-		<p>No predicascores available until after first fixture</p><br>
+		<p>This area under construction </p><br>
 		<% else %>
 
 	<% @scoreboards = Scoreboard.where(:week => "5")%>

@@ -2,7 +2,7 @@
 
 
 <% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
+<% date = DateTime.parse("2014-04-01 14:25:00") %>
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Predicascore<br>Leaderboard</a>
@@ -37,7 +37,7 @@
 
 <b><m4>Predictascores - Point by Point</m4></b>
 <% if date > Date.today %> 
-		<p>No predictascores available until after first fixture</p><br>
+		<p>Week 1 summary will be delivered shortly</p><br>
 		<% else %>
 
  <% @predicts_by_fixture.each do |fixture_id, predicts_by_fixture| %>
