@@ -5,7 +5,8 @@
  	      <% @draw = [] %>
  	      
  	    <% for predict in @fixture.predicts %>
- 	  
+ 	  <% if predict.homescore != nil %>
+ 	    
  	        <% if predict.homescore > predict.awayscore %> 
  	        <%  @homewin << predict.id %>
  	        <%  Rails.logger.debug("homewin: #{@homewin.inspect}") %>
@@ -19,6 +20,7 @@
 
  	        <% end %>
  	    <% end %>
+ 	  <% end %>
  	  
  	       
  	          <table class = "table">
