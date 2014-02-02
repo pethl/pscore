@@ -1,68 +1,68 @@
 <% if @fixture.predicts.any? %>
 
-
- 	       <% @homewin = [] %>
- 	            <% @awaywin = [] %>
- 	             	            <% @draw = [] %>
+ 	      <% @homewin = [] %>
+ 	      <% @awaywin = [] %>
+ 	      <% @draw = [] %>
+ 	      
  	    <% for predict in @fixture.predicts %>
+ 	  
  	        <% if predict.homescore > predict.awayscore %> 
-
  	        <%  @homewin << predict.id %>
  	        <%  Rails.logger.debug("homewin: #{@homewin.inspect}") %>
 
- 	      <% elsif %>
- 	       	        <% if predict.homescore < predict.awayscore %> 
+ 	      <% elsif predict.homescore < predict.awayscore %> 
  	        <%  @awaywin << predict.id %>
  	        <%   Rails.logger.debug("awaywin: #{@awaywin.inspect}") %>    	  
+
         <% elsif predict.homescore == predict.awayscore %> 
  	        <%  @draw << predict.id %>
- 	      <% end %>
- 	       <% end %> 	  
- 	  <% end %>
- 
- 	  <table class = "table">
- 	  <tr>
- 	    <th><a><%= @fixture.hometeam %> To Win</a></th>
- 	    <th><a>Draw</a></th>
- 	    <th><a><%= @fixture.awayteam %> To Win</a></th>
- 	  </tr>
- 	  <tr>
- 	  <% hw = (@homewin.count.to_f / @fixture.predicts.count)*100 %>
- 	  <td><%= number_to_percentage(hw, precision: 0) %></td>
- 	  <% dw = (@draw.count.to_f / @fixture.predicts.count)*100 %>
- 	  <td><%= number_to_percentage(dw, precision: 0) %></td>
- 	  <% aw = (@awaywin.count.to_f / @fixture.predicts.count)*100 %>
- 	  <td><%= number_to_percentage(aw, precision: 0) %></td> 	  
- 	  </tr>
- 	  <tr>
- 	  <td>
- 	  <% @homewin.each do |homewin|%>
- 	    <% pp = Predict.find(homewin )%>
- 	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
-      <%= User.find(pp.user_id).name %><br>
-      <% end %>
- 	  </td>
- 	  <td>
- 	  <% @draw.each do |draw|%>
-   	    <% pp = Predict.find(draw )%>
-   	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
-        <%= User.find(pp.user_id).name %><br>
-        <% end %>
- 	  </td>
- 	  <td>
- 	   <% @awaywin.each do |awaywin|%>
-   	    <% pp = Predict.find(awaywin )%>
-   	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
-        <%= User.find(pp.user_id).name %><br>
-        <% end %>
-        </td>
- 	  </tr>
- 	  </table>
- 	  
 
+ 	        <% end %>
+ 	    <% end %>
  	  
-<br><br>
+ 	       
+ 	          <table class = "table">
+         	  <tr>
+         	    <th><a><%= @fixture.hometeam %> To Win</a></th>
+         	    <th><a>Draw</a></th>
+         	    <th><a><%= @fixture.awayteam %> To Win</a></th>
+         	  </tr>
+         	  <tr>
+         	  <% hw = (@homewin.count.to_f / @fixture.predicts.count)*100 %>
+         	  <td><%= number_to_percentage(hw, precision: 0) %></td>
+         	  <% dw = (@draw.count.to_f / @fixture.predicts.count)*100 %>
+         	  <td><%= number_to_percentage(dw, precision: 0) %></td>
+         	  <% aw = (@awaywin.count.to_f / @fixture.predicts.count)*100 %>
+         	  <td><%= number_to_percentage(aw, precision: 0) %></td> 	  
+         	  </tr>
+         	  <tr>
+         	  <td>
+         	  <% @homewin.each do |homewin|%>
+         	    <% pp = Predict.find(homewin )%>
+         	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
+              <%= User.find(pp.user_id).name %><br>
+              <% end %>
+         	  </td>
+         	  <td>
+         	  <% @draw.each do |draw|%>
+           	    <% pp = Predict.find(draw )%>
+           	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
+                <%= User.find(pp.user_id).name %><br>
+                <% end %>
+         	  </td>
+         	  <td>
+         	   <% @awaywin.each do |awaywin|%>
+           	    <% pp = Predict.find(awaywin )%>
+           	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
+                <%= User.find(pp.user_id).name %><br>
+                <% end %>
+                </td>
+         	  </tr>
+         	  </table>
+ 	  
+    <br><br>
+    
 <% else %>
-  
            No predictions stats available
 <% end %>
+

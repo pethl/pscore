@@ -24,13 +24,12 @@
 
    <% if @predicts_by_user.any? %>
      <% @predicts_by_user.each do |user_id, predicts_by_user| %>
+<table class="table condensed">
 
-<h3>	<% m = user_id %>	
+<a><m4>	<% m = user_id %>	
     	
   		<%= User.find(m).name %> 
-</h3>
-
-<table class="table condensed">
+</m4></a>
 
 <% predicts_by_user = predicts_by_user.sort_by{|e| e[:fixture_id]}%>
 <% predicts_by_user.each do |predict| %>

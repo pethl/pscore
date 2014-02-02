@@ -26,10 +26,6 @@
         <br> <i>Predictions from all players will be available here<br> 
         from 5 mins before the first match, 1st Feb 2014.</i><br><br>
       <% end %>
-     
-       
-
-      
       
           <% if signed_in? && current_user.admin? %>
             <button class="btn">	
@@ -43,7 +39,7 @@
 
 
 <%= link_to 'Back to fixtures', fixtures_fix_by_comp_path %> |
-<%= link_to 'See Scoring', scoreboards_index_week_path %> 
+<%= link_to 'See Scoring', predicts_path %> 
 <% if signed_in? && current_user.admin? %>
  | 
 <%= link_to 'Edit', edit_fixture_path(@fixture) %>
