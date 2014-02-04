@@ -1,0 +1,1 @@
+all dates checked to ensure scores visible and users predicts cannot edit

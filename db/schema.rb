@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140128161635) do
+ActiveRecord::Schema.define(:version => 20140204135050) do
 
   create_table "fixtures", :force => true do |t|
     t.string   "content"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20140128161635) do
     t.integer  "fixture_id"
     t.integer  "user_id"
     t.integer  "matchscore"
+    t.string   "label"
   end
 
   create_table "users", :force => true do |t|
@@ -83,7 +84,6 @@ ActiveRecord::Schema.define(:version => 20140128161635) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "remember_token"
-    t.string   "type"
     t.string   "style"
   end
 

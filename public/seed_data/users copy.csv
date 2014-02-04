@@ -1,19 +1,1 @@
-style,name,email,password,password_confirmation,admin
-old,Paul Burnham,Paul.burnham@accenture.com,foobar,foobar,false
-old,john,john.owens@red-zulu.com,foobar,foobar,false
-old,Cathy Owens,ebostcathyowens@gmail.com,foobar,foobar,false
-old,Andrew Cawdery,andrewcawdery@yahoo.co.uk,foobar,foobar,false
-old,Duncan,duncanmottram@gmail.com,foobar,foobar,false
-old,Marcus,sparkyrees@yahoo.co.uk,foobar,foobar,false
-old,Kath Morgan,morgankathryn@hotmail.com,foobar,foobar,false
-old,Kemps,krees@darwingray.com,foobar,foobar,false
-old,Conrad,conrad.johnson@outlook.com,foobar,foobar,false
-old,Cat,carolineduffy81@hotmail.com,foobar,foobar,false
-old,timmy dawes,tim.dawes@lexisnexis.co.uk,foobar,foobar,false
-old,price,lprice@tesco.net,foobar,foobar,false
-old,Matt Cant,mc@mattcant.com,foobar,foobar,false
-old,Ty,tjgolding@gmail.com,foobar,foobar,false
-old,Matthew Rees,matt.s.rees@googlemail.com,foobar,foobar,false
-old,AndyD,Andy.davies76@gmail.com,foobar,foobar,false
-old,Nick Seal,sealn22@yahoo.com,foobar,foobar,false
-old,Bill,billokeefe.planetwales@googlemail.com,foobar,foobar,false
+style,name,email,password,password_confirmation,adminold,Paul Burnham,Paul.burnham@accenture.com,foobar,foobar,FALSEold,john,john.owens@red-zulu.com,foobar,foobar,FALSEold,Cathy Owens,ebostcathyowens@gmail.com,foobar,foobar,FALSEold,Andrew Cawdery,andrewcawdery@yahoo.co.uk,foobar,foobar,FALSEold,Duncan,duncanmottram@gmail.com,foobar,foobar,FALSEold,Marcus,sparkyrees@yahoo.co.uk,foobar,foobar,FALSEold,Kath Morgan,morgankathryn@hotmail.com,foobar,foobar,FALSEold,Kemps,krees@darwingray.com,foobar,foobar,FALSEold,Conrad,conrad.johnson@outlook.com,foobar,foobar,FALSEold,Cat,carolineduffy81@hotmail.com,foobar,foobar,FALSEold,timmy dawes,tim.dawes@lexisnexis.co.uk,foobar,foobar,FALSEold,price,lprice@tesco.net,foobar,foobar,FALSEold,Matt Cant,mc@mattcant.com,foobar,foobar,FALSEold,Ty,tjgolding@gmail.com,foobar,foobar,FALSEold,Matthew Rees,matt.s.rees@googlemail.com,foobar,foobar,FALSEold,AndyD,Andy.davies76@gmail.com,foobar,foobar,FALSEold,Nick Seal,sealn22@yahoo.com,foobar,foobar,FALSEold,Bill,billokeefe.planetwales@googlemail.com,foobar,foobar,FALSEold,laurent,,foobar,foobar,FALSEold,rob c,,foobar,foobar,FALSEold,mick d,,foobar,foobar,FALSEold,dommy wuh,,foobar,foobar,FALSEold,ed burnham,,foobar,foobar,FALSE

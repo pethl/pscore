@@ -1,12 +1,22 @@
 class ScoreboardsController < ApplicationController
   
   def index_week
-    @scoreboards =   Scoreboard.order("week DESC").limit(10)
-      @scoreboard_weeks = @scoreboards.group_by { |t| t.week }
+    @scoreboards1 = get_records_1.sort_by{ |k, v| v }.reverse
+     @scoreboards1_by_score = @scoreboards1.group_by{ |k, v| v }
+     
+      @scoreboards2 = get_records_2.sort_by{ |k, v| v }.reverse
+        @scoreboards2_by_score = @scoreboards2.group_by{ |k, v| v }
+        
+    @scorebs1 = Scoreboard.where(["week = 1 AND label NOT IN (?)", ["Header","Footer"]]).reverse
+    @scorebs1header = Scoreboard.where(:label => "Header", :week => 1)   
+        @scorebs1footer = Scoreboard.where(:label => "Footer", :week => 1)   
+  # <not in use>    @scoreboards =   Scoreboard.order("week DESC").limit(10)
+  # <not in use>      @scoreboard_weeks = @scoreboards.group_by { |t| t.week }
   end
    
   def index
-     @scoreboards = get_records.sort_by{ |k, v| v }
+     @scoreboards = get_records.sort_by{ |k, v| v }.reverse
+     @scoreboards_by_score = @scoreboards.group_by{ |k, v| v }
 
      respond_to do |format|
        format.html # index.html.erb
@@ -98,4 +108,26 @@ class ScoreboardsController < ApplicationController
         return scores
       end
   
+       def get_records_1
+          users = User.all
+          @current_game = Game.where(current: [true])
+           @weekfix = Fixture.where(:game_id => @current_game[0].id, :week => 1).select(:id)
+          scores = Hash.new
+          for user in users
+            scores[user.id] = Predict.where(:user_id => user.id, :fixture_id => @weekfix).sum(:points)
+          end
+          return scores
+        end
+        
+         def get_records_2
+            users = User.all
+            @current_game = Game.where(current: [true])
+            @weekcount = [1,2]
+             @weekfix = Fixture.where(:game_id => @current_game[0].id, :week => @weekcount).select(:id)
+            scores = Hash.new
+            for user in users
+              scores[user.id] = Predict.where(:user_id => user.id, :fixture_id => @weekfix).sum(:points)
+            end
+            return scores
+          end
 end

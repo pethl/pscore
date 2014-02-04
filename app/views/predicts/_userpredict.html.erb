@@ -2,14 +2,15 @@
 <% require 'date' %>
 <% date = DateTime.parse("2014-01-01 14:25:00") %>
 
-<m2>My Predictions for <%= @current_game[0].name %></m2>
+
  <% if  Date.today < date %>
+   <m2>My Predictions for <%= @current_game[0].name %></m2>
    <m4> click</m4> 
    <%= image_tag("/images/editicon.png", :size => "20x20", :alt=> "fixtures") %>
    <m4>to enter scores</m4><br><br>
  
  <% else %>
-   <i>scores are now locked</i><br><br>
+   <m2>The predictions for </m2><mg2><%= @user.name %></mg2><m2> are locked</m2><br><br>
 <% end %>
 			
   			<table class='table table-condensed'>

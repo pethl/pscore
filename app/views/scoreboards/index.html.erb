@@ -1,9 +1,10 @@
 
 <% require 'date' %>
-<% date = DateTime.parse("2014-04-01 14:25:00") %>
+<% date = DateTime.parse("2014-01-01 14:25:00") %>
 
-<ul class="nav nav-tabs"4
+<ul class="nav nav-tabs">
 <li class="active">	<a href="/scoreboards">Predicascore<br>Leaderboard</a>
+</li>
   <li>
    	<a href="/scoreboards/index_week">Predicascores<br>by Week</a>
   </li>
@@ -17,32 +18,26 @@
   
 
 <div class="row-fluid">
-  <div class="span6 offset1">
+  <div class="span6 offset2">
   
   <% if date > Date.today %> 
 			<p>Week 1 summary will be delivered shortly</p><br>
 			<% else %>
 
-      	<table>
-        <tr>
-          <th align='left' >Competitor</th>
-          <th><center>Total</center></th>
-        </tr>
-        <tr><td>__________</td><td><center>_____</center></td></tr>
-        <tr>
+		<% @scoreboards_by_score.each do |score, users| %>
+    <a><b>  <%= score %>  points</a></b>
+      <ul>
+                <% sz = users.size %>
+                 <% if users.any? %>
+                    <% for user in users %> 
+                        <% sz = sz-1 %>
+                        <% @record = users[sz] %>
+                      <li>  <%= User.find(@record.first).name  %></li>
+             		    <% end %></ul>
+<% end %>
+			 <% end %>
 
-         <% sz = @scoreboards.size %>
-         <% if @scoreboards.any? %>
-         <% for scoreboard in @scoreboards %> 
-          <% sz = sz-1 %>
-          <% @record = @scoreboards[sz] %>
-          <td><%= User.find(@record.first).name  %></td>
-          <td><center><%= @record.second  %></center></td>
-    </tr>
-    <% end %> <% end %>
 
-      </table>
-		
       </div></div>
 <% end %>
  

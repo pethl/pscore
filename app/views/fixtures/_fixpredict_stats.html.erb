@@ -1,22 +1,20 @@
 <% if @fixture.predicts.any? %>
 
- 	      <% @homewin = [] %>
- 	      <% @awaywin = [] %>
- 	      <% @draw = [] %>
+ 	      <% @hometest = [] %>
+ 	      <% @awaytest = [] %>
+ 	      <% @drawtest = [] %>
  	      
  	    <% for predict in @fixture.predicts %>
  	  <% if predict.homescore != nil %>
  	    
  	        <% if predict.homescore > predict.awayscore %> 
- 	        <%  @homewin << predict.id %>
- 	        <%  Rails.logger.debug("homewin: #{@homewin.inspect}") %>
+ 	         <%  @hometest << predict %>
 
  	      <% elsif predict.homescore < predict.awayscore %> 
- 	        <%  @awaywin << predict.id %>
- 	        <%   Rails.logger.debug("awaywin: #{@awaywin.inspect}") %>    	  
-
+ 	         <%  @awaytest << predict %>
+ 	         
         <% elsif predict.homescore == predict.awayscore %> 
- 	        <%  @draw << predict.id %>
+ 	        <%  @drawtest << predict%>
 
  	        <% end %>
  	    <% end %>
@@ -30,34 +28,34 @@
          	    <th><a><%= @fixture.awayteam %> To Win</a></th>
          	  </tr>
          	  <tr>
-         	  <% hw = (@homewin.count.to_f / @fixture.predicts.count)*100 %>
+         	  <% hw = (@hometest.count.to_f / @fixture.predicts.count)*100 %>
          	  <td><%= number_to_percentage(hw, precision: 0) %></td>
-         	  <% dw = (@draw.count.to_f / @fixture.predicts.count)*100 %>
+         	  <% dw = (@drawtest.count.to_f / @fixture.predicts.count)*100 %>
          	  <td><%= number_to_percentage(dw, precision: 0) %></td>
-         	  <% aw = (@awaywin.count.to_f / @fixture.predicts.count)*100 %>
+         	  <% aw = (@awaytest.count.to_f / @fixture.predicts.count)*100 %>
          	  <td><%= number_to_percentage(aw, precision: 0) %></td> 	  
          	  </tr>
          	  <tr>
          	  <td>
-         	  <% @homewin.each do |homewin|%>
-         	    <% pp = Predict.find(homewin )%>
-         	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
-              <%= User.find(pp.user_id).name %><br>
-              <% end %>
+         	  <% @hometest = @hometest.sort_by { |h| h[:homescore] } %>
+         	  <% @hometest.each do |hometest|%>
+            <%= hometest.homescore %> - <%= hometest.awayscore %>  :  
+                <%= User.find(hometest.user_id).name %><br>
+                 <% end %>
          	  </td>
          	  <td>
-         	  <% @draw.each do |draw|%>
-           	    <% pp = Predict.find(draw )%>
-           	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
-                <%= User.find(pp.user_id).name %><br>
-                <% end %>
+
+         	  <% @drawtest.each do |drawtest|%>
+            <%= drawtest.homescore %> - <%= drawtest.awayscore %>  :  
+                <%= User.find(drawtest.user_id).name %><br>
+                 <% end %>
          	  </td>
          	  <td>
-         	   <% @awaywin.each do |awaywin|%>
-           	    <% pp = Predict.find(awaywin )%>
-           	   <%= pp.homescore %> - <%= pp.awayscore %>  :  
-                <%= User.find(pp.user_id).name %><br>
-                <% end %>
+         	  <% @awaytest = @awaytest.sort_by { |h| h[:homescore] } %>
+         	  <% @awaytest.each do |awaytest|%>
+            <%= awaytest.homescore %> - <%= awaytest.awayscore %>  :  
+                <%= User.find(awaytest.user_id).name %><br>
+                 <% end %>
                 </td>
          	  </tr>
          	  </table>
