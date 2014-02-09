@@ -33,20 +33,6 @@
 			<key>firstVisibleLine</key>
 			<integer>6</integer>
 		</dict>
-		<key>app/views/fixtures/show.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>31</integer>
-				<key>line</key>
-				<integer>33</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>15</integer>
-		</dict>
 		<key>app/views/games/index.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -65,6 +51,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{10, 58}, {872, 643}}</string>
+	<string>{{30, 9}, {759, 643}}</string>
 </dict>
 </plist>

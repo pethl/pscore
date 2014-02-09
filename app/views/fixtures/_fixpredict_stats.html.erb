@@ -19,21 +19,26 @@
  	        <% end %>
  	    <% end %>
  	  <% end %>
- 	  
- 	       
+
+          	  <% hw = (@hometest.count.to_f / @fixture.predicts.count)*100 %>
+         	  <% hw_per = number_to_percentage(hw, precision: 0) %></td>
+         	  <% dw = (@drawtest.count.to_f / @fixture.predicts.count)*100 %>
+         	  <% dw_per = number_to_percentage(dw, precision: 0) %></td>
+         	  <% aw = (@awaytest.count.to_f / @fixture.predicts.count)*100 %>
+         	  <% aw_per = number_to_percentage(aw, precision: 0) %></td> 	  
+         	  
+         	  <table class = "table">
+         	  <tr>
+         	    <% per = Hash[@fixture.hometeam + " Win" => hw_per, "Draw" => dw_per, @fixture.awayteam + " Win"  => aw_per] %>
+       	   	  <%= pie_chart (per) %>
+         	  </tr>
+         	  </table>
+           	
  	          <table class = "table">
          	  <tr>
          	    <th><a><%= @fixture.hometeam %> To Win</a></th>
          	    <th><a>Draw</a></th>
          	    <th><a><%= @fixture.awayteam %> To Win</a></th>
-         	  </tr>
-         	  <tr>
-         	  <% hw = (@hometest.count.to_f / @fixture.predicts.count)*100 %>
-         	  <td><%= number_to_percentage(hw, precision: 0) %></td>
-         	  <% dw = (@drawtest.count.to_f / @fixture.predicts.count)*100 %>
-         	  <td><%= number_to_percentage(dw, precision: 0) %></td>
-         	  <% aw = (@awaytest.count.to_f / @fixture.predicts.count)*100 %>
-         	  <td><%= number_to_percentage(aw, precision: 0) %></td> 	  
          	  </tr>
          	  <tr>
          	  <td>
@@ -44,7 +49,6 @@
                  <% end %>
          	  </td>
          	  <td>
-
          	  <% @drawtest.each do |drawtest|%>
             <%= drawtest.homescore %> - <%= drawtest.awayscore %>  :  
                 <%= User.find(drawtest.user_id).name %><br>
@@ -59,7 +63,7 @@
                 </td>
          	  </tr>
          	  </table>
- 	  
+         	  
     <br><br>
     
 <% else %>

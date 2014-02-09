@@ -21,45 +21,115 @@
 
 <div class="row-fluid">
   <div class="span8 offset1">
+
+<br><br>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          WEEK ONE or WEAK ONE<br>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body"> 
+      
+       <% if @scorebs1.any? %>
+      <%= @scorebs1header[0].comment %><br><br>
+      <%= @scorebs1header[1].comment %><br><br>
+      <% end %>
+
+      <table class = "table">
+      <% x = @scoreboards1_by_score.size %>
+      <% x = x-1%>
+      <% @scoreboards1_by_score.each do |score, users| %>
+      <tr>
+      <td>
+        <m5><b>  <%= score %>  points</m5></b>
+      </td>
+      <td>
+
+       <% if @scorebs1.any? %>
+      <%= @scorebs1[x].comment %>
+      <% end %>
+        <% sz = users.size %>
+         <% if users.any? %>
+            <% for user in users %> 
+                <% sz = sz-1 %>
+                <% @record = users[sz] %>
+                <% user = User.find(@record.first) %>
+              <m5> <%= link_to user.name, user_path(user.id) %> </m5>
+      	    <% end %>
+      </td>
+      </tr>    
+          <%  x= x-1 %>        
+          <% end %>
+        <% end %>
+      </table>     
+      <% if @scorebs1.any? %>
+      <%= @scorebs1footer[0].comment %><br>
+         <% end %>
+      
+      </div>
+    </div>
+  </div>
   
-<br><m2>WEEK ONE or WEAK ONE</m2><br><br>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+         <br> WEEK TWO
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      
+       <% if @scorebs2.any? %>
+      <%= @scorebs2header[0].comment %><br><br>
+      <%= @scorebs2header[1].comment %><br><br>
+      <% end %>
 
- <% if @scorebs1.any? %>
-<%= @scorebs1header[0].comment %><br><br>
-<%= @scorebs1header[1].comment %><br><br>
-<% end %>
+      <table class = "table">
+      <% x = @scoreboards2_by_score.size %>
+      <% x = x-1%>
+      <% @scoreboards2_by_score.each do |score, users| %>
+      <tr>
+      <td>
+        <m5><b>  <%= score %>  points</m5></b>
+      </td>
+      <td>
 
-<table class = "table">
-<% x = @scoreboards1_by_score.size %>
-<% x = x-1%>
-<% @scoreboards1_by_score.each do |score, users| %>
-<tr>
-<td>
-  <m5><b>  <%= score %>  points</m5></b>
-</td>
-<td>
+       <% if @scorebs2.any? %>
+      <%= @scorebs2[x].comment %>
+      <% end %>
+        <% sz = users.size %>
+         <% if users.any? %>
+            <% for user in users %> 
+                <% sz = sz-1 %>
+                <% @record = users[sz] %>
+                <% user = User.find(@record.first) %>
+              <m5> <%= link_to user.name, user_path(user.id) %> </m5>
+      	    <% end %>
+      </td>
+      </tr>    
+          <%  x= x-1 %>        
+          <% end %>
+        <% end %>
+      </table>     
+      <% if @scorebs2.any? %>
+      <%= @scorebs2footer[0].comment %><br>
+         <% end %>
+      
+      </div>
+    </div>
+  </div>
 
- <% if @scorebs1.any? %>
-<%= @scorebs1[x].comment %>
-<% end %>
-  <% sz = users.size %>
-   <% if users.any? %>
-      <% for user in users %> 
-          <% sz = sz-1 %>
-          <% @record = users[sz] %>
-          <% user = User.find(@record.first) %>
-        <m5> <%= link_to user.name, user_path(user.id) %> </m5>
-	    <% end %>
-</td>
-</tr>    
-    <%  x= x-1 %>        
-    <% end %>
+</div>
+
   <% end %>
-</table>     
-<% if @scorebs1.any? %>
-<%= @scorebs1footer[0].comment %><br>
-   <% end %>
-
-</div>
-</div>
-<% end %>
+    </div>
+  </div>
+  
