@@ -14,7 +14,7 @@
     </li>
   </ul>
    
- <% @fixtures_by_week.each do |week, fixture_by_week| %>
+ <% @fixtures_by_week.each do |week, fixture_by_week| %>   
       
        <table class="table">
         
@@ -34,10 +34,26 @@
  				<i class='icon-time icon-white'></i>
  			<% end %><% end %></td>
         <td><%= fixture.matchdate.strftime("%d %b") %>, <%= fixture.ko.strftime("%H:%M") %></td>
-        <td><%= fixture.hometeam[0, 3] %></td>
-        <td><%= fixture.awayteam[0, 3] %></td>
+        
+        <% if fixture.matchhomescore.nil? %>
+    		  <td><%= fixture.hometeam[0, 3] %></td>
+    			<td><%= fixture.awayteam[0, 3] %></td>
+    			
+    				<% elsif fixture.matchhomescore.to_i > fixture.matchawayscore.to_i %>
+    				<td><div class="fix_winner">	<%= fixture.hometeam[0, 3] %></div></td>
+            <td><div class="muted">	<%= fixture.awayteam[0, 3] %></div></td>
+
+    				<% elsif fixture.matchhomescore == fixture.matchawayscore %>
+            <td><div class="gamedrawn">	<%= fixture.hometeam[0, 3] %></div></td>
+    	      <td><div class="gamedrawn">	<%= fixture.awayteam[0, 3] %></div></td>
+    				<% else %>
+            <td><div class="muted">	<%= fixture.hometeam[0, 3] %></div></td>
+    	      <td><div class="fix_winner"><%= fixture.awayteam[0, 3] %></div></td>
+    				<% end %>
+        
         <td><%= fixture.matchhomescore %></td> 
         <td><%= fixture.matchawayscore %></td>
+        
 	       <td><center><%=link_to(image_tag("/images/binocs.png",:size => "20x20", :alt=> "predictions"),
               {:controller=>"fixtures", :action=>"show", :id=>fixture.id}, :title=>"Predictions", :class=>"logo") %></td>
         
