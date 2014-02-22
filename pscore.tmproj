@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Gemfile</string>
+	<string>app/views/scoreboards/index_week.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -35,6 +35,20 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/controllers/scoreboards_controller.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>155</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>125</integer>
+		</dict>
 		<key>app/views/games/index.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -49,10 +63,26 @@
 			<key>firstVisibleLine</key>
 			<integer>21</integer>
 		</dict>
+		<key>app/views/scoreboards/index_week.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>82</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>59</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>Gemfile</string>
+		<string>app/views/scoreboards/index_week.html.erb</string>
+		<string>app/controllers/scoreboards_controller.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

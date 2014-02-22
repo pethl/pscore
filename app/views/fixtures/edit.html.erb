@@ -7,7 +7,11 @@
 
 
 <m3>  Date:
-    <%= f.datetime_select :matchdate, :ampm => true %>
+    <%= f.date_select :matchdate, :ampm => true %>
+</m3><br>
+
+<m3>  KO:
+    <%= f.text_field :ko, :class => "input-small"  %>
 </m3><br>
 
 <m3>  Home Team:
@@ -31,7 +35,7 @@
 </m3><br>
   
 <m3>Result Gap: 
-     <%= f.text_field :fixresultgap, :class => "input-small" %>
+     <%= f.text_field :fixresultgap, :class => "input-small", :disabled=>true %>
 </m3><br>
 
     
