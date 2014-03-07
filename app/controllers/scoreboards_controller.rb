@@ -16,11 +16,12 @@ class ScoreboardsController < ApplicationController
     @scorebs2footer = Scoreboard.where(:label => "Footer", :week => 2)   
 
     @scoreboards3 = get_records_3.sort_by{ |k, v| v }.reverse
-    @scoreboards3_by_score = @scoreboards2.group_by{ |k, v| v }
+    @scoreboards3_by_score = @scoreboards3.group_by{ |k, v| v }
 
     @scorebs3 = Scoreboard.where(["week = 3 AND label NOT IN (?)", ["Header","Footer"]]).reverse
-    @scorebs3header = Scoreboard.where(:label => "Header", :week => 2)   
-    @scorebs3footer = Scoreboard.where(:label => "Footer", :week => 2)   
+    @scorebs3header = Scoreboard.where(:label => "Header", :week => 3)   
+    @scorebs3footer = Scoreboard.where(:label => "Footer", :week => 3)   
+
 
 
   end
