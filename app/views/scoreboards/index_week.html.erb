@@ -206,14 +206,13 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-         <br>WEEK FOUR or POOR WEEK<br>
+         <br>WEEK FOUR. WHAT FOR?<br>
         </a>
       </h4>
     </div>
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
-       <m4>In the words of the French superstar F.R David.... "Words don't come easy" (to Ned Ludd after that result)'</m4><br><br>
-      
+       
        <% if @scorebs4.any? %>
       <%= @scorebs4header[0].comment %><br><br>
       <% end %>
@@ -247,14 +246,7 @@
       </table>     
       <% if @scorebs4.any? %>
         <%= @scorebs4footer[0].comment %><br><br>
-        <%= @scorebs4footer[1].comment %><br>
-        <%= @scorebs4footer[2].comment %><br>
-        <%= @scorebs4footer[3].comment %><br>
-         <%= @scorebs4footer[4].comment %><br>
-         <%= @scorebs4footer[5].comment %><br><br>
-          <%= @scorebs4footer[6].comment %><br><br>
-          <%= @scorebs4footer[7].comment %>
-           <m4><%= @scorebs4footer[8].comment %></m4><br>
+        
          <br><br><br>
          <% end %>
       
