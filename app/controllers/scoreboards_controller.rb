@@ -22,7 +22,12 @@ class ScoreboardsController < ApplicationController
     @scorebs3header = Scoreboard.where(:label => "Header", :week => 3)   
     @scorebs3footer = Scoreboard.where(:label => "Footer", :week => 3)   
 
+    @scoreboards4 = get_records_4.sort_by{ |k, v| v }.reverse
+    @scoreboards4_by_score = @scoreboards4.group_by{ |k, v| v }
 
+    @scorebs4 = Scoreboard.where(["week = 4 AND label NOT IN (?)", ["Header","Footer"]]).reverse
+    @scorebs4header = Scoreboard.where(:label => "Header", :week => 4)   
+    @scorebs4footer = Scoreboard.where(:label => "Footer", :week => 4)   
 
   end
    
@@ -155,4 +160,15 @@ class ScoreboardsController < ApplicationController
               return scores
             end
     
+        def get_records_4
+               users = User.all
+               @current_game = Game.where(current: [true])
+               @weekcount = [1,2,3,4]
+               @weekfix = Fixture.where(:game_id => @current_game[0].id, :week => @weekcount).select(:id)
+               scores = Hash.new
+               for user in users
+                   scores[user.id] = Predict.where(:user_id => user.id, :fixture_id => @weekfix).sum(:points)
+               end
+               return scores
+             end     
 end
