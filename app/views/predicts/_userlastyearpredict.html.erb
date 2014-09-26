@@ -18,11 +18,13 @@
 
                <%= t.hometeam[0, 3] %> v. <%= t.awayteam[0, 3] %>_
               <%= previous_predict.homescore %>-<%= previous_predict.awayscore %>
-       <% if previous_predict.points > 0 %>
+              <% unless previous_predict.points.blank? %>
+       <% if previous_predict.points > 0  %>
             <i class='icon-ok icon-white'></i>
                    <% else %>
               <i class='icon-remove icon-white'></i>
                    <% end %>
+                         <% end %>
               <br>
        
           <% end %>
