@@ -39,7 +39,7 @@ class ScoreboardsController < ApplicationController
     @scoreboards5_by_score = @scoreboards5.group_by{ |k, v| v }
     
     @scorebs5 = @scoreboards_2014.where(["week = 5 AND label NOT IN (?)", ["Header","Footer"]]).reverse
-    @scorebs5header = @scoreboards_2014.where(:label => "Header", :week => 5)   
+    @scorebs5header = @scoreboards_2014.where(:label => "Header", :week => 5).order("id ASC")   
     @scorebs5footer = @scoreboards_2014.where(:label => "Footer", :week => 5)
   end
     
@@ -83,7 +83,7 @@ class ScoreboardsController < ApplicationController
     @scoreboards5_by_score = @scoreboards5.group_by{ |k, v| v }
     
     @scorebs5 = @scoreboards_2014.where(["week = 5 AND label NOT IN (?)", ["Header","Footer"]]).reverse
-    @scorebs5header = @scoreboards_2014.where(:label => "Header", :week => 5)   
+    @scorebs5header = @scoreboards_2014.where(:label => "Header", :week => 5).order("id ASC")    
     @scorebs5footer = @scoreboards_2014.where(:label => "Footer", :week => 5)
 
   end
