@@ -16,14 +16,12 @@ class Fixture < ActiveRecord::Base
      CSV.foreach(file.path, headers: true) do |row|
         rid = Fixture.create! row.to_hash
         row_id << rid.id
-        Rails.logger.debug("rid: #{row_id.inspect}")
       end
       return row_id
   end
   
   
   def self.updaterow(row_id, game)
-    Rails.logger.debug("in update row method_rid: #{row_id.inspect}")
     row_id.each do |id|
       a = Fixture.find(id)
       Fixture.update(id, :game_id => game)
@@ -33,7 +31,6 @@ class Fixture < ActiveRecord::Base
   def full_fixture
     "#{hometeam} vs. #{awayteam} - #{(matchdate.strftime("%d %B, %Y"))}"
   end
-  
- 
+    
   
 end

@@ -1,7 +1,4 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-<% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
-
 
 <% provide(:title, 'Match Predictions') %>
 <p id="notice"><%= notice %></p>
@@ -20,12 +17,12 @@
 <div class="row">
   <div class="span5">
   
-   <% if  Date.today > date %>
+   <% if  Date.today > action_date %>
       <%= render 'fixtures/fixpredict_stats' %>
 
        <% else %>
         <br> <i>Predictions from all players will be available here<br> 
-        from 5 mins before the first match, 1st Feb 2014.</i><br><br>
+        from 5 mins before the first match.</i><br><br>
       <% end %>
       
           <% if signed_in? && current_user.admin? %>

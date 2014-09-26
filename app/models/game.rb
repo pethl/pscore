@@ -13,5 +13,23 @@ class Game < ActiveRecord::Base
       end
     end
     
+    def self.get_last_four_years
+       @games = Game.where(current: [false, nil])
+        @lastfour = []
+        
+          @games.each do |game|
+            if game.startdate >= Date.today-1420
+                 @lastfour << game
+            end
+            
+          end
+              
+         return @lastfour
+      end
+    
+      def game_details
+        "#{name} - #{(startdate.strftime("%d %B, %Y"))}"
+      end
+    
     
 end

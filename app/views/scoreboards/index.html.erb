@@ -1,7 +1,4 @@
 
-<% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
-
 <ul class="nav nav-tabs">
 <li class="active">	<a href="/scoreboards">Predicascore<br>Leaderboard</a>
 </li>
@@ -20,8 +17,8 @@
 <div class="row-fluid">
   <div class="span6 offset2">
   
-  <% if date > Date.today %> 
-			<p>Week 1 summary will be delivered shortly</p><br>
+  <% if action_date > Date.today %> 
+			<p>View the <g4>Leadboard</g4> here, once the competition is underway.</p><br>
 			<% else %>
 
 		<% @scoreboards_by_score.each do |score, users| %>

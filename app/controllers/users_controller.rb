@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @previous_fixtures = Fixture.where(:game_id => @last_game[0].id)
     @predicts = Predict.where(:game_id => @current_game[0].id, :user_id => (params[:id]))
     @predicts = @predicts.sort_by { |h| h[:id] }
-    @previous_predicts = Predict.where(:game_id => @last_game[0].id, :user_id => (params[:id])).select([:id, :fixture_id, :awayscore, :homescore])
+    @previous_predicts = Predict.where(:game_id => @last_game[0].id, :user_id => (params[:id])).select([:id, :fixture_id, :awayscore, :homescore, :points])
 
     
     respond_to do |format|

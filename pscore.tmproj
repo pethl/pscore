@@ -19,24 +19,40 @@
 	<integer>467</integer>
 	<key>metaData</key>
 	<dict>
-		<key>app/views/games/index.html.erb</key>
+		<key>app/views/users/_predictform.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>56</integer>
 				<key>line</key>
-				<integer>37</integer>
+				<integer>13</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>21</integer>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>56</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
 		</dict>
 	</dict>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{10, 9}, {784, 643}}</string>
+	<string>{{14, 22}, {800, 643}}</string>
 </dict>
 </plist>

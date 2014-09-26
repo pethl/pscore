@@ -1,0 +1,25 @@
+<div class="row">
+ <div class="span4">
+<br><br>
+
+<table class= "table">
+<tr>
+  <td><m3>Year:</m3></td>
+  <td><%= @board.year %></td>
+</tr>
+
+<tr>
+  <td><m3>Game:</m3></td>
+  <td><%= Game.where(:id => @board.game_id)[0][:name] %></td>
+</tr>
+
+<tr>
+  <td><m3>User:</m3></td>
+  <td><%= User.where(:id => @board.user_id)[0][:name] %></td>
+</tr>
+</table>
+
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>
+</div>
+</div>

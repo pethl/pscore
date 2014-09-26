@@ -1,5 +1,11 @@
 <% provide(:title, 'Sign up') %>
+
+   <% if signed_in? %>
+<b><m2>edit my details</m2></b>
+<% else %>
 <b><m2>New User Sign Up</m2></b>
+<% end %>
+
 <br><br>
 <div class="row">
   <div class="span4">

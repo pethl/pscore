@@ -16,9 +16,14 @@
 <h3>See all predictions for a single match</h3>
  <a href="/fixtures/fix_by_comp">show match predictions >>></a>
 
- <h3>See all your predictions</h3><h4> (you need to be <a href="/signin">signed in </a>first)</h4>
+ <h3>See all your predictions</h3> 
+ 
+  <% if signed_in?  %>
+    <a href="/users/<%= current_user.id %>">show my predictions >>></a>
+    <% else %>
+    <h4>(you need to be <a href="/signin">signed in </a>first)</h4>
+  <% end %>
 
-   <a href="/users/<%= current_user.id %>">show my predictions >>></a>
 <br>
 <br>
 </div>

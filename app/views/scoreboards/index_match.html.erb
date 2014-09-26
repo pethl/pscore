@@ -1,5 +1,4 @@
-<% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
+
 
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Predicascore<br>Leaderboard</a> </li>
@@ -17,8 +16,8 @@
 <div class="row-fluid">
   <div class="span6 offset1">
   
-  <% if date > Date.today %> 
-			<p>Week 1 summary will be delivered shortly</p><br>
+  <% if action_date > Date.today %> 
+			<p>See your <g4>points per match</g4> here, once the competition is underway. </p><br>
 			<% else %>
   
 

@@ -1,0 +1,40 @@
+<div class="row">
+ <div class="span4">
+<br>
+<m2>Predictascore Past Winners</m2>
+<br><br>
+<table class= "table">
+
+
+<% @boards.each do |board| %>
+  <tr>
+
+    <td><%= Game.where(:id => board.game_id)[0][:name] %></td>
+    <td><g4><%= User.where(:id => board.user_id)[0][:name]  %></g4></td>
+  
+   <% if Scoreboard.where(:game_id => board.game_id).count > 0 %>
+  <td>  	<a href="/scoreboards/scores_2014">See Results</a>  </td>
+      <% else %>
+
+  <td>  - </td>  
+  
+     <% end %>
+    
+    
+  <% if signed_in? && current_user.admin? %>
+      
+    <td><%= link_to 'S', board %></td>
+    <td><%= link_to 'E', edit_board_path(board) %></td>
+    <td><%= link_to 'D', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
+    <% end %> 
+  </tr>
+<% end %>
+</table>
+
+<br />
+  <% if signed_in? && current_user.admin? %>
+<%= link_to 'Add a Winner', new_board_path %>
+    <% end %> 
+<div>
+<div>

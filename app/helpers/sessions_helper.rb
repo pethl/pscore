@@ -51,4 +51,9 @@ module SessionsHelper
       session[:return_to] = request.fullpath
   end
   
+  def action_date
+    action_date = Game.where(current: [true]).first.startdate
+    return action_date
+   end
+  
 end

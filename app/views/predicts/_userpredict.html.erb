@@ -1,9 +1,5 @@
 
-<% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
-
-
- <% if  Date.today < date %>
+ <% if  Date.today < action_date %>
    <m2>My Predictions for <%= @current_game[0].name %></m2>
    <m4> click</m4> 
    <%= image_tag("/images/editicon.png", :size => "20x20", :alt=> "fixtures") %>
@@ -16,7 +12,7 @@
   			<table class='table table-condensed'>
 
   				<tr>
-  				  <th></th>
+  				  <th><a style="color:#52D017"><%= @current_game[0].startdate.strftime("%Y") %></th>
   				  <th></th>
   				  <th><a style="color:#52D017">Home</th>
   				  <th><a style="color:#52D017">Away</th>
@@ -30,7 +26,7 @@
 			  <td><%= t.matchdate.strftime("%a %d %b") %></td>
     	 	<td><center><%= t.hometeam %> v <%= t.awayteam %></center></td>
 				
-				 <% if  Date.today < date %>
+				 <% if  Date.today < action_date %>
 
 		       <td><a style="color:#52D017"><center><%= best_in_place predict, :homescore, :nil => image_tag("/images/editicon.png", :size => "16x16", :alt=> "home") %></center></td>
 		        <td><a style="color:#52D017"><center><%= best_in_place predict, :awayscore, :nil => image_tag("/images/editicon.png", :size => "16x16", :alt=> "away") %></center></td>

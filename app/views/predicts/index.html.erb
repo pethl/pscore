@@ -1,9 +1,5 @@
 <% provide(:title, 'Match Scoring Detail') %>
 
-
-<% require 'date' %>
-<% date = DateTime.parse("2014-01-01 14:25:00") %>
-
 <ul class="nav nav-tabs">
 <li>	<a href="/scoreboards">Predicascore<br>Leaderboard</a>
     </li>
@@ -19,7 +15,6 @@
 </ul>
 
 
-
 <br>
 <b><m4>... a reminder of the predictascore rules</m4></b>
 <ul>
@@ -31,15 +26,15 @@
 <li>1 point for right result <m4>[1-CR = Correct Result]</m4></li>
 <li>1 extra bonus if both scores are correct <m4>[2-ER = Exact Result]</m4></li>
 <li>1 point for closest margin <m4>[3-CTM = Closest To Margin]</m4></li>
-<li>1 point for closest to each team's score <m4>[4-CTH = Closest To Home][5-CTA = Closest To Away]</m4></li>
+<li>1 point for closest to each team score <m4>[4-CTH = Closest To Home][5-CTA = Closest To Away]</m4></li>
 <li>1 bonus point for each exact score <m4>[6-EHS = Exact Home Score][7-EAS = Exact Away Score]</m4></li>
 </ul>
 
-<b><m4>Predictascores - Point by Point</m4></b>
-<% if date > Date.today %> 
-		<p>Week 1 summary will be delivered shortly</p><br>
+<br>
+<% if action_date > Date.today %> 
+		<p>See your <g4>points break down</g4> here, once the competition is underway. </p><br>
 		<% else %>
-
+<b><m4>Predictascores - Point by Point</m4></b>
  <% @predicts_by_fixture.each do |fixture_id, predicts_by_fixture| %>
 <br>
    <strong><%= Fixture.find(fixture_id).full_fixture %></strong>
@@ -73,7 +68,9 @@
 
 <% predicts_by_fixture = predicts_by_fixture.sort_by{|e| e[:user_id]}%>
 <% predicts_by_fixture.each do |predict| %>
-  <tr>
+
+  <% if predict.points > 0 %>    
+    <tr> 
     <td></td>
     <td><%= predict.homescore %></td>
     <td><%= predict.awayscore %></td>
@@ -87,12 +84,37 @@
     <td><center><%= predict.exact_home_score %></center></td>
     <td><center><%= predict.exact_away_score %></center></td>
     <td><%= User.find(predict.user_id).name %></td>
+      
       <% if signed_in? && current_user.admin? %>	
-    <td><%= link_to 'S', predict %>
-    <%= link_to 'E', edit_predict_path(predict) %>
-    <%= link_to 'D', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% end %>
+        <td><%= link_to 'S', predict %>
+        <%= link_to 'E', edit_predict_path(predict) %>
+        <%= link_to 'D', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr></h5 class="muted">    
+    
+    <% else %>
+ <tr>
+    <td></td>
+    <td><h5 class="muted"><%= predict.homescore %></h5 class="muted"></td>
+    <td><h5 class="muted"><%= predict.awayscore %></h5 class="muted"></td>
+    <td><h5 class="muted"><i><%= predict.val_right_result %></h5 class="muted"></i></td>
+    <td><h5 class="muted">(<%= predict.points %>)</h5 class="muted"></td>
+    <td><h5 class="muted"><center><%= predict.right_result %></center></h5 class="muted"></td>
+    <td><center><%= predict.exact_result %></center></td>  
+    <td><center><%= predict.nearest_margin %></center></td>  
+    <td><center><%= predict.closest_to_home %></center></td>
+    <td><center><%= predict.closest_to_away %></center></td>
+    <td><center><%= predict.exact_home_score %></center></td>
+    <td><center><%= predict.exact_away_score %></center></td>
+    <td><h5 class="muted"><%= User.find(predict.user_id).name %></h5 class="muted"></td>
+      <% if signed_in? && current_user.admin? %>	
+        <td><%= link_to 'S', predict %>
+        <%= link_to 'E', edit_predict_path(predict) %>
+        <%= link_to 'D', predict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
+  
+     <% end %>
 <% end %>
 </table>
 <% end %><% end %>

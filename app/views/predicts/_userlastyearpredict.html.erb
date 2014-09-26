@@ -17,15 +17,20 @@
               						<% t = Fixture.find(r) %>
 
                <%= t.hometeam[0, 3] %> v. <%= t.awayteam[0, 3] %>_
-
-
-          <%= previous_predict.homescore %>-<%= previous_predict.awayscore %><br>
+              <%= previous_predict.homescore %>-<%= previous_predict.awayscore %>
+       <% if previous_predict.points > 0 %>
+            <i class='icon-ok icon-white'></i>
+                   <% else %>
+              <i class='icon-remove icon-white'></i>
+                   <% end %>
+              <br>
+       
           <% end %>
     <% end %>
           </td>
 
-
     </tr>
    </table>
 
+<m4>Tick shows where you<br> backed the right team</m4>
    

@@ -1,0 +1,10 @@
+dev notes for pscore
+
+
+4 sept - tried to add a new table called Board to hold the winners board, with year, user_id, game_id
+unable to run rake db:migrate as no internet connection and need to update rake version.
+run and add table
+
+also the scores table has no game filter and needs to be amended
+
+also load fixtures for the new year and add comp winners for last 2 years back to 2011

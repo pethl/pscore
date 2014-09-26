@@ -25,6 +25,6 @@ class Scoreboard < ActiveRecord::Base
          end
        end
    
-   
+  
    
 end

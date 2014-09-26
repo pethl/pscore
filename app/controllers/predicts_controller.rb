@@ -6,7 +6,6 @@ class PredictsController < ApplicationController
      @predicts = Predict.where(:game_id => @current[0].id)
      @predicts = @predicts.sort_by { |h| h[:id] }
     @predicts_by_fixture = @predicts.group_by { |t| t.fixture_id }
-   # not sure why this is here...    @fixture = Fixture.find(params[:fixture_id])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,5 +1,8 @@
 Pscore::Application.routes.draw do
  
+  resources :boards
+
+
   resources :games do
     resources :fixtures
   end
@@ -27,7 +30,8 @@ Pscore::Application.routes.draw do
    
     get 'scoreboards/index_match', :to => "scoreboards#index_match"
     get 'scoreboards/index_week', :to => "scoreboards#index_week"
-  
+    get 'scoreboards/scores_2014', :to => "scoreboards#scores_2014"
+      
   resources :scoreboards do
     collection { post :generate }
   end

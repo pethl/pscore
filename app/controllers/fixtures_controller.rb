@@ -26,7 +26,7 @@ class FixturesController < ApplicationController
     
     def fix_by_grid
        @current_game = Game.where(:current => true)
-          @games = Game.where(current: [false, nil])
+          @games = Game.get_last_four_years
         respond_to do |format|
           format.html # index.html.erb
           format.json { render json: @fixtures }
