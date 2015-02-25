@@ -69,7 +69,7 @@
 <% predicts_by_fixture = predicts_by_fixture.sort_by{|e| e[:user_id]}%>
 <% predicts_by_fixture.each do |predict| %>
 
-  <% if predict.points > 0 %>    
+  <% if predict.points != nil %>    
     <tr> 
     <td></td>
     <td><%= predict.homescore %></td>

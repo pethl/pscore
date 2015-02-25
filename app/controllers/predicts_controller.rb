@@ -4,8 +4,8 @@ class PredictsController < ApplicationController
   def index
       @current = Game.where(:current => true)
      @predicts = Predict.where(:game_id => @current[0].id)
-     @predicts = @predicts.sort_by { |h| h[:id] }
-    @predicts_by_fixture = @predicts.group_by { |t| t.fixture_id }
+     @predicts_sorted = @predicts.sort_by { |h| h[:id] }
+    @predicts_by_fixture = @predicts_sorted.group_by { |t| t.fixture_id }
 
     respond_to do |format|
       format.html # index.html.erb
