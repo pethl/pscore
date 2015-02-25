@@ -177,7 +177,12 @@ class ScoreboardsController < ApplicationController
         game_id = Game.where(:current => true)
         scores = Hash.new
         for user in users
-          scores[user.id] = Predict.where(:user_id => user.id, :game_id => game_id[0].id).sum(:points)
+          
+          @predicts = Predict.where(:game_id => game_id, :user_id => (user.id))
+        if @predicts.count > 0
+            scores[user.id] = Predict.where(:user_id => user.id, :game_id => game_id[0].id).sum(:points)
+        end 
+        
         end
         return scores
       end

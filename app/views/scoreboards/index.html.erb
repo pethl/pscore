@@ -24,16 +24,12 @@
 		<% @scoreboards_by_score.each do |score, users| %>
     <a><b>  <%= score %>  points</a></b>
       <ul>
-                <% sz = users.size %>
-                 <% if users.any? %>
-                    <% for user in users %> 
-                        <% sz = sz-1 %>
-                        <% @record = users[sz] %>
-                      <li>  <%= User.find(@record.first).name  %></li>
-             		    <% end %></ul>
-<% end %>
+                  <% if users.any? %>
+                     <% for user in users %> 
+                       <li>  <%= get_name(user[0]) %></li>
+              		    <% end %></ul>
+               <% end %>
 			 <% end %>
-
 
       </div></div>
 <% end %>
