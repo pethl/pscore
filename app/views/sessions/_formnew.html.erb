@@ -4,7 +4,7 @@
   <div class="well well-small">
   <%= form_for(:session, url: sessions_path) do |f| %>
     
-    <%= collection_select(:user, :name, @users, :name, :name) %>
+    <%= collection_select(:user, :name, @users, :name, :name, include_blank: "Select name" ) %>
 
      <%= f.label :password %>
      <%= f.password_field :password %>
