@@ -13,7 +13,14 @@
 
 <td>  <%= @scoreboard.week %></td>
 <td>  <%= @scoreboard.label %> </td>
-<td>  <%= @scoreboard.comment %> </td>
+<td>  <%=  @scoreboard.comment %></td>
 </tr>
 
 </table>
+
+
+<% if signed_in? && current_user.admin? %>	
+<br />
+<%= link_to 'New Scoreboard', new_scoreboard_path, class: "btn btn-primary" %>
+<%= link_to 'Edit Scoreboard', edit_scoreboard_path(@scoreboard), class: "btn btn-primary" %>
+ <% end %>
