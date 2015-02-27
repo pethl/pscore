@@ -1,0 +1,31 @@
+<% if @fixture.predicts.any? %>
+
+
+        <% @the_home_data = [] %>
+        <% @the_away_data = [] %>
+  
+ 	    <% for predict in @fixture.predicts %>
+ 	  <% user = User.where(:id => predict.user_id)[0].name %>
+ 	  
+        <%  @the_home_data << [user, predict.homescore] %>
+        <%  @the_away_data << [user, predict.awayscore] %>
+    
+ 	  <% end %>
+
+
+  <table class = "table">
+   	  <tr>
+   	         
+ 	   	  <%= bar_chart @the_home_data, stacked: true %>
+ 	   	    <%= bar_chart @the_away_data, stacked: true %>
+ 	   	
+   	  </tr>
+  </table>
+           	
+         	  
+    <br><br>
+    
+<% else %>
+           No predictions stats available
+<% end %>
+

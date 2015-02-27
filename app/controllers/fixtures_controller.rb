@@ -47,6 +47,7 @@ class FixturesController < ApplicationController
     # GET /fixtures/1.json
     def show
       @fixture = Fixture.find(params[:id])
+      @predicts = Predict.where(:fixture_id => (params[:id]))
  
       respond_to do |format|
         format.html # show.html.erb
