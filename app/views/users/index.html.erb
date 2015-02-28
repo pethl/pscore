@@ -16,8 +16,7 @@
   <tr>
 	<td><%= user.name %></td>
 	<td><%= user.email %></td>
-	<% @predicts = Predict.where(:game_id => @current_game[0].id, :user_id => (user.id))
-	 %>
+	<% @predicts = Predict.where(:game_id => @current_game[0].id, :user_id => (user.id)) %>
   
 	<td><%= @predicts.count %></td>
 	
