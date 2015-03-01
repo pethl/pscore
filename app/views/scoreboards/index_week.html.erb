@@ -75,7 +75,7 @@
          </a>
        </h4>
      </div>
-     <div id="collapseTwo" class="panel-collapse collapse">
+     <div id="collapseTwo" class="panel-collapse collapse in">
        <div class="panel-body">
 
         <% if @scoreboards_2_2015.any? %>
@@ -122,12 +122,12 @@
          </a>
        </h4>
      </div>
-     <div id="collapseThree" class="panel-collapse collapse in">
+     <div id="collapseThree" class="panel-collapse collapse">
        <div class="panel-body">
 
         <% if @scoreboards_3_2015.any? %>
        <%= @scoreboards_3_2015[0].comment %><br><br>
- 
+   <% end %>
       
 
        <table class = "table">
@@ -154,7 +154,7 @@
            <% end %>
          <% end %>
        </table>     
-  <% end %>
+
        </div>
      </div>
    </div>

@@ -15,17 +15,17 @@ class ScoreboardsController < ApplicationController
     @scoreboards_3_2015 = Scoreboard.where(:game_id => 5, :week => 3)
     @week = [1,2,3]
     @user_scores_3_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_3_2015 = @user_scores_2_2015.group_by{ |k, v| v }
+    @user_scores_3_2015 = @user_scores_3_2015.group_by{ |k, v| v }
     
     @scoreboards_4_2015 = Scoreboard.where(:game_id => 5, :week => 4)
     @week = [1,2,3,4]
     @user_scores_4_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_4_2015 = @user_scores_2_2015.group_by{ |k, v| v }
+    @user_scores_4_2015 = @user_scores_4_2015.group_by{ |k, v| v }
     
     @scoreboards_5_2015 = Scoreboard.where(:game_id => 5, :week => 5)
     @week = [1,2,3,4,5]
     @user_scores_5_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_5_2015 = @user_scores_2_2015.group_by{ |k, v| v }
+    @user_scores_5_2015 = @user_scores_5_2015.group_by{ |k, v| v }
   end
     
   def scores_2014
