@@ -20,6 +20,9 @@
   <% if action_date > Date.today %> 
 			<p>View the <g4>Leadboard</g4> here, once the competition is underway.</p><br>
 			<% else %>
+			
+			<a>Here is the leaderboard after the results from the xx match :</a>
+			<br>	<br>
 
 		<% @scoreboards_by_score.each do |score, users| %>
     <a><b>  <%= score %>  points</a></b>

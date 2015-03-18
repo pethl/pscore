@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>app/views/predicts/_userlastyearpredict.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,20 +19,6 @@
 	<integer>467</integer>
 	<key>metaData</key>
 	<dict>
-		<key>app/views/predicts/_userlastyearpredict.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>40</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>5</integer>
-		</dict>
 		<key>app/views/users/_predictform.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -66,10 +50,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>app/views/predicts/_userlastyearpredict.html.erb</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
