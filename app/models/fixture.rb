@@ -31,6 +31,9 @@ class Fixture < ActiveRecord::Base
   def full_fixture
     "#{hometeam} vs. #{awayteam} - #{(matchdate.strftime("%d %B, %Y"))}"
   end
-    
+
+  def who_plays_who
+    "#{hometeam} vs. #{awayteam}"
+  end    
   
 end
