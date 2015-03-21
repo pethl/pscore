@@ -3,6 +3,7 @@ class BoardsController < ApplicationController
   # GET /boards.json
   def index
     @boards = Board.all.sort_by { |h| h[:year] }.reverse!
+    @board_by_game = @boards.group_by { |t| t.year }
 
     respond_to do |format|
       format.html # index.html.erb
