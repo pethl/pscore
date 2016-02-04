@@ -20,7 +20,6 @@
   
 	<td><%= @predicts.count %></td>
 	
-	
 		<td><% if user.wins? && user.wins > 0  %>
 		  <img src="/images/Trophy-icon.png"
 		  </td>
@@ -29,19 +28,12 @@
 		
 	<td><b><%= link_to "", user_path(user), :class => "icon-forward" %></b></td>
 
-<% if signed_in? %>
-	<% if current_user.admin? && current_user?(user)%>
+	<% if current_user.admin?%>
 		<td><b><%= link_to 'edit', edit_user_path(user) %></b></td>
 	    	<td><b><%= link_to "delete", user, method: :delete,
 	                                  data: { confirm: "You sure?" } %></b></td>				  									
-		<% elsif  %>
-			    <% if current_user.admin? %>
-				<td></td>
-					<td><b><%= link_to "|d|", user, method: :delete,
-			                                  data: { confirm: "You sure?" } %></b></td>
-					    	<td></td>				  	
-			<% elsif  %>
-		    <% if current_user?(user) %>
+			  	
+			<% elsif  current_user?(user) %>
 				<td><b><%= link_to '|e|', edit_user_path(user) %></b></td>
 			    	<td></td>				  	
 			
@@ -49,11 +41,10 @@
 				<td></td>
 				<td></td>
 			<% end %>
-		<% end %>
-<% end %>  
+	
 <% end %>
 </tr>
-<% end %>
+
 </table>
 <br />
 
