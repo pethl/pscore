@@ -56,6 +56,11 @@ module SessionsHelper
     return action_date
    end
    
+   def action_date_2016
+     action_date_2016 = Time.new(2016,2,6,14,25)
+     return action_date_2016
+    end
+   
    def admin_user
          redirect_to(root_path) unless current_user.admin?
    end
