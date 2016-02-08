@@ -1,5 +1,5 @@
 
- <% if  Time.now < action_date_2016 %>
+ <% if Date.today < action_date %>
    <m2>My Predictions for <%= @current_game[0].name %></m2>
    <m4> click</m4> 
    <%= image_tag("/images/editicon.png", :size => "20x20", :alt=> "fixtures") %>
