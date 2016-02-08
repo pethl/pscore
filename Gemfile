@@ -10,12 +10,10 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'gchartrb'
 gem "chartkick"
 
-
-
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# gem 'heroku'
+gem 'heroku'
 
 gem 'twitter'
 gem 'oauth'
@@ -23,21 +21,24 @@ gem 'oauth'
 gem 'bitly'
 gem 'roo'
 
+	gem 'pg', '0.12.2'
+gem 'rspec-rails', '2.10.0'
 
-group :development do
-  	gem 'pg', '0.12.2'
-	gem 'rspec-rails', '2.10.0'
-end
+# group :development do
+#   	gem 'pg', '0.12.2'
+# 	gem 'rspec-rails', '2.10.0'
+# end
 
 group :production do
-  gem 'pg', '0.12.2'
+  gem 'rails_12factor'
+#   gem 'pg', '0.12.2'
 end
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
 
 group :test do
-  	gem 'pg', '0.12.2'
-	  gem 'rspec-rails', '2.10.0'
+#   	gem 'pg', '0.12.2'
+# 	  gem 'rspec-rails', '2.10.0'
     gem 'factory_girl_rails', '1.4.0'
     gem 'capybara', '1.1.2'
     gem 'database_cleaner'

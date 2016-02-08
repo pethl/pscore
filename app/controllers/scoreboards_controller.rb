@@ -2,30 +2,30 @@ class ScoreboardsController < ApplicationController
     before_filter :admin_user,   only: [:show, :edit  ]
   
   def index_week
-    # need to build a new set of scoring pages for 2015s
-    @scoreboards_1_2015 = Scoreboard.where(:game_id => 5, :week => 1)
-    @user_scores_1_2015 = get_records_2015(1).sort_by{ |k, v| v }.reverse
-    @user_scores_1_2015 = @user_scores_1_2015.group_by{ |k, v| v }
+    # need to build a new set of scoring pages for 2016s
+    @scoreboards_1_2016 = Scoreboard.where(:game_id => 5, :week => 1)
+    @user_scores_1_2016 = get_records_2016(1).sort_by{ |k, v| v }.reverse
+    @user_scores_1_2016 = @user_scores_1_2016.group_by{ |k, v| v }
     
-    @scoreboards_2_2015 = Scoreboard.where(:game_id => 5, :week => 2)
+    @scoreboards_2_2016 = Scoreboard.where(:game_id => 5, :week => 2)
     @week = [1,2,]
-    @user_scores_2_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_2_2015 = @user_scores_2_2015.group_by{ |k, v| v }
+    @user_scores_2_2016 = get_records_2016(@week).sort_by{ |k, v| v }.reverse
+    @user_scores_2_2016 = @user_scores_2_2016.group_by{ |k, v| v }
     
-    @scoreboards_3_2015 = Scoreboard.where(:game_id => 5, :week => 3)
+    @scoreboards_3_2016 = Scoreboard.where(:game_id => 5, :week => 3)
     @week = [1,2,3]
-    @user_scores_3_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_3_2015 = @user_scores_3_2015.group_by{ |k, v| v }
+    @user_scores_3_2016 = get_records_2016(@week).sort_by{ |k, v| v }.reverse
+    @user_scores_3_2016 = @user_scores_3_2016.group_by{ |k, v| v }
     
-    @scoreboards_4_2015 = Scoreboard.where(:game_id => 5, :week => 4)
+    @scoreboards_4_2016 = Scoreboard.where(:game_id => 5, :week => 4)
     @week = [1,2,3,4]
-    @user_scores_4_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_4_2015 = @user_scores_4_2015.group_by{ |k, v| v }
+    @user_scores_4_2016 = get_records_2016(@week).sort_by{ |k, v| v }.reverse
+    @user_scores_4_2016 = @user_scores_4_2016.group_by{ |k, v| v }
     
-    @scoreboards_5_2015 = Scoreboard.where(:game_id => 5, :week => 5)
+    @scoreboards_5_2016 = Scoreboard.where(:game_id => 5, :week => 5)
     @week = [1,2,3,4,5]
-    @user_scores_5_2015 = get_records_2015(@week).sort_by{ |k, v| v }.reverse
-    @user_scores_5_2015 = @user_scores_5_2015.group_by{ |k, v| v }
+    @user_scores_5_2016 = get_records_2016(@week).sort_by{ |k, v| v }.reverse
+    @user_scores_5_2016 = @user_scores_5_2016.group_by{ |k, v| v }
   end
     
   def scores_2014
@@ -194,9 +194,9 @@ class ScoreboardsController < ApplicationController
         return scores
       end
       
-      def get_records_2015(week)  # get user scores per week by passing in week, note year is fixed
+      def get_records_2016(week)  # get user scores per week by passing in week, note year is fixed
          
-         game_id = 5
+         game_id = 6
          users = players_by_year(game_id)
          scores = Hash.new
           @weekfix = Fixture.where(:game_id => game_id, :week => week).select(:id)
