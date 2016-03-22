@@ -4,30 +4,11 @@
 <m2>Predictascore Past Winners</m2>
 <br><br>
 <table class= "table">
+<tr><td>2015</td><td><b><font color="00FF00">kath morgan - tom rees</b></td></tr>
+<tr><td>2014</td><td><b><font color="00FF00">matthew rees</b></td></tr>
+<tr><td>2013</td><td><b><font color="00FF00">laurent</b></td></tr>
+<tr><td>2012</td><td><b><font color="00FF00">duncan</b></td></tr>
 
-
-<% @board_by_game.each do |year, boards| %>
-
-  <tr>
-  <td><%= year %></td>
-  
-    <td>    
-    <% boards.each do |board| %>
-      <g4><%= User.where(:id => board.user_id)[0][:name]  %></g4> - 
-   
-  <% end %>
-   </td>
-  
-    
- 
-  </tr>
-
-  <% end %>
 </table>
-
-<br />
-  <% if signed_in? && current_user.admin? %>
-<%= link_to 'Add a Winner', new_board_path %>
-    <% end %> 
 <div>
 <div>
